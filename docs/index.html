@@ -22,17 +22,31 @@
   .errors { background: #fff3f3; border: 1px solid #ffc9c9; border-radius: 8px; padding: 1rem; }
   a { color: #0a5; text-decoration: none; }
   a:hover { text-decoration: underline; }
+  .filters { background: white; border: 1px solid #e0e0e0; border-radius: 8px; padding: .8rem; display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; margin-bottom: 1rem; position: sticky; top: .5rem; z-index: 10; }
+  .filters input[type="text"], .filters input[type="number"], .filters select { padding: .4rem .5rem; border: 1px solid #ccc; border-radius: 6px; font-size: .9rem; }
+  .filters input[type="text"] { flex: 1; min-width: 140px; }
+  .filters input[type="number"] { width: 90px; }
+  .filters label { font-size: .85rem; display: flex; align-items: center; gap: .3rem; white-space: nowrap; }
+  .filters button { padding: .4rem .7rem; border: 1px solid #ccc; border-radius: 6px; background: #f5f5f5; cursor: pointer; font-size: .85rem; }
+  .filters button:hover { background: #eee; }
+  .filter-count { font-size: .8rem; color: #666; margin: -0.5rem 0 1rem; }
 </style>
 </head>
 <body>
   <h1>🌱 Kleinanzeigen Monitor – Grundstücke Wernau</h1>
-  <div class="meta">Letzter Check: 2026-09-14T18:52:58+00:00 · 15 gespeicherte Suchen · 122 bekannte Inserate insgesamt</div>
+  <div class="meta">Letzter Check: 2026-09-14T19:07:08+00:00 · 15 gespeicherte Suchen · 122 bekannte Inserate insgesamt</div>
 
   
-        <section class="errors">
-          <h2>⚠️ Fehler beim letzten Lauf</h2>
-          <ul><li>Kleingarten (Grundstücke-Rubrik, Kauf): 403 Client Error: Forbidden for url: https://www.kleinanzeigen.de/s-grundstuecke-garten/wernau/sortierung:neuste/anzeige:angebote/preis::15000/kleingarten/k0c207l14921r50+grundstuecke_garten.art_s:kaufen</li><li>Kleingarten: 403 Client Error: Forbidden for url: https://www.kleinanzeigen.de/s-wernau/anzeige:angebote/preis::15000/kleingarten/k0l14921r50</li><li>Wiesenstück (Grundstücke-Rubrik, Kauf): 403 Client Error: Forbidden for url: https://www.kleinanzeigen.de/s-grundstuecke-garten/wernau/sortierung:neuste/anzeige:angebote/preis::15000/wiesenst%C3%BCck/k0c207l14921r50+grundstuecke_garten.art_s:kaufen</li><li>Schrebergarten: 403 Client Error: Forbidden for url: https://www.kleinanzeigen.de/s-wernau/anzeige:angebote/preis::15000/schrebergarten/k0l14921r50</li><li>Gartenfläche: 403 Client Error: Forbidden for url: https://www.kleinanzeigen.de/s-wernau/anzeige:angebote/preis::15000/gartenfl%C3%A4che/k0l14921r50</li><li>Obstwiese: 403 Client Error: Forbidden for url: https://www.kleinanzeigen.de/s-wernau/anzeige:angebote/preis::15000/obstwiese/k0l14921r50</li><li>Baumwiese (Grundstücke-Rubrik, Kauf): 403 Client Error: Forbidden for url: https://www.kleinanzeigen.de/s-grundstuecke-garten/wernau/sortierung:preis/anzeige:angebote/preis::15000/baumwiese/k0c207l14921r50+grundstuecke_garten.art_s:kaufen</li><li>Baumgrundstück: 403 Client Error: Forbidden for url: https://www.kleinanzeigen.de/s-wernau/anzeige:angebote/preis::15000/baumgrundst%C3%BCck/k0l14921r50</li><li>Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung): 403 Client Error: Forbidden for url: https://www.kleinanzeigen.de/s-grundstuecke-garten/wernau/sortierung:neuste/anzeige:angebote/preis::15000/c207l14921r50</li><li>Gartengrundstück: 403 Client Error: Forbidden for url: https://www.kleinanzeigen.de/s-wernau/anzeige:angebote/preis::15000/gartengrundst%C3%BCck/k0l14921r50</li></ul>
-        </section>
+
+  <div class="filters">
+    <input type="text" id="filterText" placeholder="Titel enthält ...">
+    <select id="filterSearch"><option value="">Alle Suchen</option></select>
+    <input type="number" id="filterMinPrice" placeholder="Preis von €">
+    <input type="number" id="filterMaxPrice" placeholder="Preis bis €">
+    <label><input type="checkbox" id="filterHideVB"> VB/ohne Preis ausblenden</label>
+    <button id="filterReset" type="button">Zurücksetzen</button>
+  </div>
+  <div class="filter-count" id="filterCount"></div>
 
   <section>
     <h2>🆕 Neu seit letztem Check</h2>
@@ -47,88 +61,8 @@
   <section>
     <h2>📋 Alle aktuell bekannten Inserate</h2>
     <ul>
-        <li class="item">
-          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/b6/b60bb03d-f777-462c-84ea-95db202e2234?rule=$_2.AUTO" alt="" loading="lazy">
-          <div class="item-body">
-            <a href="https://www.kleinanzeigen.de/s-anzeige/3-streuobswiesen-guetle-zum-verpachten-bronnweiler-u-gomaringen/3044729760-207-9346" target="_blank" rel="noopener">3 Streuobswiesen Gütle zum verpachten  Bronnweiler u. Gomaringen</a>
-            <div class="item-meta">
-              <span class="price">1 € VB</span>
-              <span class="search-tag">Gütle</span>
-            </div>
-          </div>
-        </li>
-        <li class="item">
-          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/cb/cbd7738d-710f-4f57-bc5c-24bca1334918?rule=$_2.AUTO" alt="" loading="lazy">
-          <div class="item-body">
-            <a href="https://www.kleinanzeigen.de/s-anzeige/suche-wiese-obstbaumwiese-grundstueck-garten/3511886184-207-8356" target="_blank" rel="noopener">Suche Wiese/ Obstbaumwiese/ Grundstück/ Garten</a>
-            <div class="item-meta">
-              <span class="price">1 € VB</span>
-              <span class="search-tag">Obstbaumwiese</span>
-            </div>
-          </div>
-        </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
-          <div class="item-body">
-            <a href="https://www.kleinanzeigen.de/s-anzeige/suche-schrebergarten-garten-in-hirrlingen/3438284330-207-8155" target="_blank" rel="noopener">Von Privat</a>
-            <div class="item-meta">
-              <span class="price">1 €</span>
-              <span class="search-tag">Schrebergarten</span>
-            </div>
-          </div>
-        </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
-          <div class="item-body">
-            <a href="https://www.kleinanzeigen.de/s-anzeige/mulcharbeiten-obstwiese-hang-hochgras-bauplatz-maehen-mulchen/3129639342-239-8404" target="_blank" rel="noopener">Mulcharbeiten Obstwiese, Hang, Hochgras, Bauplatz Mähen, Mulchen</a>
-            <div class="item-meta">
-              <span class="price">1 €</span>
-              <span class="search-tag">Obstwiese</span>
-            </div>
-          </div>
-        </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
-          <div class="item-body">
-            <a href="https://www.kleinanzeigen.de/s-anzeige/wald-wiese-in-hirrlingen-ihr-stueck-natur-zum-verlieben/3512694532-207-8155" target="_blank" rel="noopener">Wald &amp; Wiese in Hirrlingen – Ihr Stück Natur zum Verlieben</a>
-            <div class="item-meta">
-              <span class="price">1 € VB</span>
-              <span class="search-tag">Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)</span>
-            </div>
-          </div>
-        </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
-          <div class="item-body">
-            <a href="https://www.kleinanzeigen.de/s-anzeige/bauplatz-fuer-traumhaus-gesucht-baufamilie-braucht-hilfe-/2980841828-207-6679" target="_blank" rel="noopener">Bauplatz für Traumhaus gesucht, Baufamilie braucht Hilfe!</a>
-            <div class="item-meta">
-              <span class="price">1 € VB</span>
-              <span class="search-tag">Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)</span>
-            </div>
-          </div>
-        </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
-          <div class="item-body">
-            <a href="https://www.kleinanzeigen.de/s-anzeige/suche-wiesen-zur-pacht-verkauf-in-72144/3510024941-207-8007" target="_blank" rel="noopener">SUCHE Wiesen zur Pacht/ Verkauf in 72144</a>
-            <div class="item-meta">
-              <span class="price">1 € VB</span>
-              <span class="search-tag">Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)</span>
-            </div>
-          </div>
-        </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
-          <div class="item-body">
-            <a href="https://www.kleinanzeigen.de/s-anzeige/maehen-von-streuobstwiesen-gartengrundstueck-bauplaetzen/3505101140-239-19880" target="_blank" rel="noopener">Mähen von Streuobstwiesen, Gartengrundstück,Bauplätzen</a>
-            <div class="item-meta">
-              <span class="price">1 € VB</span>
-              <span class="search-tag">Gartengrundstück</span>
-            </div>
-          </div>
-        </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="3" data-search="Schrebergarten" data-title="mona nikolay rosenkohl und tote beete. schrebergarten krimi">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/ae/ae9b3fca-2ef1-4195-ac3f-b8208f2eb9de?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/mona-nikolay-rosenkohl-und-tote-beete-schrebergarten-krimi/3303316464-76-8385" target="_blank" rel="noopener">Mona Nikolay Rosenkohl und tote Beete. Schrebergarten Krimi</a>
             <div class="item-meta">
@@ -137,7 +71,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="5" data-search="Freizeitgrundstück" data-title="schöne grundstücke für naturliebhaber sulzau neckartal">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/da/daf34319-18ce-410d-be1a-ae0e520f3b03?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/schoene-grundstuecke-fuer-naturliebhaber-sulzau-neckartal/3503688019-207-8157" target="_blank" rel="noopener">Schöne Grundstücke für Naturliebhaber Sulzau Neckartal</a>
@@ -147,7 +81,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="5" data-search="Gütle" data-title="kinderstuhl rosa holz ähnlich wie ikea stuhl mädchen pink :) gutl">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/6d/6d6dc781-40bb-41cc-b9b0-81c7b27c2600?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/kinderstuhl-rosa-holz-aehnlich-wie-ikea-stuhl-maedchen-pink-gutl/3493849742-20-9349" target="_blank" rel="noopener">Kinderstuhl rosa Holz ähnlich wie Ikea Stuhl Mädchen pink :) gutl</a>
@@ -157,7 +91,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="5" data-search="Stückle" data-title="stückle gartengrundstück freizeitgrundstück grundstück">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/93/935c4860-e600-48e9-a328-96aec36ab831?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/stueckle-gartengrundstueck-freizeitgrundstueck-grundstueck/2873773489-207-8214" target="_blank" rel="noopener">Stückle Gartengrundstück Freizeitgrundstück Grundstück</a>
@@ -167,8 +101,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="5" data-search="Gartengrundstück" data-title="gartengrundstück, obstwiese">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/3a/3a36bad7-4cfa-4e10-80b4-d569bbf2113d?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/gartengrundstueck-obstwiese/3499574412-207-19880" target="_blank" rel="noopener">Gartengrundstück, Obstwiese</a>
             <div class="item-meta">
@@ -177,8 +111,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="5" data-search="Obstwiese" data-title="obstwiesen in herrenberg kayh ammerbuch abzugeben">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/29/299b6bcc-ea16-4417-a80c-9502943a5922?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/obstwiesen-in-herrenberg-kayh-ammerbuch-abzugeben/3452796435-207-8399" target="_blank" rel="noopener">Obstwiesen in Herrenberg Kayh Ammerbuch abzugeben</a>
             <div class="item-meta">
@@ -187,8 +121,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="8" data-search="Obstwiese" data-title="playmobil obstwiese und diverses zubehör">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/bc/bc82a190-97d2-4c8f-b298-14c7bdf1abbf?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/playmobil-obstwiese-und-diverses-zubehoer/2911949058-23-9351" target="_blank" rel="noopener">Playmobil Obstwiese und diverses Zubehör</a>
             <div class="item-meta">
@@ -197,8 +131,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="10" data-search="Obstwiese" data-title="apfelsaft aus ungespritzen obstwiesen 5l- ernte 2025">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/74/74f24ddd-6dae-43e6-b802-10e499ac894d?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/apfelsaft-aus-ungespritzen-obstwiesen-5l-ernte-2025/3474667291-248-8785" target="_blank" rel="noopener">Apfelsaft aus ungespritzen Obstwiesen 5l- Ernte 2025</a>
             <div class="item-meta">
@@ -207,8 +141,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="12" data-search="Schrebergarten" data-title="modelleisenbahn 1:87 faller schrebergarten bausatz">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/cb/cb135431-b6ba-49dd-81ce-36f3f48795e4?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/modelleisenbahn-1-87-faller-schrebergarten-bausatz/3469259539-249-29794" target="_blank" rel="noopener">Modelleisenbahn 1:87 Faller Schrebergarten Bausatz</a>
             <div class="item-meta">
@@ -217,7 +151,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="20" data-search="Stückle" data-title="esmeyer servierplatte rechteckig/oval mit griff -2 stückl">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/bb/bb6a4c31-cd3d-48cf-99a8-fbb46d631f67?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/esmeyer-servierplatte-rechteckig-oval-mit-griff-2-stueckl/1599892167-86-8819" target="_blank" rel="noopener">Esmeyer Servierplatte rechteckig/oval mit Griff -2 Stückl</a>
@@ -227,7 +161,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="20" data-search="Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)" data-title="garten grundstück freizeit 28 qm">
           <div class="thumb thumb-placeholder">🏡</div>
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/garten-grundstueck-freizeit-28-qm/3509737620-207-9024" target="_blank" rel="noopener">Garten Grundstück Freizeit 28 Qm</a>
@@ -237,8 +171,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="20" data-search="Gartengrundstück" data-title="naturnahes gartengrundstück zu verpachten">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/2a/2a55340a-0729-4b07-9a90-c31b35916b0c?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/naturnahes-gartengrundstueck-zu-verpachten/3507335719-207-9093" target="_blank" rel="noopener">Naturnahes Gartengrundstück zu verpachten</a>
             <div class="item-meta">
@@ -247,8 +181,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="20" data-search="Gartengrundstück" data-title="garten/grundstück - pflege in hochdorf(73269) (+umgebung)">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/26/26afee41-7a90-4b28-89b9-d224e593ecf9?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/garten-grundstueck-pflege-in-hochdorf-73269-umgebung-/3500809463-239-8461" target="_blank" rel="noopener">Garten/Grundstück - Pflege in Hochdorf(73269) (+Umgebung)</a>
             <div class="item-meta">
@@ -257,8 +191,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="22" data-search="Schrebergarten" data-title="robuste, schwere gartenstühle für den schrebergarten - 4 stück">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/f4/f4779d7e-a672-43e1-868c-f40b8fd4e4d6?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/robuste-schwere-gartenstuehle-fuer-den-schrebergarten-4-stueck/3491770388-89-8217" target="_blank" rel="noopener">Robuste, schwere Gartenstühle für den Schrebergarten - 4 Stück</a>
             <div class="item-meta">
@@ -267,7 +201,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="25" data-search="Stückle" data-title="obstbaumwiese garten gütle freizeitgrundstück stückle wiese obst">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/42/42a1938b-6198-4d1f-97df-a6ea9821ae3e?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/obstbaumwiese-garten-guetle-freizeitgrundstueck-stueckle-wiese-obst/3502627677-207-7998" target="_blank" rel="noopener">Obstbaumwiese Garten Gütle Freizeitgrundstück Stückle Wiese Obst</a>
@@ -277,8 +211,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="30" data-search="Kleingarten" data-title="für hobbygärtner - kleingarten für balkon - letzte preis ist 30€">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/f6/f6b075d9-0455-4359-a4e2-25004efedfce?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/fuer-hobbygaertner-kleingarten-fuer-balkon-letzte-preis-ist-30-/3369151601-87-8355" target="_blank" rel="noopener">Für Hobbygärtner - Kleingarten für Balkon - letzte Preis ist 30€</a>
             <div class="item-meta">
@@ -287,7 +221,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="30" data-search="Obstbaumwiese" data-title="garten/obstbaumwiese  zu verpachten!">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/55/5569508e-4b05-472c-baf3-d74f0d97f1b6?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/garten-obstbaumwiese-zu-verpachten-/3504584096-207-9335" target="_blank" rel="noopener">Garten/Obstbaumwiese  zu verpachten!</a>
@@ -297,7 +231,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="30" data-search="Gartengrundstück" data-title="gartengrundstück in münsingen 72525 zu vermieten">
           <div class="thumb thumb-placeholder">🏡</div>
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/gartengrundstueck-in-muensingen-72525-zu-vermieten/3511825251-207-7996" target="_blank" rel="noopener">Gartengrundstück in münsingen 72525 zu vermieten</a>
@@ -307,7 +241,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="40" data-search="Stückle" data-title="hobel  2 stückl in guter quälität">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/70/70d18602-2a32-4d8c-bbc7-92d235f7b6b3?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/hobel-2-stueckl-in-guter-quaelitaet/2485813222-84-9596" target="_blank" rel="noopener">Hobel  2 stückl in guter quälität</a>
@@ -317,8 +251,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="40" data-search="Baumgrundstück" data-title="großbottwar baumgrundstück,freizeitgrundstück, wochenende">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/52/52030caf-da2f-46c5-b3e5-219db999f4a9?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/grossbottwar-baumgrundstueck-freizeitgrundstueck-wochenende/3393802483-207-8444" target="_blank" rel="noopener">Großbottwar Baumgrundstück,Freizeitgrundstück, Wochenende</a>
             <div class="item-meta">
@@ -327,7 +261,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="50" data-search="Freizeitgrundstück" data-title="buderus-juno ölofen gartenhaus datsche freizeitgrundstück">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/96/9614d602-3335-47e7-9cbe-083b7441a98c?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/buderus-juno-oelofen-gartenhaus-datsche-freizeitgrundstueck/3491588139-87-8864" target="_blank" rel="noopener">Buderus-Juno Ölofen Gartenhaus Datsche Freizeitgrundstück</a>
@@ -337,18 +271,18 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="50" data-search="Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)" data-title="streuobstwiese stückle garten">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/09/09809f3b-d4d2-489b-8023-2de2b627af3f?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/streuobstwiese-stueckle-garten/3510678587-207-8383" target="_blank" rel="noopener">Streuobstwiese Stückle Garten</a>
             <div class="item-meta">
               <span class="price">50 €</span>
-              <span class="search-tag">Stückle</span>
+              <span class="search-tag">Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)</span>
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="50" data-search="Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)" data-title="garten zu vermieten esslingen">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/a0/a019a3a9-1348-4985-bf0c-e437cf784255?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/garten-zu-vermieten-esslingen/3491978453-207-9070" target="_blank" rel="noopener">Garten zu vermieten Esslingen</a>
             <div class="item-meta">
@@ -357,7 +291,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="60" data-search="Obstbaumwiese" data-title="obstbaumwiese in winnenden breuningsweiler zu verpachten">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/12/12df87d4-706f-406c-9983-eb835b6a6aa6?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/obstbaumwiese-in-winnenden-breuningsweiler-zu-verpachten/3390441708-207-8474" target="_blank" rel="noopener">Obstbaumwiese in Winnenden Breuningsweiler zu verpachten</a>
@@ -367,8 +301,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="60" data-search="Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)" data-title="garten mit blick übers remstal zu verpachten bei geradstetten..">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/66/667e8b16-b68d-4250-8f62-1bff958678d6?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/garten-mit-blick-uebers-remstal-zu-verpachten-bei-geradstetten-/3482712896-207-8385" target="_blank" rel="noopener">Garten mit Blick übers Remstal zu verpachten bei Geradstetten..</a>
             <div class="item-meta">
@@ -377,8 +311,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="60" data-search="Gartengrundstück" data-title="garten idylle mit panoramablick streuobstwiese grundstück">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/9b/9be646c3-a6d1-4859-899d-72ca2096b922?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/garten-idylle-mit-panoramablick-streuobstwiese-grundstueck/3509012218-207-8355" target="_blank" rel="noopener">Garten Idylle mit Panoramablick Streuobstwiese Grundstück</a>
             <div class="item-meta">
@@ -387,8 +321,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="79" data-search="Gartengrundstück" data-title="gartengrundstück zu pachten">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/34/3490a8fe-bfb4-4503-b2b9-4b9c9afa0b4f?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/gartengrundstueck-zu-pachten/3510976948-207-8441" target="_blank" rel="noopener">Gartengrundstück zu pachten</a>
             <div class="item-meta">
@@ -397,7 +331,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="80" data-search="Stückle" data-title="acker garten feld stückle zum gemüse und obstanbau zu verpachten">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/86/862a8abd-23a1-4ba3-898c-85157bc0a156?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/acker-garten-feld-stueckle-zum-gemuese-und-obstanbau-zu-verpachten/2383134769-207-8436" target="_blank" rel="noopener">Acker Garten Feld Stückle zum Gemüse und Obstanbau zu verpachten</a>
@@ -407,8 +341,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="80" data-search="Schrebergarten" data-title="wasserverteiler wasserversorgung schrebergarten">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/1f/1f723769-2853-425e-b8f8-88cd728480bf?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/wasserverteiler-wasserversorgung-schrebergarten/3436436432-89-6685" target="_blank" rel="noopener">Wasserverteiler Wasserversorgung Schrebergarten</a>
             <div class="item-meta">
@@ -417,8 +351,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="80" data-search="Schrebergarten" data-title="solarladegerät für schrebergarten/gartenhaus/camping">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/d2/d27ef147-ef3d-43e9-b437-2dfbfe567eb2?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/solarladegeraet-fuer-schrebergarten-gartenhaus-camping/3412342073-168-6687" target="_blank" rel="noopener">Solarladegerät für Schrebergarten/Gartenhaus/Camping</a>
             <div class="item-meta">
@@ -427,37 +361,37 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="85" data-search="Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)" data-title="gartenhaus/häusle/gütle in reutlingen-ohmenhausen zu verpachten">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/2f/2fe4bcbf-d733-4196-b50e-0bf823325350?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/gartenhaus-haeusle-guetle-in-reutlingen-ohmenhausen-zu-verpachten/3425447905-207-9353" target="_blank" rel="noopener">Gartenhaus/Häusle/Gütle in Reutlingen-Ohmenhausen zu verpachten</a>
             <div class="item-meta">
               <span class="price">85 €</span>
-              <span class="search-tag">Gütle</span>
+              <span class="search-tag">Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)</span>
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="100" data-search="Gartengrundstück" data-title="garten mit kleiner hütte in auenwald">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/63/636cff9b-0238-49af-8e61-ea0d5de03b56?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/garten-mit-kleiner-huette-in-auenwald/3497380360-207-8365" target="_blank" rel="noopener">Garten mit kleiner Hütte in Auenwald</a>
             <div class="item-meta">
               <span class="price">100 €</span>
-              <span class="search-tag">Freizeitgrundstück</span>
+              <span class="search-tag">Gartengrundstück</span>
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="100" data-search="Gartengrundstück" data-title="garten grundstück / stückle mit hütte in murr zu verpachten">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/a3/a39f0737-9d4d-428a-bb2f-2a91ca3d6d4a?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/garten-grundstueck-stueckle-mit-huette-in-murr-zu-verpachten/3509558615-207-21584" target="_blank" rel="noopener">Garten Grundstück / Stückle mit Hütte in Murr zu verpachten</a>
             <div class="item-meta">
               <span class="price">100 €</span>
-              <span class="search-tag">Stückle</span>
+              <span class="search-tag">Gartengrundstück</span>
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="100" data-search="Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)" data-title="garten, gartenhütte, mit zaun, toplage, imker, zu verpachten">
           <div class="thumb thumb-placeholder">🏡</div>
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/garten-gartenhuette-mit-zaun-toplage-imker-zu-verpachten/3485360818-207-8874" target="_blank" rel="noopener">Garten, Gartenhütte, mit Zaun, Toplage, Imker, zu verpachten</a>
@@ -467,7 +401,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="100" data-search="Gartengrundstück" data-title="gartengrundstücke">
           <div class="thumb thumb-placeholder">🏡</div>
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/gartengrundstuecke/3512825986-87-9068" target="_blank" rel="noopener">Gartengrundstücke</a>
@@ -477,8 +411,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="105" data-search="Gartengrundstück" data-title="zentral gelegenes ruhiges gartengrundstück in reutlingen">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/35/35c5aa5c-1340-48d3-8e4e-8cd47f3b1817?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/zentral-gelegenes-ruhiges-gartengrundstueck-in-reutlingen/3507104355-207-9349" target="_blank" rel="noopener">Zentral gelegenes ruhiges Gartengrundstück in Reutlingen</a>
             <div class="item-meta">
@@ -487,8 +421,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="110" data-search="Obstwiese" data-title="holzleiter für obstwiesen und weichboden.">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/a0/a04f19b2-4afe-4a8a-b902-2e9b000bb311?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/holzleiter-fuer-obstwiesen-und-weichboden-/3432690503-84-7997" target="_blank" rel="noopener">Holzleiter für Obstwiesen und Weichboden.</a>
             <div class="item-meta">
@@ -497,8 +431,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="135" data-search="Gartengrundstück" data-title="gartengrundstück mit direkter zufahrt, obstbäumen &amp; aussicht">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/13/13fb0872-d5bf-4292-a5bf-25acac2016f1?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/gartengrundstueck-mit-direkter-zufahrt-obstbaeumen-aussicht/3488539241-207-20234" target="_blank" rel="noopener">Gartengrundstück mit direkter Zufahrt, Obstbäumen &amp; Aussicht</a>
             <div class="item-meta">
@@ -507,8 +441,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="150" data-search="Kleingarten" data-title="kleingarten gesucht in esslingen und umgebung">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/81/81f6f84b-9be2-4928-8bb6-920726866edf?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/-kleingarten-gesucht-in-esslingen-und-umgebung-/3508980205-87-9069" target="_blank" rel="noopener">Kleingarten gesucht in Esslingen und Umgebung</a>
             <div class="item-meta">
@@ -517,8 +451,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="150" data-search="Schrebergarten" data-title="superschönes gartengrundstück schrebergarten kleingarten waldrand">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/07/07315cda-5fa2-48df-8627-e2139f1f821b?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/superschoenes-gartengrundstueck-schrebergarten-kleingarten-waldrand/3287729141-207-6688" target="_blank" rel="noopener">Superschönes Gartengrundstück Schrebergarten Kleingarten Waldrand</a>
             <div class="item-meta">
@@ -527,27 +461,27 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="150" data-search="Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)" data-title="wochenendgrundstück, freizeitgrundstück, garten in heimsheim">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/cf/cfba0965-630f-4a7a-8d13-b79004f81e81?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/wochenendgrundstueck-freizeitgrundstueck-garten-in-heimsheim/3506160642-207-8405" target="_blank" rel="noopener">Wochenendgrundstück, Freizeitgrundstück, Garten in Heimsheim</a>
             <div class="item-meta">
               <span class="price">150 € VB</span>
-              <span class="search-tag">Freizeitgrundstück</span>
+              <span class="search-tag">Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)</span>
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="150" data-search="Obstwiese" data-title="freizeitgrundstück mit hütte">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/1f/1f0bdb4f-6797-4b0a-a241-8888e3f52dfa?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/freizeitgrundstueck-mit-huette/3508526470-207-8389" target="_blank" rel="noopener">Freizeitgrundstück mit Hütte</a>
             <div class="item-meta">
               <span class="price">150 €</span>
-              <span class="search-tag">Freizeitgrundstück</span>
+              <span class="search-tag">Obstwiese</span>
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="150" data-search="Freizeitgrundstück" data-title="freizeitgrund">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/c0/c00c5387-6671-4c30-a217-d9ab8fa5a8dc?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/freizeitgrund/3496611262-207-333" target="_blank" rel="noopener">Freizeitgrund</a>
@@ -557,7 +491,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="150" data-search="Stückle" data-title="stückle grundstück bietigheim lug wiese">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/47/47a8b4b1-a1b0-4a81-b4e6-7bccd98c6c6e?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/stueckle-grundstueck-bietigheim-lug-wiese/3500339952-207-8681" target="_blank" rel="noopener">Stückle Grundstück Bietigheim Lug Wiese</a>
@@ -567,8 +501,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="150" data-search="Obstwiese" data-title="zu verpachten. sehr schöne obstweise - freizeit - grundstück">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/8d/8d96dc2d-32a6-42b6-af5d-09cb67843f5e?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/zu-verpachten-sehr-schoene-obstweise-freizeit-grundstueck/3508650518-207-8385" target="_blank" rel="noopener">zu verpachten. Sehr schöne Obstweise - Freizeit - Grundstück</a>
             <div class="item-meta">
@@ -577,8 +511,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="150" data-search="Gartengrundstück" data-title="gartengrundstück in leonberg-warmbronn zu verpachten">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/0f/0f6c8a48-cece-409d-b513-10370c1aa5fa?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/gartengrundstueck-in-leonberg-warmbronn-zu-verpachten/3512535864-207-8441" target="_blank" rel="noopener">Gartengrundstück in Leonberg-Warmbronn zu verpachten</a>
             <div class="item-meta">
@@ -587,8 +521,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="200" data-search="Kleingarten" data-title="kleingarten tullauer höhe schwäbisch hall">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/9f/9f3a5630-6e41-4648-b033-abcf276fa98e?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/kleingarten-tullauer-hoehe-schwaebisch-hall/3509518282-242-15243" target="_blank" rel="noopener">Kleingarten Tullauer Höhe Schwäbisch Hall</a>
             <div class="item-meta">
@@ -597,8 +531,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="200" data-search="Schrebergarten" data-title="garten zu vermieten schrebergarten mit gartenhäusern">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/1a/1aec8a1b-7495-4487-85d2-377c245b8968?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/garten-zu-vermieten-schrebergarten-mit-gartenhaeusern/3501623764-207-19880" target="_blank" rel="noopener">GARTEN ZU VERMIETEN SCHREBERGARTEN MIT GARTENHÄUSERN</a>
             <div class="item-meta">
@@ -607,8 +541,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="250" data-search="Schrebergarten" data-title="4x fenster für schuppen,schrebergarten,etc.">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/dd/dd494c20-4b57-426e-8426-aecdc09d90e1?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/4x-fenster-fuer-schuppen-schrebergarten-etc-/2480136990-84-8646" target="_blank" rel="noopener">4x Fenster für Schuppen,Schrebergarten,etc.</a>
             <div class="item-meta">
@@ -617,8 +551,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="280" data-search="Schrebergarten" data-title="marquar fr9-18 rustikale holzgarnitur gartenmöbel schrebergarten">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/55/5517cacf-ccfa-498e-beee-8538100d4fe3?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/marquar-fr9-18-rustikale-holzgarnitur-gartenmoebel-schrebergarten/3343087410-230-8804" target="_blank" rel="noopener">MARQUAR Fr9-18 rustikale Holzgarnitur Gartenmöbel Schrebergarten</a>
             <div class="item-meta">
@@ -627,7 +561,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="400" data-search="Stückle" data-title="große cd-sammlung ca. 300 stückl &amp; andrea berg sammlung">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/3c/3c8dc840-f1c8-4559-8f76-49472ea73186?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/grosse-cd-sammlung-ca-300-stueckl-andrea-berg-sammlung/3507536831-78-8992" target="_blank" rel="noopener">Große CD-Sammlung ca. 300 Stückl &amp; Andrea Berg Sammlung</a>
@@ -637,7 +571,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="400" data-search="Gartengrundstück" data-title="vermietung stückle, gartengrundstück für feiern oder feste mieten">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/7f/7f9fac1b-3b94-415a-835b-af94841eb72c?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/vermietung-stueckle-gartengrundstueck-fuer-feiern-oder-feste-mieten/1501711101-207-8383" target="_blank" rel="noopener">Vermietung Stückle, Gartengrundstück für Feiern oder Feste mieten</a>
@@ -645,12 +579,12 @@
               <span class="price">Es gelten die folgenden Mietpreise (inkl. USt.):	
 --------------	
 400€ pauschal für max. drei...</span>
-              <span class="search-tag">Stückle</span>
+              <span class="search-tag">Gartengrundstück</span>
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="450" data-search="Gartengrundstück" data-title="eventlocation | gartengrundstück mit ausblick in stuttgart |fr-so">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/44/4499f211-db18-4e6d-8102-dd0f084da697?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/eventlocation-gartengrundstueck-mit-ausblick-in-stuttgart-fr-so/3493212639-207-9285" target="_blank" rel="noopener">Eventlocation | Gartengrundstück mit Ausblick in Stuttgart |Fr-So</a>
             <div class="item-meta">
@@ -659,8 +593,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="500" data-search="Gartengrundstück" data-title="gartengrundstück">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/58/58e261ec-a595-42e5-b9ed-e723e1f7b7b2?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/gartengrundstueck/3511601561-87-8417" target="_blank" rel="noopener">Gartengrundstück</a>
             <div class="item-meta">
@@ -669,7 +603,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="1100" data-search="Gartenstück" data-title="zur miete - 3zi wohnung mit balkon-tiefgarage-keller-gartenstuck">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/c6/c6f1960e-b210-4279-a0d0-723abc313e62?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/zur-miete-3zi-wohnung-mit-balkon-tiefgarage-keller-gartenstuck/3469876191-203-8441" target="_blank" rel="noopener">Zur Miete - 3Zi Wohnung mit Balkon-Tiefgarage-Keller-Gartenstuck</a>
@@ -679,7 +613,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="2000" data-search="Obstbaumwiese" data-title="obstbaumwiese">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/72/722df0cd-1ba5-41da-b104-129d84b1dc95?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/obstbaumwiese/3478555282-87-8385" target="_blank" rel="noopener">Obstbaumwiese</a>
@@ -689,7 +623,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="2500" data-search="Stückle" data-title="tolles wochenendgrundstück garten stückle in grunbach">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/af/af5c65ff-116a-4ed4-80e3-11c5e3a4251c?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/tolles-wochenendgrundstueck-garten-stueckle-in-grunbach/3339015772-207-8383" target="_blank" rel="noopener">Tolles Wochenendgrundstück Garten Stückle in Grunbach</a>
@@ -699,8 +633,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="3000" data-search="Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)" data-title="land- / forstwirtschaft in 74343 sachsenheim provisionsfrei - schnell sein!">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/b9/b941d90f-d242-4bc2-b39f-6c4d5cb224e3?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/land-forstwirtschaft-in-74343-sachsenheim-provisionsfrei-schnell-sein-/3459420696-207-8411" target="_blank" rel="noopener">Land- / Forstwirtschaft in 74343 Sachsenheim Provisionsfrei - schnell sein!</a>
             <div class="item-meta">
@@ -709,8 +643,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="3300" data-search="Obstwiese" data-title="streuobstwiese garten bienen">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/a3/a38c71bb-e65a-4ae7-9930-6e141d0aa5d0?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/streuobstwiese-garten-bienen/3476234062-207-8415" target="_blank" rel="noopener">Streuobstwiese Garten Bienen</a>
             <div class="item-meta">
@@ -719,8 +653,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="3300" data-search="Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)" data-title="land- / forstwirtschaft in 74343 sachsenheim provisionsfrei - schnell sein!">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/39/39c6e73f-2027-4e46-9f6f-f6dc8d877085?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/land-forstwirtschaft-in-74343-sachsenheim-provisionsfrei-schnell-sein-/3460181509-207-8411" target="_blank" rel="noopener">Land- / Forstwirtschaft in 74343 Sachsenheim Provisionsfrei - schnell sein!</a>
             <div class="item-meta">
@@ -729,8 +663,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="3900" data-search="Obstwiese" data-title="obstwiese mit geräteschuppen zu verkaufen, 73635 rudersberg">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/31/31023d36-8f64-4fe4-8617-433f992e24a2?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/obstwiese-mit-geraeteschuppen-zu-verkaufen-73635-rudersberg/3483704066-207-8416" target="_blank" rel="noopener">Obstwiese mit Geräteschuppen zu verkaufen, 73635 Rudersberg</a>
             <div class="item-meta">
@@ -739,8 +673,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="3900" data-search="Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)" data-title="streuobstwiese in rudersberg-steinenberg zu verkaufen">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/0c/0cc87376-2adf-4cdf-896a-378dcc6fc0e7?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/streuobstwiese-in-rudersberg-steinenberg-zu-verkaufen/3510236081-207-8416" target="_blank" rel="noopener">Streuobstwiese in Rudersberg-Steinenberg zu verkaufen</a>
             <div class="item-meta">
@@ -749,8 +683,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="3900" data-search="Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)" data-title="verkaufe wiese in unterlenningen">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/d7/d7d8a9d0-65b6-4bed-8664-508e24cd2100?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/verkaufe-wiese-in-unterlenningen/3509619738-207-8466" target="_blank" rel="noopener">Verkaufe Wiese in Unterlenningen</a>
             <div class="item-meta">
@@ -759,7 +693,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="4900" data-search="Obstbaumwiese" data-title="obstbaumwiese mit gerätehütte in weinstadt-schnait">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/29/29c6cad8-2137-4a42-a9d9-89f7f9f92e03?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/obstbaumwiese-mit-geraetehuette-in-weinstadt-schnait/3497255786-207-8386" target="_blank" rel="noopener">Obstbaumwiese mit Gerätehütte in Weinstadt-Schnait</a>
@@ -769,7 +703,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="5000" data-search="Stückle" data-title="schönes stückle in winnenden/ baach">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/42/42955b74-6604-4a5e-ab5e-b1b332ec8284?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/schoenes-stueckle-in-winnenden-baach/3501931962-207-8474" target="_blank" rel="noopener">Schönes Stückle in Winnenden/ Baach</a>
@@ -779,8 +713,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="5000" data-search="Obstwiese" data-title="obstwiese, grundstück, kapitalanlage, wald,selbstversorger">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/30/30bb8727-7824-466d-aca1-6ae5d03a1cf1?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/obstwiese-grundstueck-kapitalanlage-wald-selbstversorger/3488865559-207-8420" target="_blank" rel="noopener">Obstwiese, Grundstück, Kapitalanlage, Wald,Selbstversorger</a>
             <div class="item-meta">
@@ -789,8 +723,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="5999" data-search="Obstwiese" data-title="wiese / garten / obstwiese / landwirtschaftsfläche /  grundstück">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/38/383802d5-78a4-4550-b2fd-f3eb3ee319b4?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/wiese-garten-obstwiese-landwirtschaftsflaeche-grundstueck/3467077730-207-8474" target="_blank" rel="noopener">Wiese / Garten / Obstwiese / Landwirtschaftsfläche /  Grundstück</a>
             <div class="item-meta">
@@ -799,7 +733,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="6000" data-search="Freizeitgrundstück" data-title="freizeitgrundstück">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/e6/e673a8bd-eaca-459a-b78e-037de4e94c6a?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/freizeitgrundstueck/3508316509-207-8006" target="_blank" rel="noopener">Freizeitgrundstück</a>
@@ -809,7 +743,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="6000" data-search="Freizeitgrundstück" data-title="streuobstwiese, freizeitgrundstück in kohlberg">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/98/98492809-ad4b-43a6-849f-440e2e2fe4c8?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/streuobstwiese-freizeitgrundstueck-in-kohlberg/3482268594-242-7990" target="_blank" rel="noopener">Streuobstwiese, Freizeitgrundstück in Kohlberg</a>
@@ -819,8 +753,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="6000" data-search="Obstwiese" data-title="obstwiese, selbstversorger, kapitalanlage, wald">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/98/9823bf36-f250-4cc9-8af2-e36ea2ac5dda?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/obstwiese-selbstversorger-kapitalanlage-wald/3491345650-187-8420" target="_blank" rel="noopener">Obstwiese, Selbstversorger, Kapitalanlage, Wald</a>
             <div class="item-meta">
@@ -829,8 +763,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="6000" data-search="Baumwiese (Grundstücke-Rubrik, Kauf)" data-title="wiesengrundstück, baumwiese bissingen teck">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/78/781b4d1e-ed9f-487d-ab0e-c92ffc86b8b4?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/wiesengrundstueck-baumwiese-bissingen-teck/3348494506-207-8464" target="_blank" rel="noopener">Wiesengrundstück, Baumwiese Bissingen Teck</a>
             <div class="item-meta">
@@ -839,7 +773,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="6250" data-search="Freizeitgrundstück" data-title="garten- und freizeitgrundstück bei stuttgart-rotenberg">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/de/de692f0d-b418-49d0-acb5-2254bbca36ff?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/garten-und-freizeitgrundstueck-bei-stuttgart-rotenberg/3488362796-207-9595" target="_blank" rel="noopener">Garten- und Freizeitgrundstück bei Stuttgart-Rotenberg</a>
@@ -849,7 +783,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="6900" data-search="Freizeitgrundstück" data-title="gartengrundstück, wiese, freizeitgrundstück">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/4a/4a7b28aa-7680-4606-9c68-0036eb0642fd?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/gartengrundstueck-wiese-freizeitgrundstueck/3478367841-207-8418" target="_blank" rel="noopener">GARTENGRUNDSTÜCK, WIESE, FREIZEITGRUNDSTÜCK</a>
@@ -859,7 +793,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="7000" data-search="Freizeitgrundstück" data-title="freizeitgrundstück – kapitalanlage - landwirtschaftsfläche in 73630 geradstetten remshalden ca. 480m² grundstück">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/f1/f184ad67-7c18-47f1-8084-d2faf9eb4273?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/freizeitgrundstueck-kapitalanlage-landwirtschaftsflaeche-in-73630-geradstetten-remshalden-ca-480m-grundstueck/3357062454-207-8385" target="_blank" rel="noopener">Freizeitgrundstück – Kapitalanlage - Landwirtschaftsfläche in 73630 Geradstetten Remshalden ca. 480m² Grundstück</a>
@@ -869,8 +803,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="7000" data-search="Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)" data-title="flurstück 449/2 krehwinkel  garten baumwiese obstwiese">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/e5/e527c4ab-ad50-44de-aa45-8fc858c7958e?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/flurstueck-449-2-krehwinkel-garten-baumwiese-obstwiese/3512736206-207-8416" target="_blank" rel="noopener">Flurstück 449/2 Krehwinkel  Garten Baumwiese Obstwiese</a>
             <div class="item-meta">
@@ -879,7 +813,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="7200" data-search="Freizeitgrundstück" data-title="wiese/freizeitgrundstück">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/0a/0acece4d-9b7a-45a1-986d-94563e60f0a4?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/wiese-freizeitgrundstueck/3442328326-207-8897" target="_blank" rel="noopener">Wiese/Freizeitgrundstück</a>
@@ -889,7 +823,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="7500" data-search="Freizeitgrundstück" data-title="freizeitgrundstück bei strümpfelbach">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/44/440ac392-6971-4117-bce9-1ff8f063f66c?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/freizeitgrundstueck-bei-struempfelbach/3483573463-207-8386" target="_blank" rel="noopener">Freizeitgrundstück bei Strümpfelbach</a>
@@ -899,8 +833,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="7500" data-search="Gartengrundstück" data-title="gartengrundstück oh. haus in esslingen">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/13/13763415-9c51-4097-9023-4bb0c0789922?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/gartengrundstueck-oh-haus-in-esslingen/3479740084-207-9071" target="_blank" rel="noopener">Gartengrundstück oh. Haus in Esslingen</a>
             <div class="item-meta">
@@ -909,8 +843,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="7800" data-search="Obstwiese" data-title="obstwiese in remshalden">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/31/31ce17e7-fa11-448a-8844-a503ff2c17b1?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/obstwiese-in-remshalden/3508330641-207-8383" target="_blank" rel="noopener">Obstwiese in Remshalden</a>
             <div class="item-meta">
@@ -919,8 +853,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="8000" data-search="Schrebergarten" data-title="schreber garten 230qm, solide gartenhütte bermaringen (nähe asch)">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/7f/7f3e8761-e70c-49e4-9b31-45c71343a982?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/schreber-garten-230qm-solide-gartenhuette-bermaringen-naehe-asch-/3501594904-207-8683" target="_blank" rel="noopener">Schreber Garten 230qm, solide Gartenhütte Bermaringen (Nähe Asch)</a>
             <div class="item-meta">
@@ -929,8 +863,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="8100" data-search="Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)" data-title="grundstück in 74343 sachsenheim provisionsfrei - schnell sein!">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/e6/e68009a8-b0fe-4670-8b69-44f8f0442715?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/grundstueck-in-74343-sachsenheim-provisionsfrei-schnell-sein-/3459420690-207-8411" target="_blank" rel="noopener">Grundstück in 74343 Sachsenheim Provisionsfrei - schnell sein!</a>
             <div class="item-meta">
@@ -939,17 +873,17 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="8300" data-search="Gartengrundstück" data-title="gartengrundstück">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/9e/9e4b689e-dfe4-4a36-8fba-b7cb2849406b?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/gartengrundstueck/3488413556-207-19390" target="_blank" rel="noopener">Gartengrundstück</a>
             <div class="item-meta">
               <span class="price">8.300 €</span>
-              <span class="search-tag">Freizeitgrundstück</span>
+              <span class="search-tag">Gartengrundstück</span>
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="8990" data-search="Freizeitgrundstück" data-title="freizeitgrundstück mit obstbäumen und hütte weinstadt">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/bc/bc8755a3-bc47-4433-892e-7c6ac9bcb20e?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/freizeitgrundstueck-mit-obstbaeumen-und-huette-weinstadt/3490184205-207-8386" target="_blank" rel="noopener">Freizeitgrundstück mit Obstbäumen und Hütte Weinstadt</a>
@@ -959,28 +893,28 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="9000" data-search="Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)" data-title="freizeitgrundstück in hanglage – natur pur in geradstetten">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/e7/e7b77afd-89f7-4afa-8652-ffc7af43860b?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/freizeitgrundstueck-in-hanglage-natur-pur-in-geradstetten/3150521995-207-8385" target="_blank" rel="noopener">Freizeitgrundstück in Hanglage – Natur pur in Geradstetten</a>
             <div class="item-meta">
               <span class="price">9.000 €</span>
-              <span class="search-tag">Freizeitgrundstück</span>
+              <span class="search-tag">Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)</span>
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="9750" data-search="Obstwiese" data-title="gartengrundstück/ stückle">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/3e/3eef00ee-b3b2-4550-82c1-d811d90a9115?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/gartengrundstueck-stueckle/3482654490-207-8415" target="_blank" rel="noopener">Gartengrundstück/ Stückle</a>
             <div class="item-meta">
               <span class="price">9.750 € VB</span>
-              <span class="search-tag">Stückle</span>
+              <span class="search-tag">Obstwiese</span>
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="9800" data-search="Obstwiese" data-title="streuobstwiese in gronau, oberstenfeld">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/c5/c5a9ebc3-081d-4392-b20a-d54f8ab8b8e3?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/streuobstwiese-in-gronau-oberstenfeld/3248853907-207-19390" target="_blank" rel="noopener">Streuobstwiese in Gronau, Oberstenfeld</a>
             <div class="item-meta">
@@ -989,8 +923,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="9800" data-search="Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)" data-title="freizeit/obstbäume/garten/imker/gemüse">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/cc/ccbd50ca-7e92-4381-a780-dd820d082bb5?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/freizeit-obstbaeume-garten-imker-gemuese/3501244157-207-8422" target="_blank" rel="noopener">Freizeit/Obstbäume/Garten/Imker/Gemüse</a>
             <div class="item-meta">
@@ -999,7 +933,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="10000" data-search="Freizeitgrundstück" data-title="freizeitgrundstück in münsingen zu verkaufen">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/d4/d4c3ae3a-ff1b-4951-8abb-707e04c1c952?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/freizeitgrundstueck-in-muensingen-zu-verkaufen/3509548355-207-7996" target="_blank" rel="noopener">Freizeitgrundstück in Münsingen zu verkaufen</a>
@@ -1009,7 +943,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="10000" data-search="Freizeitgrundstück" data-title="2 streuobstwiesenteile zu verkaufen, einzeln oder zusammen, 810m²">
           <div class="thumb thumb-placeholder">🏡</div>
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/2-streuobstwiesenteile-zu-verkaufen-einzeln-oder-zusammen-810m-/3505135007-207-8217" target="_blank" rel="noopener">2 Streuobstwiesenteile zu verkaufen, einzeln oder zusammen, 810m²</a>
@@ -1019,8 +953,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="10000" data-search="Gartengrundstück" data-title="gartengrundstück an der enz">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/c7/c7115d3c-5dbf-4e43-9bd1-d63199fc4df1?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/gartengrundstueck-an-der-enz/3506399748-207-8675" target="_blank" rel="noopener">Gartengrundstück an der Enz</a>
             <div class="item-meta">
@@ -1029,8 +963,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="10500" data-search="Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)" data-title="garten mit terrasse und toller aussicht">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/c6/c6ccd61f-ccc9-4c30-aacd-1cb5b70fd863?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/garten-mit-terrasse-und-toller-aussicht/3510965585-207-8386" target="_blank" rel="noopener">Garten mit Terrasse und toller Aussicht</a>
             <div class="item-meta">
@@ -1039,7 +973,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="10900" data-search="Obstbaumwiese" data-title="obstbaumwiese in 73660 urbach">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/05/05bf7275-7e2a-4afe-b2be-86c68cb1e2f6?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/obstbaumwiese-in-73660-urbach/3496711927-207-8420" target="_blank" rel="noopener">Obstbaumwiese in 73660 Urbach</a>
@@ -1049,8 +983,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="11000" data-search="Obstwiese" data-title="gartengrundstück/obstwiese">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/1c/1cc12a33-3756-4f77-897e-189b82d823dc?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/gartengrundstueck-obstwiese/3475127004-207-8386" target="_blank" rel="noopener">Gartengrundstück/Obstwiese</a>
             <div class="item-meta">
@@ -1059,8 +993,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="11000" data-search="Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)" data-title="land- / forstwirtschaft in 74343 sachsenheim provisionsfrei - schnell sein!">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/85/855dfcbf-c26f-4207-a002-4006990adba2?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/land-forstwirtschaft-in-74343-sachsenheim-provisionsfrei-schnell-sein-/3460181532-207-8411" target="_blank" rel="noopener">Land- / Forstwirtschaft in 74343 Sachsenheim Provisionsfrei - schnell sein!</a>
             <div class="item-meta">
@@ -1069,7 +1003,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="12000" data-search="Freizeitgrundstück" data-title="freizeitgrundstück / gartengrundstück in sonniger lage in rohracker / hedelfingen zu verkaufen.">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/cd/cde4d05d-403c-4ac6-be5c-1813f7368227?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/freizeitgrundstueck-gartengrundstueck-in-sonniger-lage-in-rohracker-hedelfingen-zu-verkaufen-/3065549584-207-27925" target="_blank" rel="noopener">Freizeitgrundstück / Gartengrundstück in sonniger Lage in Rohracker / Hedelfingen zu verkaufen.</a>
@@ -1079,7 +1013,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="12000" data-search="Stückle" data-title="stückle garten freizeitgrundstück gartenanlage">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/07/07cc6927-b966-45bb-beb6-4a26abe33f21?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/stueckle-garten-freizeitgrundstueck-gartenanlage/3453956945-207-8889" target="_blank" rel="noopener">Stückle Garten Freizeitgrundstück Gartenanlage</a>
@@ -1089,8 +1023,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="12000" data-search="Gartengrundstück" data-title="gartengrundstück/landwirtschaftliche fläche">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/34/34ed5273-f469-4acb-8f19-bb9c30f41f5c?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/gartengrundstueck-landwirtschaftliche-flaeche/3498196329-207-20234" target="_blank" rel="noopener">Gartengrundstück/landwirtschaftliche Fläche</a>
             <div class="item-meta">
@@ -1099,8 +1033,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="12250" data-search="Gartengrundstück" data-title="gartengrundstück  eingezäunt mit geräteschuppen in waldenbuch">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/fb/fbb85db0-da47-46b1-99e8-42b0c2d77aa0?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/gartengrundstueck-eingezaeunt-mit-geraeteschuppen-in-waldenbuch/3512986029-207-8895" target="_blank" rel="noopener">Gartengrundstück  eingezäunt mit Geräteschuppen in Waldenbuch</a>
             <div class="item-meta">
@@ -1109,7 +1043,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="12500" data-search="Stückle" data-title="garten, stückle, wochenendgrundstück">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/2b/2b2e3ecd-80b8-4407-b1b6-8e48d4f4510c?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/garten-stueckle-wochenendgrundstueck/3347145421-87-8385" target="_blank" rel="noopener">Garten, Stückle, Wochenendgrundstück</a>
@@ -1119,7 +1053,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="14000" data-search="Freizeitgrundstück" data-title="streuobstwiese in dettingen unter teck ca. 1.000qm ruhige lage">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/9a/9a2e7603-eea8-4e24-9903-87d858ee48ed?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/streuobstwiese-in-dettingen-unter-teck-ca-1-000qm-ruhige-lage/3477348271-207-8467" target="_blank" rel="noopener">Streuobstwiese in Dettingen unter Teck ca. 1.000qm ruhige Lage</a>
@@ -1129,7 +1063,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="14000" data-search="Gütle" data-title="garten, gütle">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/9a/9ad31d54-4106-4453-a56d-6e00d02b453d?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/garten-guetle/3485768464-87-9346" target="_blank" rel="noopener">Garten, Gütle</a>
@@ -1139,7 +1073,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="15000" data-search="Freizeitgrundstück" data-title="freizeitgründstück">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/12/129739aa-496f-4e04-8635-209c7fc430cb?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/freizeitgruendstueck/3461184430-207-8420" target="_blank" rel="noopener">Freizeitgründstück</a>
@@ -1149,27 +1083,27 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="15000" data-search="Gartengrundstück" data-title="gartengrundstück mit hütte in den weinbergen (winterbach)">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/41/41dda750-e6b2-439a-9bbe-f05c050e112a?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/gartengrundstueck-mit-huette-in-den-weinbergen-winterbach-/3499811481-207-8418" target="_blank" rel="noopener">Gartengrundstück mit Hütte in den Weinbergen (Winterbach)</a>
             <div class="item-meta">
               <span class="price">15.000 €</span>
-              <span class="search-tag">Freizeitgrundstück</span>
+              <span class="search-tag">Gartengrundstück</span>
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="15000" data-search="Gartengrundstück" data-title="freizeitgrundstück / gartengrundstück in sonniger lage in rohracker / hedelfingen zu verkaufen.">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/dd/dd43d989-1381-4205-9147-535751819fb4?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/freizeitgrundstueck-gartengrundstueck-in-sonniger-lage-in-rohracker-hedelfingen-zu-verkaufen-/3256226640-207-27925" target="_blank" rel="noopener">Freizeitgrundstück / Gartengrundstück in sonniger Lage in Rohracker / Hedelfingen zu verkaufen.</a>
             <div class="item-meta">
               <span class="price">15.000 €</span>
-              <span class="search-tag">Freizeitgrundstück</span>
+              <span class="search-tag">Gartengrundstück</span>
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="15000" data-search="Gütle" data-title="gütle zu verkaufen, keine streuobstwiese">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/c7/c7c72583-7d3b-420d-aff2-0d6fd17239d2?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/guetle-zu-verkaufen-keine-streuobstwiese/3484196018-207-9348" target="_blank" rel="noopener">Gütle zu verkaufen, keine Streuobstwiese</a>
@@ -1179,7 +1113,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="15000" data-search="Gütle" data-title="freizeitgrundstück gütle kohlberg">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/3d/3d321e23-1f77-4824-81b2-58d9d659fffe?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/freizeitgrundstueck-guetle-kohlberg/3476945264-207-7990" target="_blank" rel="noopener">Freizeitgrundstück Gütle Kohlberg</a>
@@ -1189,8 +1123,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="15000" data-search="Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)" data-title="obstwiese in tischardt">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/b0/b0bc9e63-3991-4250-b71e-6f5b0b285bc5?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/obstwiese-in-tischardt/3512246221-207-8219" target="_blank" rel="noopener">Obstwiese in Tischardt</a>
             <div class="item-meta">
@@ -1199,8 +1133,8 @@
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="15000" data-search="Gartengrundstück" data-title="gartengrundstück in hanglage">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/04/046f2bf4-a6f2-4f77-94eb-7e4f019b978a?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/gartengrundstueck-in-hanglage/3503099579-207-8386" target="_blank" rel="noopener">Gartengrundstück in Hanglage</a>
             <div class="item-meta">
@@ -1209,7 +1143,7 @@
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="220030" data-search="Gartengrundstück" data-title="gartengrundstück 2200m2">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/78/788b12df-b35a-4834-b014-9c67d225a15e?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/gartengrundstueck-2200m2/3505867830-207-8444" target="_blank" rel="noopener">Gartengrundstück 2200m2</a>
@@ -1217,12 +1151,12 @@
               <span class="price">2.200 m² Grundstück zu verpachten – komplett eingezäunt – teilbar – nur 30 € monatlich!
 
 In...</span>
-              <span class="search-tag">Freizeitgrundstück</span>
+              <span class="search-tag">Gartengrundstück</span>
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="5403140" data-search="Obstwiese" data-title="322.14 garten zu vermieten obstwiesen 5403/1 in hummelberg rutesheim">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/1e/1e07263c-b4a2-4f01-bc29-b7442546fc78?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/322-14-garten-zu-vermieten-obstwiesen-5403-1-in-hummelberg-rutesheim/2860007343-207-8425" target="_blank" rel="noopener">322.14 Garten zu vermieten Obstwiesen 5403/1 in Hummelberg Rutesheim</a>
             <div class="item-meta">
@@ -1237,8 +1171,8 @@ Matthias...</span>
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="3193319341936200500" data-search="Kleingarten" data-title="3 bände , der schöne kleingarten 1933, 1934, 1936">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/75/754c6558-0d65-48ac-a567-f11a203ec9fa?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/3-baende-der-schoene-kleingarten-1933-1934-1936/3165649278-76-9290" target="_blank" rel="noopener">3 Bände , Der schöne Kleingarten 1933, 1934, 1936</a>
             <div class="item-meta">
@@ -1250,7 +1184,27 @@ abzuholen oder Versand für 5,00€...</span>
             </div>
           </div>
         </li>
-        <li class="item">
+        <li class="item" data-price="1" data-search="Gütle" data-title="3 streuobswiesen gütle zum verpachten  bronnweiler u. gomaringen">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/b6/b60bb03d-f777-462c-84ea-95db202e2234?rule=$_2.AUTO" alt="" loading="lazy">
+          <div class="item-body">
+            <a href="https://www.kleinanzeigen.de/s-anzeige/3-streuobswiesen-guetle-zum-verpachten-bronnweiler-u-gomaringen/3044729760-207-9346" target="_blank" rel="noopener">3 Streuobswiesen Gütle zum verpachten  Bronnweiler u. Gomaringen</a>
+            <div class="item-meta">
+              <span class="price">1 € VB</span>
+              <span class="search-tag">Gütle</span>
+            </div>
+          </div>
+        </li>
+        <li class="item" data-price="1" data-search="Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)" data-title="suche wiese/ obstbaumwiese/ grundstück/ garten">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/cb/cbd7738d-710f-4f57-bc5c-24bca1334918?rule=$_2.AUTO" alt="" loading="lazy">
+          <div class="item-body">
+            <a href="https://www.kleinanzeigen.de/s-anzeige/suche-wiese-obstbaumwiese-grundstueck-garten/3511886184-207-8356" target="_blank" rel="noopener">Suche Wiese/ Obstbaumwiese/ Grundstück/ Garten</a>
+            <div class="item-meta">
+              <span class="price">1 € VB</span>
+              <span class="search-tag">Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)</span>
+            </div>
+          </div>
+        </li>
+        <li class="item" data-price="" data-search="Stückle" data-title="gebrauchter gartentisch aus holz für garten oder stückle">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/3b/3b911593-5678-40df-a03b-f642afbd9035?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/gebrauchter-gartentisch-aus-holz-fuer-garten-oder-stueckle/3419643200-89-9292" target="_blank" rel="noopener">Gebrauchter Gartentisch aus Holz für Garten oder Stückle</a>
@@ -1260,8 +1214,18 @@ abzuholen oder Versand für 5,00€...</span>
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="1" data-search="Schrebergarten" data-title="von privat">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/92/92feb9b4-270e-4682-912b-7076a2f6a092?rule=$_2.AUTO" alt="" loading="lazy">
+          <div class="item-body">
+            <a href="https://www.kleinanzeigen.de/s-anzeige/suche-schrebergarten-garten-in-hirrlingen/3438284330-207-8155" target="_blank" rel="noopener">Von Privat</a>
+            <div class="item-meta">
+              <span class="price">1 €</span>
+              <span class="search-tag">Schrebergarten</span>
+            </div>
+          </div>
+        </li>
+        <li class="item" data-price="" data-search="Obstwiese" data-title="obstwiese gegen pflege zu verpachten – langfristig gesucht">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/c8/c8d0dcc7-02fc-446f-92d4-d6141dbbfd70?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/obstwiese-gegen-pflege-zu-verpachten-langfristig-gesucht/3457912978-87-7995" target="_blank" rel="noopener">Obstwiese gegen Pflege zu verpachten – langfristig gesucht</a>
             <div class="item-meta">
@@ -1270,8 +1234,8 @@ abzuholen oder Versand für 5,00€...</span>
             </div>
           </div>
         </li>
-        <li class="item">
-          <div class="thumb thumb-placeholder">🏡</div>
+        <li class="item" data-price="" data-search="Obstwiese" data-title="setzlinge zwetschge/pflaume/ aus obstwiese abzugeben">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/2f/2f2461e4-5d45-4e9c-8b1d-4ac3cea8d318?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/setzlinge-zwetschge-pflaume-aus-obstwiese-abzugeben/3380529016-89-8355" target="_blank" rel="noopener">Setzlinge Zwetschge/Pflaume/ aus Obstwiese abzugeben</a>
             <div class="item-meta">
@@ -1279,7 +1243,122 @@ abzuholen oder Versand für 5,00€...</span>
               <span class="search-tag">Obstwiese</span>
             </div>
           </div>
+        </li>
+        <li class="item" data-price="1" data-search="Obstwiese" data-title="mulcharbeiten obstwiese, hang, hochgras, bauplatz mähen, mulchen">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/6b/6b7b2c0f-7535-4cce-9371-af1ef338b3f2?rule=$_2.AUTO" alt="" loading="lazy">
+          <div class="item-body">
+            <a href="https://www.kleinanzeigen.de/s-anzeige/mulcharbeiten-obstwiese-hang-hochgras-bauplatz-maehen-mulchen/3129639342-239-8404" target="_blank" rel="noopener">Mulcharbeiten Obstwiese, Hang, Hochgras, Bauplatz Mähen, Mulchen</a>
+            <div class="item-meta">
+              <span class="price">1 €</span>
+              <span class="search-tag">Obstwiese</span>
+            </div>
+          </div>
+        </li>
+        <li class="item" data-price="1" data-search="Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)" data-title="wald &amp; wiese in hirrlingen – ihr stück natur zum verlieben">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/5c/5c4c8ebc-2cc0-4633-8e54-b0c6fba7f017?rule=$_2.AUTO" alt="" loading="lazy">
+          <div class="item-body">
+            <a href="https://www.kleinanzeigen.de/s-anzeige/wald-wiese-in-hirrlingen-ihr-stueck-natur-zum-verlieben/3512694532-207-8155" target="_blank" rel="noopener">Wald &amp; Wiese in Hirrlingen – Ihr Stück Natur zum Verlieben</a>
+            <div class="item-meta">
+              <span class="price">1 € VB</span>
+              <span class="search-tag">Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)</span>
+            </div>
+          </div>
+        </li>
+        <li class="item" data-price="1" data-search="Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)" data-title="bauplatz für traumhaus gesucht, baufamilie braucht hilfe!">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/b9/b97440fd-34e7-411c-8a43-87e5307f587b?rule=$_2.AUTO" alt="" loading="lazy">
+          <div class="item-body">
+            <a href="https://www.kleinanzeigen.de/s-anzeige/bauplatz-fuer-traumhaus-gesucht-baufamilie-braucht-hilfe-/2980841828-207-6679" target="_blank" rel="noopener">Bauplatz für Traumhaus gesucht, Baufamilie braucht Hilfe!</a>
+            <div class="item-meta">
+              <span class="price">1 € VB</span>
+              <span class="search-tag">Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)</span>
+            </div>
+          </div>
+        </li>
+        <li class="item" data-price="1" data-search="Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)" data-title="suche wiesen zur pacht/ verkauf in 72144">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/ea/eae0b596-ee01-4f44-82b4-2265cd731d91?rule=$_2.AUTO" alt="" loading="lazy">
+          <div class="item-body">
+            <a href="https://www.kleinanzeigen.de/s-anzeige/suche-wiesen-zur-pacht-verkauf-in-72144/3510024941-207-8007" target="_blank" rel="noopener">SUCHE Wiesen zur Pacht/ Verkauf in 72144</a>
+            <div class="item-meta">
+              <span class="price">1 € VB</span>
+              <span class="search-tag">Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)</span>
+            </div>
+          </div>
+        </li>
+        <li class="item" data-price="1" data-search="Gartengrundstück" data-title="mähen von streuobstwiesen, gartengrundstück,bauplätzen">
+          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/fd/fdd55c7d-5049-40a2-ba7a-abd3e4509b3e?rule=$_2.AUTO" alt="" loading="lazy">
+          <div class="item-body">
+            <a href="https://www.kleinanzeigen.de/s-anzeige/maehen-von-streuobstwiesen-gartengrundstueck-bauplaetzen/3505101140-239-19880" target="_blank" rel="noopener">Mähen von Streuobstwiesen, Gartengrundstück,Bauplätzen</a>
+            <div class="item-meta">
+              <span class="price">1 € VB</span>
+              <span class="search-tag">Gartengrundstück</span>
+            </div>
+          </div>
         </li></ul>
   </section>
+
+<script>
+(function() {
+  const items = Array.from(document.querySelectorAll('li.item'));
+  const searchSelect = document.getElementById('filterSearch');
+  const names = Array.from(new Set(items.map(li => li.dataset.search).filter(Boolean))).sort();
+  names.forEach(name => {
+    const opt = document.createElement('option');
+    opt.value = name;
+    opt.textContent = name;
+    searchSelect.appendChild(opt);
+  });
+
+  const textInput = document.getElementById('filterText');
+  const minInput = document.getElementById('filterMinPrice');
+  const maxInput = document.getElementById('filterMaxPrice');
+  const hideVBBox = document.getElementById('filterHideVB');
+  const countEl = document.getElementById('filterCount');
+  const resetBtn = document.getElementById('filterReset');
+
+  function applyFilters() {
+    const text = textInput.value.trim().toLowerCase();
+    const search = searchSelect.value;
+    const min = parseFloat(minInput.value);
+    const max = parseFloat(maxInput.value);
+    const hideVB = hideVBBox.checked;
+    let visibleCount = 0;
+
+    items.forEach(li => {
+      const priceRaw = li.dataset.price;
+      const price = priceRaw === '' ? null : parseFloat(priceRaw);
+      const title = li.dataset.title || '';
+      const searchName = li.dataset.search || '';
+      let visible = true;
+
+      if (text && !title.includes(text)) visible = false;
+      if (search && searchName !== search) visible = false;
+      if (!isNaN(min) && (price === null || price < min)) visible = false;
+      if (!isNaN(max) && (price === null || price > max)) visible = false;
+      if (hideVB && (price === null || price <= 1)) visible = false;
+
+      li.style.display = visible ? '' : 'none';
+      if (visible) visibleCount++;
+    });
+
+    countEl.textContent = visibleCount + ' von ' + items.length + ' Inseraten sichtbar';
+  }
+
+  [textInput, searchSelect, minInput, maxInput, hideVBBox].forEach(el => {
+    el.addEventListener('input', applyFilters);
+    el.addEventListener('change', applyFilters);
+  });
+
+  resetBtn.addEventListener('click', () => {
+    textInput.value = '';
+    searchSelect.value = '';
+    minInput.value = '';
+    maxInput.value = '';
+    hideVBBox.checked = false;
+    applyFilters();
+  });
+
+  applyFilters();
+})();
+</script>
 </body>
 </html>
