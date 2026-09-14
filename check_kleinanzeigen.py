@@ -35,6 +35,13 @@ SEARCHES_FILE = BASE_DIR / "searches.json"
 STATE_FILE = BASE_DIR / "data" / "state.json"
 DASHBOARD_FILE = BASE_DIR / "docs" / "index.html"
 
+# Für die im Browser laufende Notizen-Synchronisation (siehe build_dashboard):
+# das GitHub-Repo, in das die Anmerkungen (data/annotations.json) über die
+# GitHub-API zurückgeschrieben werden.
+GITHUB_REPO_SLUG = "Reik98/kleinanzeigen-monitor"
+GITHUB_BRANCH = "main"
+ANNOTATIONS_PATH = "data/annotations.json"
+
 NTFY_TOPIC = os.environ.get("NTFY_TOPIC", "").strip()
 NTFY_URL = f"https://ntfy.sh/{NTFY_TOPIC}" if NTFY_TOPIC else None
 
@@ -222,11 +229,40 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
             return f'<img class="thumb" src="{escape(img)}" alt="" loading="lazy">'
         return '<div class="thumb thumb-placeholder">🏡</div>'
 
+    def annotation_panel(adid):
+        aid = escape(adid)
+        return f"""
+            <div class="ann-bar">
+              <select class="ann-field" data-ann="status" data-id="{aid}">
+                <option value="">Bewertung ...</option>
+                <option value="angeschaut">👀 Angeschaut</option>
+                <option value="interessant">✅ Interessant</option>
+                <option value="nicht_interessant">❌ Nicht interessant</option>
+              </select>
+              <select class="ann-field" data-ann="schutzgebiet" data-id="{aid}">
+                <option value="">Schutzgebiet?</option>
+                <option value="ja">Schutzgebiet: Ja</option>
+                <option value="nein">Schutzgebiet: Nein</option>
+              </select>
+              <select class="ann-field" data-ann="huette" data-id="{aid}">
+                <option value="">Hütte?</option>
+                <option value="ja">Hütte: Ja</option>
+                <option value="nein">Hütte: Nein</option>
+              </select>
+              <button type="button" class="ann-toggle" data-id="{aid}">📝 Details</button>
+            </div>
+            <div class="ann-details" data-id="{aid}" hidden>
+              <input type="text" class="ann-field" data-ann="flurstueck" data-id="{aid}" placeholder="Flurstücknummer">
+              <input type="text" class="ann-field" data-ann="ort" data-id="{aid}" placeholder="Ort">
+              <input type="text" class="ann-field" data-ann="groesse" data-id="{aid}" placeholder="Größe (z.B. 500 m²)">
+              <textarea class="ann-field" data-ann="comment" data-id="{aid}" placeholder="Kommentar ..." rows="2"></textarea>
+            </div>"""
+
     def item_row(item):
         num = item.get("price_num")
         data_price = "" if num is None else str(num)
         return f"""
-        <li class="item" data-price="{data_price}" data-search="{escape(item.get('search_name',''))}" data-title="{escape(item['title'].lower())}">
+        <li class="item" data-id="{escape(item['id'])}" data-price="{data_price}" data-search="{escape(item.get('search_name',''))}" data-title="{escape(item['title'].lower())}">
           {thumb(item)}
           <div class="item-body">
             <a href="{escape(item['url'])}" target="_blank" rel="noopener">{escape(item['title'])}</a>
@@ -234,6 +270,7 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
               <span class="price">{escape(item.get('price_text') or '–')}</span>
               <span class="search-tag">{escape(item.get('search_name',''))}</span>
             </div>
+            {annotation_panel(item['id'])}
           </div>
         </li>"""
 
@@ -243,7 +280,7 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
     new_html = "".join(item_row(i) for i in new_items_sorted) or "<li class='empty'>Keine neuen Inserate.</li>"
     drops_html = "".join(
         f"""
-        <li class="item" data-price="{'' if d.get('price_num') is None else d['price_num']}" data-search="{escape(d.get('search_name',''))}" data-title="{escape(d['title'].lower())}">
+        <li class="item" data-id="{escape(d['id'])}" data-price="{'' if d.get('price_num') is None else d['price_num']}" data-search="{escape(d.get('search_name',''))}" data-title="{escape(d['title'].lower())}">
           {thumb(d)}
           <div class="item-body">
             <a href="{escape(d['url'])}" target="_blank" rel="noopener">{escape(d['title'])}</a>
@@ -251,10 +288,12 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
               <span class="price">{escape(d['old_price'])} → <b>{escape(d['new_price'])}</b></span>
               <span class="search-tag">{escape(d.get('search_name',''))}</span>
             </div>
+            {annotation_panel(d['id'])}
           </div>
         </li>"""
         for d in price_drops_sorted
     ) or "<li class='empty'>Keine Preissenkungen.</li>"
+
 
     all_current = sorted(state.values(), key=by_price)
     all_html = "".join(item_row(i) for i in all_current) or "<li class='empty'>Noch keine Daten.</li>"
@@ -300,6 +339,21 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
   .filters button {{ padding: .4rem .7rem; border: 1px solid #ccc; border-radius: 6px; background: #f5f5f5; cursor: pointer; font-size: .85rem; }}
   .filters button:hover {{ background: #eee; }}
   .filter-count {{ font-size: .8rem; color: #666; margin: -0.5rem 0 1rem; }}
+  li.item {{ align-items: flex-start; }}
+  .ann-bar {{ display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .3rem; }}
+  .ann-bar select, .ann-bar button {{ font-size: .78rem; padding: .2rem .4rem; border: 1px solid #ccc; border-radius: 5px; background: #fafafa; }}
+  .ann-details {{ display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .4rem; }}
+  .ann-details input, .ann-details textarea {{ font-size: .8rem; padding: .3rem .4rem; border: 1px solid #ccc; border-radius: 5px; font-family: inherit; }}
+  .ann-details input {{ width: 140px; }}
+  .ann-details textarea {{ width: 100%; resize: vertical; }}
+  li.status-interessant {{ border-left: 4px solid #2a7f3f; }}
+  li.status-nicht_interessant {{ border-left: 4px solid #c0392b; opacity: .7; }}
+  li.status-angeschaut {{ border-left: 4px solid #999; }}
+  .sync-bar {{ background: white; border: 1px solid #e0e0e0; border-radius: 8px; padding: .6rem .8rem; margin-bottom: 1rem; font-size: .82rem; display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; }}
+  .sync-bar input[type="password"] {{ flex: 1; min-width: 160px; padding: .3rem .5rem; border: 1px solid #ccc; border-radius: 5px; }}
+  .sync-status {{ color: #666; }}
+  .sync-status.ok {{ color: #2a7f3f; }}
+  .sync-status.err {{ color: #c0392b; }}
 </style>
 </head>
 <body>
@@ -307,6 +361,14 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
   <div class="meta">Letzter Check: {run_time} · {len(searches)} gespeicherte Suchen · {len(state)} bekannte Inserate insgesamt</div>
 
   {errors_html}
+
+  <div class="sync-bar">
+    <span>🔑 Notizen-Sync (GitHub):</span>
+    <input type="password" id="ghPatInput" placeholder="Personal Access Token einfügen ...">
+    <button type="button" id="ghPatSave">Speichern</button>
+    <button type="button" id="ghPatClear">Entfernen</button>
+    <span class="sync-status" id="syncStatus">nicht eingerichtet</span>
+  </div>
 
   <div class="filters">
     <input type="text" id="filterText" placeholder="Titel enthält ...">
@@ -395,6 +457,168 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
   }});
 
   applyFilters();
+}})();
+
+(function() {{
+  const REPO = "{GITHUB_REPO_SLUG}";
+  const BRANCH = "{GITHUB_BRANCH}";
+  const FILE_PATH = "{ANNOTATIONS_PATH}";
+  const API_BASE = "https://api.github.com/repos/" + REPO + "/contents/" + FILE_PATH;
+
+  const patInput = document.getElementById('ghPatInput');
+  const patSaveBtn = document.getElementById('ghPatSave');
+  const patClearBtn = document.getElementById('ghPatClear');
+  const statusEl = document.getElementById('syncStatus');
+
+  let pat = localStorage.getItem('ghPat') || '';
+  let annotations = {{}};
+  let currentSha = null;
+  let saveQueue = Promise.resolve();
+
+  function setStatus(text, cls) {{
+    statusEl.textContent = text;
+    statusEl.className = 'sync-status' + (cls ? ' ' + cls : '');
+  }}
+
+  function b64EncodeUnicode(str) {{
+    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{{2}})/g, function(match, p1) {{
+      return String.fromCharCode(parseInt(p1, 16));
+    }}));
+  }}
+
+  function b64DecodeUnicode(str) {{
+    return decodeURIComponent(atob(str.replace(/\\n/g, '')).split('').map(function(c) {{
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }}).join(''));
+  }}
+
+  async function loadAnnotations() {{
+    if (!pat) {{
+      setStatus('nicht eingerichtet');
+      return;
+    }}
+    setStatus('lade ...');
+    try {{
+      const resp = await fetch(API_BASE + '?ref=' + BRANCH, {{
+        headers: {{ 'Authorization': 'token ' + pat, 'Accept': 'application/vnd.github+json' }}
+      }});
+      if (resp.status === 404) {{
+        annotations = {{}};
+        currentSha = null;
+        setStatus('bereit (noch keine Notizen)', 'ok');
+      }} else if (resp.ok) {{
+        const data = await resp.json();
+        currentSha = data.sha;
+        annotations = JSON.parse(b64DecodeUnicode(data.content));
+        setStatus('geladen (' + Object.keys(annotations).length + ' Notizen)', 'ok');
+      }} else {{
+        setStatus('Fehler beim Laden (HTTP ' + resp.status + ')', 'err');
+        return;
+      }}
+      applyAnnotationsToDOM();
+    }} catch (e) {{
+      setStatus('Fehler beim Laden: ' + e.message, 'err');
+    }}
+  }}
+
+  function applyAnnotationsToDOM() {{
+    document.querySelectorAll('[data-ann]').forEach(function(el) {{
+      const id = el.dataset.id;
+      const field = el.dataset.ann;
+      const value = (annotations[id] && annotations[id][field]) || '';
+      el.value = value;
+    }});
+    document.querySelectorAll('li.item[data-id]').forEach(function(li) {{
+      const id = li.dataset.id;
+      const status = annotations[id] && annotations[id].status;
+      li.classList.remove('status-angeschaut', 'status-interessant', 'status-nicht_interessant');
+      if (status) li.classList.add('status-' + status);
+    }});
+  }}
+
+  function queueSave() {{
+    saveQueue = saveQueue.then(saveAnnotations);
+  }}
+
+  async function saveAnnotations() {{
+    if (!pat) return;
+    setStatus('speichere ...');
+    try {{
+      const body = {{
+        message: 'Notizen aktualisiert (' + new Date().toISOString() + ')',
+        content: b64EncodeUnicode(JSON.stringify(annotations, null, 2)),
+        branch: BRANCH
+      }};
+      if (currentSha) body.sha = currentSha;
+      const resp = await fetch(API_BASE, {{
+        method: 'PUT',
+        headers: {{
+          'Authorization': 'token ' + pat,
+          'Accept': 'application/vnd.github+json',
+          'Content-Type': 'application/json'
+        }},
+        body: JSON.stringify(body)
+      }});
+      if (resp.ok) {{
+        const data = await resp.json();
+        currentSha = data.content.sha;
+        setStatus('gespeichert ✓', 'ok');
+      }} else {{
+        const errText = await resp.text();
+        setStatus('Fehler beim Speichern (HTTP ' + resp.status + ')', 'err');
+        console.error(errText);
+      }}
+    }} catch (e) {{
+      setStatus('Fehler beim Speichern: ' + e.message, 'err');
+    }}
+  }}
+
+  document.addEventListener('change', function(ev) {{
+    const el = ev.target;
+    if (!el.matches('[data-ann]')) return;
+    const id = el.dataset.id;
+    const field = el.dataset.ann;
+    if (!annotations[id]) annotations[id] = {{}};
+    annotations[id][field] = el.value;
+
+    document.querySelectorAll('[data-ann="' + field + '"][data-id="' + CSS.escape(id) + '"]').forEach(function(other) {{
+      other.value = el.value;
+    }});
+    if (field === 'status') {{
+      document.querySelectorAll('li.item[data-id="' + CSS.escape(id) + '"]').forEach(function(li) {{
+        li.classList.remove('status-angeschaut', 'status-interessant', 'status-nicht_interessant');
+        if (el.value) li.classList.add('status-' + el.value);
+      }});
+    }}
+    queueSave();
+  }});
+
+  document.addEventListener('click', function(ev) {{
+    const btn = ev.target.closest('.ann-toggle');
+    if (!btn) return;
+    const id = btn.dataset.id;
+    document.querySelectorAll('.ann-details[data-id="' + CSS.escape(id) + '"]').forEach(function(panel) {{
+      panel.hidden = !panel.hidden;
+    }});
+  }});
+
+  patInput.value = pat ? '••••••••' : '';
+  patSaveBtn.addEventListener('click', function() {{
+    const val = patInput.value.trim();
+    if (!val || val === '••••••••') return;
+    pat = val;
+    localStorage.setItem('ghPat', pat);
+    patInput.value = '••••••••';
+    loadAnnotations();
+  }});
+  patClearBtn.addEventListener('click', function() {{
+    pat = '';
+    localStorage.removeItem('ghPat');
+    patInput.value = '';
+    setStatus('nicht eingerichtet');
+  }});
+
+  loadAnnotations();
 }})();
 </script>
 </body>

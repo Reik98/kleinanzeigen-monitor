@@ -75,6 +75,37 @@ In `.github/workflows/check.yml`, Zeile mit `cron:`. Aktuell stündlich
 (`0 * * * *`). Für alle 30 Minuten: `*/30 * * * *`. Kürzere Intervalle
 erhöhen das Blockrisiko.
 
+## 6. Notizen/Bewertungen einrichten (optional, Geräte-übergreifend)
+
+Auf dem Dashboard kannst du pro Inserat eine Bewertung (Angeschaut/
+Interessant/Nicht interessant), Schutzgebiet Ja/Nein, Hütte Ja/Nein,
+Flurstücknummer, Ort, Größe und einen Kommentar hinterlegen. Damit das auf
+allen deinen Geräten (Handy + PC) sichtbar ist, werden diese Notizen als
+`data/annotations.json` direkt in dieses Repo geschrieben - dafür braucht
+jedes Gerät einmalig einen **GitHub Personal Access Token**:
+
+1. Auf github.com → oben rechts dein Profilbild → **Settings** →
+   ganz unten **Developer settings** → **Personal access tokens** →
+   **Fine-grained tokens** → **Generate new token**.
+2. Name z.B. "kleinanzeigen-monitor-notizen", Ablaufdatum nach Wahl.
+3. **Repository access** → "Only select repositories" → dieses Repo
+   (`kleinanzeigen-monitor`) auswählen.
+4. **Permissions** → "Repository permissions" → **Contents** → auf
+   **"Read and write"** stellen. Alle anderen Berechtigungen auf "No access"
+   lassen.
+5. **Generate token** → den angezeigten Token (beginnt mit `github_pat_...`)
+   kopieren - er wird nur einmal angezeigt!
+6. Auf dem Dashboard oben in der Zeile "🔑 Notizen-Sync" den Token einfügen
+   und "Speichern" klicken.
+
+Das musst du auf jedem Gerät (Handy, PC, ...) einmal separat machen, mit
+demselben oder einem eigenen Token pro Gerät. Der Token wird ausschließlich
+lokal im Browser gespeichert (`localStorage`) und nirgendwo sonst
+hinterlegt - aber da das Repo öffentlich ist, sollte der Token wirklich nur
+auf "Contents: Read and write" für genau dieses eine Repo beschränkt sein,
+falls er doch einmal in falsche Hände geraten sollte (z.B. bei Verlust des
+Geräts).
+
 ## Wie es funktioniert
 
 - `check_kleinanzeigen.py` ruft jede URL aus `searches.json` ab, parst die
