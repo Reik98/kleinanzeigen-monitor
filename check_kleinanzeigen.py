@@ -99,6 +99,14 @@ def extract_price(card):
     return ""
 
 
+def extract_image(card):
+    """Sucht das Titelbild der Anzeige (falls vorhanden)."""
+    img_el = card.select_one("[data-image-container] img") or card.select_one("img")
+    if not img_el:
+        return None
+    return img_el.get("src")
+
+
 def fetch_search(url, debug_path=None):
     """Holt eine Suchseite und gibt eine Liste von Listing-Dicts zurueck."""
     resp = requests.get(url, headers=REQUEST_HEADERS, timeout=20)
@@ -127,6 +135,7 @@ def fetch_search(url, debug_path=None):
         href = card.get("data-href") or (title_el.get("href") if title_el else None)
         link = f"https://www.kleinanzeigen.de{href}" if href and href.startswith("/") else href
 
+        image = extract_image(card)
         price_text = extract_price(card)
 
         listings.append(
@@ -134,6 +143,7 @@ def fetch_search(url, debug_path=None):
                 "id": adid,
                 "title": title,
                 "url": link or url,
+                "image": image,
                 "price_text": price_text,
                 "price_num": parse_price_to_number(price_text),
             }
@@ -174,26 +184,51 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
     def escape(s):
         return (s or "").replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
+    def by_price(item):
+        # Inserate ohne Preisangabe (VB, "Zu verschenken" ohne Zahl, etc.)
+        # landen ans Ende statt ganz nach vorne (0).
+        num = item.get("price_num")
+        return (num is None, num if num is not None else 0)
+
+    def thumb(item):
+        img = item.get("image")
+        if img:
+            return f'<img class="thumb" src="{escape(img)}" alt="" loading="lazy">'
+        return '<div class="thumb thumb-placeholder">🏡</div>'
+
     def item_row(item):
         return f"""
         <li class="item">
-          <a href="{escape(item['url'])}" target="_blank" rel="noopener">{escape(item['title'])}</a>
-          <span class="price">{escape(item.get('price_text') or '–')}</span>
-          <span class="search-tag">{escape(item.get('search_name',''))}</span>
+          {thumb(item)}
+          <div class="item-body">
+            <a href="{escape(item['url'])}" target="_blank" rel="noopener">{escape(item['title'])}</a>
+            <div class="item-meta">
+              <span class="price">{escape(item.get('price_text') or '–')}</span>
+              <span class="search-tag">{escape(item.get('search_name',''))}</span>
+            </div>
+          </div>
         </li>"""
 
-    new_html = "".join(item_row(i) for i in new_items) or "<li class='empty'>Keine neuen Inserate.</li>"
+    new_items_sorted = sorted(new_items, key=by_price)
+    price_drops_sorted = sorted(price_drops, key=by_price)
+
+    new_html = "".join(item_row(i) for i in new_items_sorted) or "<li class='empty'>Keine neuen Inserate.</li>"
     drops_html = "".join(
         f"""
         <li class="item">
-          <a href="{escape(d['url'])}" target="_blank" rel="noopener">{escape(d['title'])}</a>
-          <span class="price">{escape(d['old_price'])} → <b>{escape(d['new_price'])}</b></span>
-          <span class="search-tag">{escape(d.get('search_name',''))}</span>
+          {thumb(d)}
+          <div class="item-body">
+            <a href="{escape(d['url'])}" target="_blank" rel="noopener">{escape(d['title'])}</a>
+            <div class="item-meta">
+              <span class="price">{escape(d['old_price'])} → <b>{escape(d['new_price'])}</b></span>
+              <span class="search-tag">{escape(d.get('search_name',''))}</span>
+            </div>
+          </div>
         </li>"""
-        for d in price_drops
+        for d in price_drops_sorted
     ) or "<li class='empty'>Keine Preissenkungen.</li>"
 
-    all_current = sorted(state.values(), key=lambda x: x.get("last_seen", ""), reverse=True)
+    all_current = sorted(state.values(), key=by_price)
     all_html = "".join(item_row(i) for i in all_current) or "<li class='empty'>Noch keine Daten.</li>"
 
     errors_html = ""
@@ -217,8 +252,13 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
   h2 {{ font-size: 1.1rem; margin-top: 2rem; border-bottom: 2px solid #eee; padding-bottom: .3rem; }}
   .meta {{ color: #666; font-size: .85rem; margin-bottom: 1.5rem; }}
   ul {{ list-style: none; padding: 0; }}
-  li.item {{ background: white; border: 1px solid #e0e0e0; border-radius: 8px; padding: .7rem 1rem; margin-bottom: .5rem; display: flex; justify-content: space-between; align-items: center; gap: .5rem; flex-wrap: wrap; }}
+  li.item {{ background: white; border: 1px solid #e0e0e0; border-radius: 8px; padding: .6rem; margin-bottom: .5rem; display: flex; align-items: center; gap: .8rem; }}
   li.empty {{ color: #999; font-style: italic; padding: .5rem 0; }}
+  .thumb {{ width: 72px; height: 72px; object-fit: cover; border-radius: 6px; flex-shrink: 0; background: #eee; }}
+  .thumb-placeholder {{ display: flex; align-items: center; justify-content: center; font-size: 1.6rem; }}
+  .item-body {{ flex: 1; min-width: 0; display: flex; flex-direction: column; gap: .25rem; }}
+  .item-body a {{ overflow-wrap: anywhere; }}
+  .item-meta {{ display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }}
   .price {{ font-weight: 600; white-space: nowrap; }}
   .search-tag {{ font-size: .75rem; color: #888; background: #f0f0f0; border-radius: 4px; padding: .1rem .4rem; }}
   .errors {{ background: #fff3f3; border: 1px solid #ffc9c9; border-radius: 8px; padding: 1rem; }}
