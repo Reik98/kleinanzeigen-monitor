@@ -6,8 +6,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/9f/9f3a5630-6e41-4648-b033-abcf276fa98e?rule=$_2.AUTO",
     "price_text": "200 €",
     "price_num": 200,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "230 qm",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Kleingarten",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3508980205": {
     "id": "3508980205",
@@ -16,8 +21,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/81/81f6f84b-9be2-4928-8bb6-920726866edf?rule=$_2.AUTO",
     "price_text": "150 € VB",
     "price_num": 150,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Kleingarten",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3369151601": {
     "id": "3369151601",
@@ -26,8 +36,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/f6/f6b075d9-0455-4359-a4e2-25004efedfce?rule=$_2.AUTO",
     "price_text": "30 €",
     "price_num": 30,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Kleingarten",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3287729141": {
     "id": "3287729141",
@@ -36,8 +51,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/07/07315cda-5fa2-48df-8627-e2139f1f821b?rule=$_2.AUTO",
     "price_text": "150 €",
     "price_num": 150,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "150 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Schrebergarten",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3165649278": {
     "id": "3165649278",
@@ -46,8 +66,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/75/754c6558-0d65-48ac-a567-f11a203ec9fa?rule=$_2.AUTO",
     "price_text": "3 Bände, Der schöne Kleingarten\n1933, 1934, 1936\nje Band 2,00€\nabzuholen oder Versand für 5,00€...",
     "price_num": 3193319341936200500,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Kleingarten",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3469876191": {
     "id": "3469876191",
@@ -56,8 +81,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/c6/c6f1960e-b210-4279-a0d0-723abc313e62?rule=$_2.AUTO",
     "price_text": "1.100 €",
     "price_num": 1100,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Gartenstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3506160642": {
     "id": "3506160642",
@@ -66,8 +96,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/cf/cfba0965-630f-4a7a-8d13-b79004f81e81?rule=$_2.AUTO",
     "price_text": "150 € VB",
     "price_num": 150,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "188 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Grundstücke & Gärten (allgemein, Wernau + Umgebung)",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3150521995": {
     "id": "3150521995",
@@ -76,8 +111,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/e7/e7b77afd-89f7-4afa-8652-ffc7af43860b?rule=$_2.AUTO",
     "price_text": "9.000 €",
     "price_num": 9000,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "390 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Grundstücke & Gärten (allgemein, Wernau + Umgebung)",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3509548355": {
     "id": "3509548355",
@@ -86,8 +126,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/d4/d4c3ae3a-ff1b-4951-8abb-707e04c1c952?rule=$_2.AUTO",
     "price_text": "10.000 €",
     "price_num": 10000,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "927 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Freizeitgrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3461184430": {
     "id": "3461184430",
@@ -96,8 +141,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/12/129739aa-496f-4e04-8635-209c7fc430cb?rule=$_2.AUTO",
     "price_text": "15.000 €",
     "price_num": 15000,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "2.032 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Freizeitgrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3508526470": {
     "id": "3508526470",
@@ -106,8 +156,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/1f/1f0bdb4f-6797-4b0a-a241-8888e3f52dfa?rule=$_2.AUTO",
     "price_text": "150 €",
     "price_num": 150,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "1.100 m²",
+    "auto_huette_hint": "ja",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Obstwiese",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3508316509": {
     "id": "3508316509",
@@ -116,8 +171,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/e6/e673a8bd-eaca-459a-b78e-037de4e94c6a?rule=$_2.AUTO",
     "price_text": "6.000 €",
     "price_num": 6000,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "297 m²",
+    "auto_huette_hint": "ja",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Freizeitgrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3505867830": {
     "id": "3505867830",
@@ -126,8 +186,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/78/788b12df-b35a-4834-b014-9c67d225a15e?rule=$_2.AUTO",
     "price_text": "2.200 m² Grundstück zu verpachten – komplett eingezäunt – teilbar – nur 30 € monatlich!\n\nIn...",
     "price_num": 220030,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "2.200 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Gartengrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3505135007": {
     "id": "3505135007",
@@ -136,8 +201,13 @@
     "image": null,
     "price_text": "10.000 € VB",
     "price_num": 10000,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "810 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Freizeitgrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3503688019": {
     "id": "3503688019",
@@ -146,8 +216,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/da/daf34319-18ce-410d-be1a-ae0e520f3b03?rule=$_2.AUTO",
     "price_text": "5 €",
     "price_num": 5,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "11.077 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Freizeitgrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3502627677": {
     "id": "3502627677",
@@ -156,8 +231,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/42/42a1938b-6198-4d1f-97df-a6ea9821ae3e?rule=$_2.AUTO",
     "price_text": "25 €",
     "price_num": 25,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "679 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Stückle",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3499811481": {
     "id": "3499811481",
@@ -166,8 +246,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/41/41dda750-e6b2-439a-9bbe-f05c050e112a?rule=$_2.AUTO",
     "price_text": "15.000 €",
     "price_num": 15000,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "760 m²",
+    "auto_huette_hint": "ja",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Gartengrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3497380360": {
     "id": "3497380360",
@@ -176,8 +261,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/63/636cff9b-0238-49af-8e61-ea0d5de03b56?rule=$_2.AUTO",
     "price_text": "100 €",
     "price_num": 100,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "350 m²",
+    "auto_huette_hint": "ja",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Gartengrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3496611262": {
     "id": "3496611262",
@@ -186,8 +276,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/c0/c00c5387-6671-4c30-a217-d9ab8fa5a8dc?rule=$_2.AUTO",
     "price_text": "150 €",
     "price_num": 150,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "2.800 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Freizeitgrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3491588139": {
     "id": "3491588139",
@@ -196,8 +291,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/96/9614d602-3335-47e7-9cbe-083b7441a98c?rule=$_2.AUTO",
     "price_text": "50 €",
     "price_num": 50,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "",
+    "auto_huette_hint": "ja",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Freizeitgrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3256226640": {
     "id": "3256226640",
@@ -206,8 +306,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/dd/dd43d989-1381-4205-9147-535751819fb4?rule=$_2.AUTO",
     "price_text": "15.000 €",
     "price_num": 15000,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "560 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Gartengrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3490184205": {
     "id": "3490184205",
@@ -216,8 +321,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/bc/bc8755a3-bc47-4433-892e-7c6ac9bcb20e?rule=$_2.AUTO",
     "price_text": "8.990 € VB",
     "price_num": 8990,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "500 m²",
+    "auto_huette_hint": "ja",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Freizeitgrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3488413556": {
     "id": "3488413556",
@@ -226,8 +336,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/9e/9e4b689e-dfe4-4a36-8fba-b7cb2849406b?rule=$_2.AUTO",
     "price_text": "8.300 €",
     "price_num": 8300,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "445 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Gartengrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3488362796": {
     "id": "3488362796",
@@ -236,8 +351,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/de/de692f0d-b418-49d0-acb5-2254bbca36ff?rule=$_2.AUTO",
     "price_text": "6.250 € VB",
     "price_num": 6250,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "716 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Freizeitgrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3065549584": {
     "id": "3065549584",
@@ -246,8 +366,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/cd/cde4d05d-403c-4ac6-be5c-1813f7368227?rule=$_2.AUTO",
     "price_text": "12.000 €",
     "price_num": 12000,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "444 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Freizeitgrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3357062454": {
     "id": "3357062454",
@@ -256,8 +381,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/f1/f184ad67-7c18-47f1-8084-d2faf9eb4273?rule=$_2.AUTO",
     "price_text": "7.000 € VB",
     "price_num": 7000,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "480 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Freizeitgrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3483573463": {
     "id": "3483573463",
@@ -266,8 +396,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/44/440ac392-6971-4117-bce9-1ff8f063f66c?rule=$_2.AUTO",
     "price_text": "7.500 € VB",
     "price_num": 7500,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "560 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Freizeitgrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3482268594": {
     "id": "3482268594",
@@ -276,8 +411,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/98/98492809-ad4b-43a6-849f-440e2e2fe4c8?rule=$_2.AUTO",
     "price_text": "6.000 € VB",
     "price_num": 6000,
+    "auto_ort": "",
+    "auto_flurstueck": "1155",
+    "auto_groesse": "",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Freizeitgrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3442328326": {
     "id": "3442328326",
@@ -286,8 +426,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/0a/0acece4d-9b7a-45a1-986d-94563e60f0a4?rule=$_2.AUTO",
     "price_text": "7.200 €",
     "price_num": 7200,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "860 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "ja",
     "search_name": "Freizeitgrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3478367841": {
     "id": "3478367841",
@@ -296,8 +441,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/4a/4a7b28aa-7680-4606-9c68-0036eb0642fd?rule=$_2.AUTO",
     "price_text": "6.900 €",
     "price_num": 6900,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "710 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Freizeitgrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3477348271": {
     "id": "3477348271",
@@ -306,8 +456,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/9a/9a2e7603-eea8-4e24-9903-87d858ee48ed?rule=$_2.AUTO",
     "price_text": "14.000 € VB",
     "price_num": 14000,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "1.000 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Freizeitgrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3425447905": {
     "id": "3425447905",
@@ -316,8 +471,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/2f/2fe4bcbf-d733-4196-b50e-0bf823325350?rule=$_2.AUTO",
     "price_text": "85 €",
     "price_num": 85,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "",
+    "auto_huette_hint": "ja",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Grundstücke & Gärten (allgemein, Wernau + Umgebung)",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3493849742": {
     "id": "3493849742",
@@ -326,8 +486,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/6d/6d6dc781-40bb-41cc-b9b0-81c7b27c2600?rule=$_2.AUTO",
     "price_text": "5 €",
     "price_num": 5,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Gütle",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3485768464": {
     "id": "3485768464",
@@ -336,8 +501,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/9a/9ad31d54-4106-4453-a56d-6e00d02b453d?rule=$_2.AUTO",
     "price_text": "14.000 € VB",
     "price_num": 14000,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "",
+    "auto_huette_hint": "ja",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Gütle",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3484196018": {
     "id": "3484196018",
@@ -346,8 +516,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/c7/c7c72583-7d3b-420d-aff2-0d6fd17239d2?rule=$_2.AUTO",
     "price_text": "15.000 € VB",
     "price_num": 15000,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "550 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Gütle",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3476945264": {
     "id": "3476945264",
@@ -356,8 +531,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/3d/3d321e23-1f77-4824-81b2-58d9d659fffe?rule=$_2.AUTO",
     "price_text": "15.000 € VB",
     "price_num": 15000,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "815 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Gütle",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3044729760": {
     "id": "3044729760",
@@ -366,8 +546,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/b6/b60bb03d-f777-462c-84ea-95db202e2234?rule=$_2.AUTO",
     "price_text": "1 € VB",
     "price_num": 1,
+    "auto_ort": "Plattach",
+    "auto_flurstueck": "",
+    "auto_groesse": "1.500 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Gütle",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3511886184": {
     "id": "3511886184",
@@ -376,8 +561,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/cb/cbd7738d-710f-4f57-bc5c-24bca1334918?rule=$_2.AUTO",
     "price_text": "1 € VB",
     "price_num": 1,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "0 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Grundstücke & Gärten (allgemein, Wernau + Umgebung)",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3504584096": {
     "id": "3504584096",
@@ -386,8 +576,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/55/5569508e-4b05-472c-baf3-d74f0d97f1b6?rule=$_2.AUTO",
     "price_text": "30 €",
     "price_num": 30,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Obstbaumwiese",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3497255786": {
     "id": "3497255786",
@@ -396,8 +591,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/29/29c6cad8-2137-4a42-a9d9-89f7f9f92e03?rule=$_2.AUTO",
     "price_text": "4.900 € VB",
     "price_num": 4900,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "1.100 m²",
+    "auto_huette_hint": "ja",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Obstbaumwiese",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3496711927": {
     "id": "3496711927",
@@ -406,8 +606,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/05/05bf7275-7e2a-4afe-b2be-86c68cb1e2f6?rule=$_2.AUTO",
     "price_text": "10.900 € VB",
     "price_num": 10900,
+    "auto_ort": "Oberurbach",
+    "auto_flurstueck": "",
+    "auto_groesse": "1.250 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Obstbaumwiese",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3478555282": {
     "id": "3478555282",
@@ -416,8 +621,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/72/722df0cd-1ba5-41da-b104-129d84b1dc95?rule=$_2.AUTO",
     "price_text": "2.000 € VB",
     "price_num": 2000,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Obstbaumwiese",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3390441708": {
     "id": "3390441708",
@@ -426,8 +636,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/12/12df87d4-706f-406c-9983-eb835b6a6aa6?rule=$_2.AUTO",
     "price_text": "60 € VB",
     "price_num": 60,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "477 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Obstbaumwiese",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3510678587": {
     "id": "3510678587",
@@ -436,8 +651,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/09/09809f3b-d4d2-489b-8023-2de2b627af3f?rule=$_2.AUTO",
     "price_text": "50 €",
     "price_num": 50,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "800 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Grundstücke & Gärten (allgemein, Wernau + Umgebung)",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3509558615": {
     "id": "3509558615",
@@ -446,8 +666,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/a3/a39f0737-9d4d-428a-bb2f-2a91ca3d6d4a?rule=$_2.AUTO",
     "price_text": "100 €",
     "price_num": 100,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "413 m²",
+    "auto_huette_hint": "ja",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Gartengrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3507536831": {
     "id": "3507536831",
@@ -456,8 +681,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/3c/3c8dc840-f1c8-4559-8f76-49472ea73186?rule=$_2.AUTO",
     "price_text": "400 € VB",
     "price_num": 400,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Stückle",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3501931962": {
     "id": "3501931962",
@@ -466,8 +696,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/42/42955b74-6604-4a5e-ab5e-b1b332ec8284?rule=$_2.AUTO",
     "price_text": "5.000 € VB",
     "price_num": 5000,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "816 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Stückle",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "1501711101": {
     "id": "1501711101",
@@ -476,8 +711,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/7f/7f9fac1b-3b94-415a-835b-af94841eb72c?rule=$_2.AUTO",
     "price_text": "Es gelten die folgenden Mietpreise (inkl. USt.):\t\n--------------\t\n400€ pauschal für max. drei...",
     "price_num": 400,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "500 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Gartengrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3500339952": {
     "id": "3500339952",
@@ -486,8 +726,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/47/47a8b4b1-a1b0-4a81-b4e6-7bccd98c6c6e?rule=$_2.AUTO",
     "price_text": "150 €",
     "price_num": 150,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "1.150 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Stückle",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3482654490": {
     "id": "3482654490",
@@ -496,8 +741,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/3e/3eef00ee-b3b2-4550-82c1-d811d90a9115?rule=$_2.AUTO",
     "price_text": "9.750 € VB",
     "price_num": 9750,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "1.050 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Obstwiese",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3339015772": {
     "id": "3339015772",
@@ -506,8 +756,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/af/af5c65ff-116a-4ed4-80e3-11c5e3a4251c?rule=$_2.AUTO",
     "price_text": "2.500 € VB",
     "price_num": 2500,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "1.127 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Stückle",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3453956945": {
     "id": "3453956945",
@@ -516,8 +771,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/07/07cc6927-b966-45bb-beb6-4a26abe33f21?rule=$_2.AUTO",
     "price_text": "12.000 € VB",
     "price_num": 12000,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "1.000 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Stückle",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3419643200": {
     "id": "3419643200",
@@ -526,8 +786,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/3b/3b911593-5678-40df-a03b-f642afbd9035?rule=$_2.AUTO",
     "price_text": "",
     "price_num": null,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Stückle",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3347145421": {
     "id": "3347145421",
@@ -536,8 +801,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/2b/2b2e3ecd-80b8-4407-b1b6-8e48d4f4510c?rule=$_2.AUTO",
     "price_text": "12.500 €",
     "price_num": 12500,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Stückle",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "2873773489": {
     "id": "2873773489",
@@ -546,8 +816,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/93/935c4860-e600-48e9-a328-96aec36ab831?rule=$_2.AUTO",
     "price_text": "5 €",
     "price_num": 5,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "3.000 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Stückle",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "2383134769": {
     "id": "2383134769",
@@ -556,8 +831,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/86/862a8abd-23a1-4ba3-898c-85157bc0a156?rule=$_2.AUTO",
     "price_text": "80 €",
     "price_num": 80,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "140 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Stückle",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "2485813222": {
     "id": "2485813222",
@@ -566,8 +846,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/70/70d18602-2a32-4d8c-bbc7-92d235f7b6b3?rule=$_2.AUTO",
     "price_text": "40 €",
     "price_num": 40,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Stückle",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "1599892167": {
     "id": "1599892167",
@@ -576,8 +861,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/bb/bb6a4c31-cd3d-48cf-99a8-fbb46d631f67?rule=$_2.AUTO",
     "price_text": "20 €",
     "price_num": 20,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Stückle",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3501623764": {
     "id": "3501623764",
@@ -586,8 +876,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/1a/1aec8a1b-7495-4487-85d2-377c245b8968?rule=$_2.AUTO",
     "price_text": "200 €",
     "price_num": 200,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "600 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Schrebergarten",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3501594904": {
     "id": "3501594904",
@@ -596,8 +891,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/7f/7f3e8761-e70c-49e4-9b31-45c71343a982?rule=$_2.AUTO",
     "price_text": "8.000 € VB",
     "price_num": 8000,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "232 m²",
+    "auto_huette_hint": "ja",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Schrebergarten",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3343087410": {
     "id": "3343087410",
@@ -606,8 +906,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/55/5517cacf-ccfa-498e-beee-8538100d4fe3?rule=$_2.AUTO",
     "price_text": "280 €",
     "price_num": 280,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Schrebergarten",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3491770388": {
     "id": "3491770388",
@@ -616,8 +921,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/f4/f4779d7e-a672-43e1-868c-f40b8fd4e4d6?rule=$_2.AUTO",
     "price_text": "22 € VB",
     "price_num": 22,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Schrebergarten",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3469259539": {
     "id": "3469259539",
@@ -626,8 +936,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/cb/cb135431-b6ba-49dd-81ce-36f3f48795e4?rule=$_2.AUTO",
     "price_text": "12 €",
     "price_num": 12,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Schrebergarten",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3438284330": {
     "id": "3438284330",
@@ -636,8 +951,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/92/92feb9b4-270e-4682-912b-7076a2f6a092?rule=$_2.AUTO",
     "price_text": "1 €",
     "price_num": 1,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "1 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Schrebergarten",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3436436432": {
     "id": "3436436432",
@@ -646,8 +966,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/1f/1f723769-2853-425e-b8f8-88cd728480bf?rule=$_2.AUTO",
     "price_text": "80 € VB",
     "price_num": 80,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Schrebergarten",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3412342073": {
     "id": "3412342073",
@@ -656,8 +981,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/d2/d27ef147-ef3d-43e9-b437-2dfbfe567eb2?rule=$_2.AUTO",
     "price_text": "80 €",
     "price_num": 80,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "",
+    "auto_huette_hint": "ja",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Schrebergarten",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3303316464": {
     "id": "3303316464",
@@ -666,8 +996,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/ae/ae9b3fca-2ef1-4195-ac3f-b8208f2eb9de?rule=$_2.AUTO",
     "price_text": "3 €",
     "price_num": 3,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Schrebergarten",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "2480136990": {
     "id": "2480136990",
@@ -676,8 +1011,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/dd/dd494c20-4b57-426e-8426-aecdc09d90e1?rule=$_2.AUTO",
     "price_text": "250 € VB",
     "price_num": 250,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "",
+    "auto_huette_hint": "ja",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Schrebergarten",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3512736206": {
     "id": "3512736206",
@@ -686,8 +1026,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/e5/e527c4ab-ad50-44de-aa45-8fc858c7958e?rule=$_2.AUTO",
     "price_text": "7.000 € VB",
     "price_num": 7000,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "2.100 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Grundstücke & Gärten (allgemein, Wernau + Umgebung)",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3512246221": {
     "id": "3512246221",
@@ -696,8 +1041,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/b0/b0bc9e63-3991-4250-b71e-6f5b0b285bc5?rule=$_2.AUTO",
     "price_text": "15.000 €",
     "price_num": 15000,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "1.300 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Grundstücke & Gärten (allgemein, Wernau + Umgebung)",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3508650518": {
     "id": "3508650518",
@@ -706,8 +1056,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/8d/8d96dc2d-32a6-42b6-af5d-09cb67843f5e?rule=$_2.AUTO",
     "price_text": "150 €",
     "price_num": 150,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "795 m²",
+    "auto_huette_hint": "ja",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Obstwiese",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3508330641": {
     "id": "3508330641",
@@ -716,8 +1071,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/31/31ce17e7-fa11-448a-8844-a503ff2c17b1?rule=$_2.AUTO",
     "price_text": "7.800 €",
     "price_num": 7800,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "530 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Obstwiese",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "2860007343": {
     "id": "2860007343",
@@ -726,8 +1086,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/1e/1e07263c-b4a2-4f01-bc29-b7442546fc78?rule=$_2.AUTO",
     "price_text": "Obstwiesen 5403/1, Hummelberg Rutesheim zu vermieten\n\n40 € monatlich\n\nAnsprechpartner\n\nMatthias...",
     "price_num": 5403140,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "100 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Obstwiese",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3499574412": {
     "id": "3499574412",
@@ -736,8 +1101,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/3a/3a36bad7-4cfa-4e10-80b4-d569bbf2113d?rule=$_2.AUTO",
     "price_text": "5 € VB",
     "price_num": 5,
+    "auto_ort": "",
+    "auto_flurstueck": "309",
+    "auto_groesse": "",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Gartengrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3491345650": {
     "id": "3491345650",
@@ -746,8 +1116,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/98/9823bf36-f250-4cc9-8af2-e36ea2ac5dda?rule=$_2.AUTO",
     "price_text": "6.000 € VB",
     "price_num": 6000,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Obstwiese",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3488865559": {
     "id": "3488865559",
@@ -756,8 +1131,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/30/30bb8727-7824-466d-aca1-6ae5d03a1cf1?rule=$_2.AUTO",
     "price_text": "5.000 € VB",
     "price_num": 5000,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "600 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Obstwiese",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3483704066": {
     "id": "3483704066",
@@ -766,8 +1146,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/31/31023d36-8f64-4fe4-8617-433f992e24a2?rule=$_2.AUTO",
     "price_text": "3.900 €",
     "price_num": 3900,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "1.000m²",
+    "auto_huette_hint": "ja",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Obstwiese",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3476234062": {
     "id": "3476234062",
@@ -776,8 +1161,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/a3/a38c71bb-e65a-4ae7-9930-6e141d0aa5d0?rule=$_2.AUTO",
     "price_text": "3.300 € VB",
     "price_num": 3300,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "692 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Obstwiese",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3475127004": {
     "id": "3475127004",
@@ -786,8 +1176,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/1c/1cc12a33-3756-4f77-897e-189b82d823dc?rule=$_2.AUTO",
     "price_text": "11.000 € VB",
     "price_num": 11000,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "691 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Obstwiese",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3474667291": {
     "id": "3474667291",
@@ -796,8 +1191,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/74/74f24ddd-6dae-43e6-b802-10e499ac894d?rule=$_2.AUTO",
     "price_text": "10 €",
     "price_num": 10,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Obstwiese",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3467077730": {
     "id": "3467077730",
@@ -806,8 +1206,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/38/383802d5-78a4-4550-b2fd-f3eb3ee319b4?rule=$_2.AUTO",
     "price_text": "5.999 €",
     "price_num": 5999,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "1.700 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Obstwiese",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3457912978": {
     "id": "3457912978",
@@ -816,8 +1221,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/c8/c8d0dcc7-02fc-446f-92d4-d6141dbbfd70?rule=$_2.AUTO",
     "price_text": "",
     "price_num": null,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "700 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Obstwiese",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3452796435": {
     "id": "3452796435",
@@ -826,8 +1236,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/29/299b6bcc-ea16-4417-a80c-9502943a5922?rule=$_2.AUTO",
     "price_text": "5 € VB",
     "price_num": 5,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "1.501 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Obstwiese",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3432690503": {
     "id": "3432690503",
@@ -836,8 +1251,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/a0/a04f19b2-4afe-4a8a-b902-2e9b000bb311?rule=$_2.AUTO",
     "price_text": "110 € VB",
     "price_num": 110,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Obstwiese",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3380529016": {
     "id": "3380529016",
@@ -846,8 +1266,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/2f/2f2461e4-5d45-4e9c-8b1d-4ac3cea8d318?rule=$_2.AUTO",
     "price_text": "",
     "price_num": null,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Obstwiese",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3248853907": {
     "id": "3248853907",
@@ -856,8 +1281,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/c5/c5a9ebc3-081d-4392-b20a-d54f8ab8b8e3?rule=$_2.AUTO",
     "price_text": "9.800 € VB",
     "price_num": 9800,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "1.867 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Obstwiese",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3129639342": {
     "id": "3129639342",
@@ -866,8 +1296,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/6b/6b7b2c0f-7535-4cce-9371-af1ef338b3f2?rule=$_2.AUTO",
     "price_text": "1 €",
     "price_num": 1,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Obstwiese",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "2911949058": {
     "id": "2911949058",
@@ -876,8 +1311,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/bc/bc82a190-97d2-4c8f-b298-14c7bdf1abbf?rule=$_2.AUTO",
     "price_text": "8 €",
     "price_num": 8,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Obstwiese",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3348494506": {
     "id": "3348494506",
@@ -886,8 +1326,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/78/781b4d1e-ed9f-487d-ab0e-c92ffc86b8b4?rule=$_2.AUTO",
     "price_text": "6.000 € VB",
     "price_num": 6000,
+    "auto_ort": "",
+    "auto_flurstueck": "2002",
+    "auto_groesse": "1.873 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Baumwiese (Grundstücke-Rubrik, Kauf)",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3393802483": {
     "id": "3393802483",
@@ -896,8 +1341,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/52/52030caf-da2f-46c5-b3e5-219db999f4a9?rule=$_2.AUTO",
     "price_text": "40 €",
     "price_num": 40,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "500 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Baumgrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3491978453": {
     "id": "3491978453",
@@ -906,8 +1356,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/a0/a019a3a9-1348-4985-bf0c-e437cf784255?rule=$_2.AUTO",
     "price_text": "50 €",
     "price_num": 50,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "698 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Grundstücke & Gärten (allgemein, Wernau + Umgebung)",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3512986029": {
     "id": "3512986029",
@@ -916,8 +1371,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/fb/fbb85db0-da47-46b1-99e8-42b0c2d77aa0?rule=$_2.AUTO",
     "price_text": "12.250 €",
     "price_num": 12250,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "350 m²",
+    "auto_huette_hint": "ja",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Gartengrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3512694532": {
     "id": "3512694532",
@@ -926,8 +1386,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/5c/5c4c8ebc-2cc0-4633-8e54-b0c6fba7f017?rule=$_2.AUTO",
     "price_text": "1 € VB",
     "price_num": 1,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "3.360 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Grundstücke & Gärten (allgemein, Wernau + Umgebung)",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3460181509": {
     "id": "3460181509",
@@ -936,8 +1401,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/39/39c6e73f-2027-4e46-9f6f-f6dc8d877085?rule=$_2.AUTO",
     "price_text": "3.300 €",
     "price_num": 3300,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "2.368 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Grundstücke & Gärten (allgemein, Wernau + Umgebung)",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3485360818": {
     "id": "3485360818",
@@ -946,8 +1416,13 @@
     "image": null,
     "price_text": "100 €",
     "price_num": 100,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "1.000 m²",
+    "auto_huette_hint": "ja",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Grundstücke & Gärten (allgemein, Wernau + Umgebung)",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3512535864": {
     "id": "3512535864",
@@ -956,8 +1431,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/0f/0f6c8a48-cece-409d-b513-10370c1aa5fa?rule=$_2.AUTO",
     "price_text": "150 €",
     "price_num": 150,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "1.000 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Gartengrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3460181532": {
     "id": "3460181532",
@@ -966,8 +1446,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/85/855dfcbf-c26f-4207-a002-4006990adba2?rule=$_2.AUTO",
     "price_text": "11.000 €",
     "price_num": 11000,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "3.782 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Grundstücke & Gärten (allgemein, Wernau + Umgebung)",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3459420690": {
     "id": "3459420690",
@@ -976,8 +1461,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/e6/e68009a8-b0fe-4670-8b69-44f8f0442715?rule=$_2.AUTO",
     "price_text": "8.100 €",
     "price_num": 8100,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "1.467 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Grundstücke & Gärten (allgemein, Wernau + Umgebung)",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3511825251": {
     "id": "3511825251",
@@ -986,8 +1476,13 @@
     "image": null,
     "price_text": "30 € VB",
     "price_num": 30,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "300 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Gartengrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3459420696": {
     "id": "3459420696",
@@ -996,8 +1491,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/b9/b941d90f-d242-4bc2-b39f-6c4d5cb224e3?rule=$_2.AUTO",
     "price_text": "3.000 €",
     "price_num": 3000,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "1.547 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Grundstücke & Gärten (allgemein, Wernau + Umgebung)",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3482712896": {
     "id": "3482712896",
@@ -1006,8 +1506,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/66/667e8b16-b68d-4250-8f62-1bff958678d6?rule=$_2.AUTO",
     "price_text": "60 € VB",
     "price_num": 60,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Grundstücke & Gärten (allgemein, Wernau + Umgebung)",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3510976948": {
     "id": "3510976948",
@@ -1016,8 +1521,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/34/3490a8fe-bfb4-4503-b2b9-4b9c9afa0b4f?rule=$_2.AUTO",
     "price_text": "79 €",
     "price_num": 79,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "550 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Gartengrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3510965585": {
     "id": "3510965585",
@@ -1026,8 +1536,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/c6/c6ccd61f-ccc9-4c30-aacd-1cb5b70fd863?rule=$_2.AUTO",
     "price_text": "10.500 € VB",
     "price_num": 10500,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "850 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Grundstücke & Gärten (allgemein, Wernau + Umgebung)",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3501244157": {
     "id": "3501244157",
@@ -1036,8 +1551,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/cc/ccbd50ca-7e92-4381-a780-dd820d082bb5?rule=$_2.AUTO",
     "price_text": "9.800 € VB",
     "price_num": 9800,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "1.181 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Grundstücke & Gärten (allgemein, Wernau + Umgebung)",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3510236081": {
     "id": "3510236081",
@@ -1046,8 +1566,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/0c/0cc87376-2adf-4cdf-896a-378dcc6fc0e7?rule=$_2.AUTO",
     "price_text": "3.900 €",
     "price_num": 3900,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "1.679 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Grundstücke & Gärten (allgemein, Wernau + Umgebung)",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "2980841828": {
     "id": "2980841828",
@@ -1056,8 +1581,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/b9/b97440fd-34e7-411c-8a43-87e5307f587b?rule=$_2.AUTO",
     "price_text": "1 € VB",
     "price_num": 1,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "500 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Grundstücke & Gärten (allgemein, Wernau + Umgebung)",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3510024941": {
     "id": "3510024941",
@@ -1066,8 +1596,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/ea/eae0b596-ee01-4f44-82b4-2265cd731d91?rule=$_2.AUTO",
     "price_text": "1 € VB",
     "price_num": 1,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "20 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Grundstücke & Gärten (allgemein, Wernau + Umgebung)",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3509737620": {
     "id": "3509737620",
@@ -1076,8 +1611,13 @@
     "image": null,
     "price_text": "20 €",
     "price_num": 20,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "28 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Grundstücke & Gärten (allgemein, Wernau + Umgebung)",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3509619738": {
     "id": "3509619738",
@@ -1086,8 +1626,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/d7/d7d8a9d0-65b6-4bed-8664-508e24cd2100?rule=$_2.AUTO",
     "price_text": "3.900 €",
     "price_num": 3900,
+    "auto_ort": "Unterlenningen",
+    "auto_flurstueck": "",
+    "auto_groesse": "1.644 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Grundstücke & Gärten (allgemein, Wernau + Umgebung)",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3512825986": {
     "id": "3512825986",
@@ -1096,8 +1641,13 @@
     "image": null,
     "price_text": "100 € VB",
     "price_num": 100,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Gartengrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3511601561": {
     "id": "3511601561",
@@ -1106,8 +1656,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/58/58e261ec-a595-42e5-b9ed-e723e1f7b7b2?rule=$_2.AUTO",
     "price_text": "500 €",
     "price_num": 500,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "",
+    "auto_huette_hint": "ja",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Gartengrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3509012218": {
     "id": "3509012218",
@@ -1116,8 +1671,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/9b/9be646c3-a6d1-4859-899d-72ca2096b922?rule=$_2.AUTO",
     "price_text": "60 €",
     "price_num": 60,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "760 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Gartengrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3507335719": {
     "id": "3507335719",
@@ -1126,8 +1686,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/2a/2a55340a-0729-4b07-9a90-c31b35916b0c?rule=$_2.AUTO",
     "price_text": "20 €",
     "price_num": 20,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "100 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Gartengrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3507104355": {
     "id": "3507104355",
@@ -1136,8 +1701,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/35/35c5aa5c-1340-48d3-8e4e-8cd47f3b1817?rule=$_2.AUTO",
     "price_text": "105 €",
     "price_num": 105,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "130 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Gartengrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3506399748": {
     "id": "3506399748",
@@ -1146,8 +1716,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/c7/c7115d3c-5dbf-4e43-9bd1-d63199fc4df1?rule=$_2.AUTO",
     "price_text": "10.000 €",
     "price_num": 10000,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "500 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Gartengrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3505101140": {
     "id": "3505101140",
@@ -1156,8 +1731,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/fd/fdd55c7d-5049-40a2-ba7a-abd3e4509b3e?rule=$_2.AUTO",
     "price_text": "1 € VB",
     "price_num": 1,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Gartengrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3503099579": {
     "id": "3503099579",
@@ -1166,8 +1746,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/04/046f2bf4-a6f2-4f77-94eb-7e4f019b978a?rule=$_2.AUTO",
     "price_text": "15.000 €",
     "price_num": 15000,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "405 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Gartengrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3500809463": {
     "id": "3500809463",
@@ -1176,8 +1761,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/26/26afee41-7a90-4b28-89b9-d224e593ecf9?rule=$_2.AUTO",
     "price_text": "20 € VB",
     "price_num": 20,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Gartengrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3498196329": {
     "id": "3498196329",
@@ -1186,8 +1776,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/34/34ed5273-f469-4acb-8f19-bb9c30f41f5c?rule=$_2.AUTO",
     "price_text": "12.000 €",
     "price_num": 12000,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "2.817 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Gartengrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3479740084": {
     "id": "3479740084",
@@ -1196,8 +1791,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/13/13763415-9c51-4097-9023-4bb0c0789922?rule=$_2.AUTO",
     "price_text": "7.500 € VB",
     "price_num": 7500,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "514 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Gartengrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3493212639": {
     "id": "3493212639",
@@ -1206,8 +1806,13 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/44/4499f211-db18-4e6d-8102-dd0f084da697?rule=$_2.AUTO",
     "price_text": "450 €",
     "price_num": 450,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Gartengrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   },
   "3488539241": {
     "id": "3488539241",
@@ -1216,7 +1821,12 @@
     "image": "https://img.kleinanzeigen.de/api/v1/prod-ads/images/13/13fb0872-d5bf-4292-a5bf-25acac2016f1?rule=$_2.AUTO",
     "price_text": "135 €",
     "price_num": 135,
+    "auto_ort": "",
+    "auto_flurstueck": "",
+    "auto_groesse": "600 m²",
+    "auto_huette_hint": "",
+    "auto_schutzgebiet_hint": "",
     "search_name": "Gartengrundstück",
-    "last_seen": "2026-09-14T19:24:01+00:00"
+    "last_seen": "2026-09-14T19:39:14+00:00"
   }
 }
