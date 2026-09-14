@@ -208,8 +208,12 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
 
     def by_price(item):
         # Inserate ohne Preisangabe (VB, "Zu verschenken" ohne Zahl, etc.)
-        # landen ans Ende statt ganz nach vorne (0).
+        # landen ans Ende statt ganz nach vorne (0). "1 €" ist bei
+        # Kleinanzeigen.de meist nur ein Platzhalter für "Verhandlungsbasis",
+        # kein echter Preis - wird deshalb genauso behandelt.
         num = item.get("price_num")
+        if num is not None and num <= 1:
+            num = None
         return (num is None, num if num is not None else 0)
 
     def thumb(item):
@@ -219,8 +223,10 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
         return '<div class="thumb thumb-placeholder">🏡</div>'
 
     def item_row(item):
+        num = item.get("price_num")
+        data_price = "" if num is None else str(num)
         return f"""
-        <li class="item">
+        <li class="item" data-price="{data_price}" data-search="{escape(item.get('search_name',''))}" data-title="{escape(item['title'].lower())}">
           {thumb(item)}
           <div class="item-body">
             <a href="{escape(item['url'])}" target="_blank" rel="noopener">{escape(item['title'])}</a>
@@ -237,7 +243,7 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
     new_html = "".join(item_row(i) for i in new_items_sorted) or "<li class='empty'>Keine neuen Inserate.</li>"
     drops_html = "".join(
         f"""
-        <li class="item">
+        <li class="item" data-price="{'' if d.get('price_num') is None else d['price_num']}" data-search="{escape(d.get('search_name',''))}" data-title="{escape(d['title'].lower())}">
           {thumb(d)}
           <div class="item-body">
             <a href="{escape(d['url'])}" target="_blank" rel="noopener">{escape(d['title'])}</a>
@@ -286,6 +292,14 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
   .errors {{ background: #fff3f3; border: 1px solid #ffc9c9; border-radius: 8px; padding: 1rem; }}
   a {{ color: #0a5; text-decoration: none; }}
   a:hover {{ text-decoration: underline; }}
+  .filters {{ background: white; border: 1px solid #e0e0e0; border-radius: 8px; padding: .8rem; display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; margin-bottom: 1rem; position: sticky; top: .5rem; z-index: 10; }}
+  .filters input[type="text"], .filters input[type="number"], .filters select {{ padding: .4rem .5rem; border: 1px solid #ccc; border-radius: 6px; font-size: .9rem; }}
+  .filters input[type="text"] {{ flex: 1; min-width: 140px; }}
+  .filters input[type="number"] {{ width: 90px; }}
+  .filters label {{ font-size: .85rem; display: flex; align-items: center; gap: .3rem; white-space: nowrap; }}
+  .filters button {{ padding: .4rem .7rem; border: 1px solid #ccc; border-radius: 6px; background: #f5f5f5; cursor: pointer; font-size: .85rem; }}
+  .filters button:hover {{ background: #eee; }}
+  .filter-count {{ font-size: .8rem; color: #666; margin: -0.5rem 0 1rem; }}
 </style>
 </head>
 <body>
@@ -293,6 +307,16 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
   <div class="meta">Letzter Check: {run_time} · {len(searches)} gespeicherte Suchen · {len(state)} bekannte Inserate insgesamt</div>
 
   {errors_html}
+
+  <div class="filters">
+    <input type="text" id="filterText" placeholder="Titel enthält ...">
+    <select id="filterSearch"><option value="">Alle Suchen</option></select>
+    <input type="number" id="filterMinPrice" placeholder="Preis von €">
+    <input type="number" id="filterMaxPrice" placeholder="Preis bis €">
+    <label><input type="checkbox" id="filterHideVB"> VB/ohne Preis ausblenden</label>
+    <button id="filterReset" type="button">Zurücksetzen</button>
+  </div>
+  <div class="filter-count" id="filterCount"></div>
 
   <section>
     <h2>🆕 Neu seit letztem Check</h2>
@@ -308,6 +332,71 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
     <h2>📋 Alle aktuell bekannten Inserate</h2>
     <ul>{all_html}</ul>
   </section>
+
+<script>
+(function() {{
+  const items = Array.from(document.querySelectorAll('li.item'));
+  const searchSelect = document.getElementById('filterSearch');
+  const names = Array.from(new Set(items.map(li => li.dataset.search).filter(Boolean))).sort();
+  names.forEach(name => {{
+    const opt = document.createElement('option');
+    opt.value = name;
+    opt.textContent = name;
+    searchSelect.appendChild(opt);
+  }});
+
+  const textInput = document.getElementById('filterText');
+  const minInput = document.getElementById('filterMinPrice');
+  const maxInput = document.getElementById('filterMaxPrice');
+  const hideVBBox = document.getElementById('filterHideVB');
+  const countEl = document.getElementById('filterCount');
+  const resetBtn = document.getElementById('filterReset');
+
+  function applyFilters() {{
+    const text = textInput.value.trim().toLowerCase();
+    const search = searchSelect.value;
+    const min = parseFloat(minInput.value);
+    const max = parseFloat(maxInput.value);
+    const hideVB = hideVBBox.checked;
+    let visibleCount = 0;
+
+    items.forEach(li => {{
+      const priceRaw = li.dataset.price;
+      const price = priceRaw === '' ? null : parseFloat(priceRaw);
+      const title = li.dataset.title || '';
+      const searchName = li.dataset.search || '';
+      let visible = true;
+
+      if (text && !title.includes(text)) visible = false;
+      if (search && searchName !== search) visible = false;
+      if (!isNaN(min) && (price === null || price < min)) visible = false;
+      if (!isNaN(max) && (price === null || price > max)) visible = false;
+      if (hideVB && (price === null || price <= 1)) visible = false;
+
+      li.style.display = visible ? '' : 'none';
+      if (visible) visibleCount++;
+    }});
+
+    countEl.textContent = visibleCount + ' von ' + items.length + ' Inseraten sichtbar';
+  }}
+
+  [textInput, searchSelect, minInput, maxInput, hideVBBox].forEach(el => {{
+    el.addEventListener('input', applyFilters);
+    el.addEventListener('change', applyFilters);
+  }});
+
+  resetBtn.addEventListener('click', () => {{
+    textInput.value = '';
+    searchSelect.value = '';
+    minInput.value = '';
+    maxInput.value = '';
+    hideVBBox.checked = false;
+    applyFilters();
+  }});
+
+  applyFilters();
+}})();
+</script>
 </body>
 </html>"""
     DASHBOARD_FILE.parent.mkdir(parents=True, exist_ok=True)
