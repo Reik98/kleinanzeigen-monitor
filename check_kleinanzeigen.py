@@ -20,6 +20,7 @@ WICHTIG:
 
 import json
 import os
+import random
 import re
 import sys
 import time
@@ -107,13 +108,34 @@ def extract_image(card):
     return img_el.get("src")
 
 
-def fetch_search(url, debug_path=None):
-    """Holt eine Suchseite und gibt eine Liste von Listing-Dicts zurueck."""
-    resp = requests.get(url, headers=REQUEST_HEADERS, timeout=20)
-    resp.encoding = "utf-8"  # Kleinanzeigen.de liefert UTF-8; explizit setzen
-    # gegen Mojibake, falls requests die Codierung falsch errät.
-    print(f"   HTTP {resp.status_code}, {len(resp.text)} Zeichen erhalten")
-    resp.raise_for_status()
+def fetch_search(url, debug_path=None, max_retries=2):
+    """Holt eine Suchseite und gibt eine Liste von Listing-Dicts zurueck.
+    Bei 403/429 (Blockade/Rate-Limit) wird mit steigender Wartezeit erneut
+    versucht, bevor endgueltig aufgegeben wird."""
+    last_error = None
+    for attempt in range(max_retries + 1):
+        try:
+            resp = requests.get(url, headers=REQUEST_HEADERS, timeout=20)
+            resp.encoding = "utf-8"  # Kleinanzeigen.de liefert UTF-8; explizit setzen
+            # gegen Mojibake, falls requests die Codierung falsch errät.
+            print(f"   HTTP {resp.status_code}, {len(resp.text)} Zeichen erhalten")
+
+            if resp.status_code in (403, 429) and attempt < max_retries:
+                wait = 8 * (attempt + 1) + random.uniform(0, 4)
+                print(f"   Blockiert (HTTP {resp.status_code}), warte {wait:.0f}s und versuche erneut ...")
+                time.sleep(wait)
+                continue
+
+            resp.raise_for_status()
+            break
+        except requests.RequestException as e:
+            last_error = e
+            if attempt < max_retries:
+                wait = 8 * (attempt + 1) + random.uniform(0, 4)
+                print(f"   Fehler ({e}), warte {wait:.0f}s und versuche erneut ...")
+                time.sleep(wait)
+            else:
+                raise
     soup = BeautifulSoup(resp.text, "html.parser")
 
     genuinely_empty = soup.select_one(EMPTY_RESULT_SELECTOR) is not None
@@ -353,7 +375,7 @@ def main():
 
             state[item["id"]] = {**item, "last_seen": now}
 
-        time.sleep(2)  # kleine Pause zwischen Requests, aus Fairness
+        time.sleep(random.uniform(4, 9))  # zufällige Pause zwischen Requests, aus Fairness
 
     save_json(STATE_FILE, state)
     build_dashboard(searches, state, new_items, price_drops, now, errors)
