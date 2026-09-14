@@ -115,6 +115,70 @@ def extract_image(card):
     return img_el.get("src")
 
 
+SIZE_PATTERN = re.compile(r"(\d{1,3}(?:[.,]\d{3})*(?:[.,]\d+)?)\s*(?:m²|m2|qm)\b", re.IGNORECASE)
+GEMARKUNG_PATTERN = re.compile(r"Gemarkung:?\s*([A-ZÄÖÜ][\wäöüß\-]{2,})")
+FLURSTUECK_PATTERN = re.compile(r"Flurst(?:ü|ue)cks?(?:nummer)?:?\s*([\d/]+)", re.IGNORECASE)
+HUETTE_KEYWORDS = ("hütte", "gartenhaus", "gartenhäuschen", "geräteschuppen", "schuppen", "bungalow", "laube")
+SCHUTZGEBIET_KEYWORDS = (
+    "naturschutzgebiet", "landschaftsschutzgebiet", "wasserschutzgebiet",
+    "schutzgebiet", "biotop", "fauna-flora-habitat", "ffh-gebiet",
+)
+
+
+def extract_description_snippet(card):
+    """Findet den Beschreibungs-Ausschnitt der Karte (nicht Preis, nicht die
+    separate Größenangabe) - das ist der laengste passende Absatz."""
+    best = ""
+    for p in card.find_all("p"):
+        text = p.get_text(" ", strip=True)
+        if "€" in text:
+            continue
+        if SIZE_PATTERN.fullmatch(text):
+            continue
+        if len(text) > len(best):
+            best = text
+    return best
+
+
+def extract_size_field(card):
+    """Kleinanzeigen.de zeigt bei Grundstücken die Größe oft als eigenes
+    Feld an (z.B. '498 m²') - falls vorhanden, zuverlässiger als Text-Suche."""
+    for p in card.find_all("p"):
+        text = p.get_text(strip=True)
+        if "€" not in text and SIZE_PATTERN.fullmatch(text):
+            return text
+    return ""
+
+
+def guess_facts(title, description, size_field):
+    """Best-effort-Vorschläge aus Titel/Beschreibung - immer nur Vorschlag,
+    nie verlässliche Angabe (siehe README)."""
+    combined = f"{title}\n{description}".lower()
+    facts = {"ort": "", "flurstueck": "", "groesse": "", "huette_hint": "", "schutzgebiet_hint": ""}
+
+    m = GEMARKUNG_PATTERN.search(description)
+    if m:
+        facts["ort"] = m.group(1)
+
+    m = FLURSTUECK_PATTERN.search(description)
+    if m:
+        facts["flurstueck"] = m.group(1)
+
+    if size_field:
+        facts["groesse"] = size_field
+    else:
+        m = SIZE_PATTERN.search(description)
+        if m:
+            facts["groesse"] = m.group(0)
+
+    if any(k in combined for k in HUETTE_KEYWORDS):
+        facts["huette_hint"] = "ja"
+    if any(k in combined for k in SCHUTZGEBIET_KEYWORDS):
+        facts["schutzgebiet_hint"] = "ja"
+
+    return facts
+
+
 def fetch_search(url, debug_path=None, max_retries=2):
     """Holt eine Suchseite und gibt eine Liste von Listing-Dicts zurueck.
     Bei 403/429 (Blockade/Rate-Limit) wird mit steigender Wartezeit erneut
@@ -166,6 +230,9 @@ def fetch_search(url, debug_path=None, max_retries=2):
 
         image = extract_image(card)
         price_text = extract_price(card)
+        description = extract_description_snippet(card)
+        size_field = extract_size_field(card)
+        facts = guess_facts(title, description, size_field)
 
         listings.append(
             {
@@ -175,6 +242,11 @@ def fetch_search(url, debug_path=None, max_retries=2):
                 "image": image,
                 "price_text": price_text,
                 "price_num": parse_price_to_number(price_text),
+                "auto_ort": facts["ort"],
+                "auto_flurstueck": facts["flurstueck"],
+                "auto_groesse": facts["groesse"],
+                "auto_huette_hint": facts["huette_hint"],
+                "auto_schutzgebiet_hint": facts["schutzgebiet_hint"],
             }
         )
 
@@ -229,8 +301,13 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
             return f'<img class="thumb" src="{escape(img)}" alt="" loading="lazy">'
         return '<div class="thumb thumb-placeholder">🏡</div>'
 
-    def annotation_panel(adid):
-        aid = escape(adid)
+    def annotation_panel(item):
+        aid = escape(item["id"])
+        huette_hint = ' <span class="hint" title="Im Anzeigentext erwähnt">💡</span>' if item.get("auto_huette_hint") else ""
+        schutz_hint = ' <span class="hint" title="Im Anzeigentext erwähnt">💡</span>' if item.get("auto_schutzgebiet_hint") else ""
+        auto_ort = escape(item.get("auto_ort", ""))
+        auto_flurstueck = escape(item.get("auto_flurstueck", ""))
+        auto_groesse = escape(item.get("auto_groesse", ""))
         return f"""
             <div class="ann-bar">
               <select class="ann-field" data-ann="status" data-id="{aid}">
@@ -239,22 +316,26 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
                 <option value="interessant">✅ Interessant</option>
                 <option value="nicht_interessant">❌ Nicht interessant</option>
               </select>
-              <select class="ann-field" data-ann="schutzgebiet" data-id="{aid}">
-                <option value="">Schutzgebiet?</option>
-                <option value="ja">Schutzgebiet: Ja</option>
-                <option value="nein">Schutzgebiet: Nein</option>
-              </select>
-              <select class="ann-field" data-ann="huette" data-id="{aid}">
-                <option value="">Hütte?</option>
-                <option value="ja">Hütte: Ja</option>
-                <option value="nein">Hütte: Nein</option>
-              </select>
+              <span>
+                <select class="ann-field" data-ann="schutzgebiet" data-id="{aid}">
+                  <option value="">Schutzgebiet?</option>
+                  <option value="ja">Schutzgebiet: Ja</option>
+                  <option value="nein">Schutzgebiet: Nein</option>
+                </select>{schutz_hint}
+              </span>
+              <span>
+                <select class="ann-field" data-ann="huette" data-id="{aid}">
+                  <option value="">Hütte?</option>
+                  <option value="ja">Hütte: Ja</option>
+                  <option value="nein">Hütte: Nein</option>
+                </select>{huette_hint}
+              </span>
               <button type="button" class="ann-toggle" data-id="{aid}">📝 Details</button>
             </div>
             <div class="ann-details" data-id="{aid}" hidden>
-              <input type="text" class="ann-field" data-ann="flurstueck" data-id="{aid}" placeholder="Flurstücknummer">
-              <input type="text" class="ann-field" data-ann="ort" data-id="{aid}" placeholder="Ort">
-              <input type="text" class="ann-field" data-ann="groesse" data-id="{aid}" placeholder="Größe (z.B. 500 m²)">
+              <input type="text" class="ann-field" data-ann="flurstueck" data-id="{aid}" data-auto="{auto_flurstueck}" value="{auto_flurstueck}" placeholder="Flurstücknummer">
+              <input type="text" class="ann-field" data-ann="ort" data-id="{aid}" data-auto="{auto_ort}" value="{auto_ort}" placeholder="Ort">
+              <input type="text" class="ann-field" data-ann="groesse" data-id="{aid}" data-auto="{auto_groesse}" value="{auto_groesse}" placeholder="Größe (z.B. 500 m²)">
               <textarea class="ann-field" data-ann="comment" data-id="{aid}" placeholder="Kommentar ..." rows="2"></textarea>
             </div>"""
 
@@ -270,7 +351,7 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
               <span class="price">{escape(item.get('price_text') or '–')}</span>
               <span class="search-tag">{escape(item.get('search_name',''))}</span>
             </div>
-            {annotation_panel(item['id'])}
+            {annotation_panel(item)}
           </div>
         </li>"""
 
@@ -288,7 +369,7 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
               <span class="price">{escape(d['old_price'])} → <b>{escape(d['new_price'])}</b></span>
               <span class="search-tag">{escape(d.get('search_name',''))}</span>
             </div>
-            {annotation_panel(d['id'])}
+            {annotation_panel(d)}
           </div>
         </li>"""
         for d in price_drops_sorted
@@ -354,6 +435,7 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
   .sync-status {{ color: #666; }}
   .sync-status.ok {{ color: #2a7f3f; }}
   .sync-status.err {{ color: #c0392b; }}
+  .hint {{ cursor: help; font-size: .8rem; }}
 </style>
 </head>
 <body>
@@ -525,8 +607,12 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
     document.querySelectorAll('[data-ann]').forEach(function(el) {{
       const id = el.dataset.id;
       const field = el.dataset.ann;
-      const value = (annotations[id] && annotations[id][field]) || '';
-      el.value = value;
+      // Nur überschreiben, wenn für dieses Feld schon einmal explizit etwas
+      // gespeichert wurde - sonst bleibt die automatische Vorbefüllung
+      // (data-auto, direkt im HTML) unangetastet stehen.
+      if (annotations[id] && Object.prototype.hasOwnProperty.call(annotations[id], field)) {{
+        el.value = annotations[id][field];
+      }}
     }});
     document.querySelectorAll('li.item[data-id]').forEach(function(li) {{
       const id = li.dataset.id;
