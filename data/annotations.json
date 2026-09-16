@@ -45,7 +45,8 @@
     "flurstueck": "2715",
     "ort": "Weinstadt -Schnait",
     "comment": "LSSG",
-    "schutzgebiet": "ja"
+    "schutzgebiet": "ja",
+    "huette": "nein"
   },
   "3474667291": {
     "status": "nicht_interessant"
