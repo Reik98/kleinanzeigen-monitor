@@ -119,7 +119,8 @@
     "status": "angeschaut"
   },
   "3478555282": {
-    "schutzgebiet": "ja"
+    "schutzgebiet": "ja",
+    "huette": "nein"
   },
   "3482712896": {
     "status": "nicht_interessant"
