@@ -261,7 +261,8 @@
   },
   "3510236081": {
     "flurstueck": "315/3",
-    "ort": "rudersberg"
+    "ort": "rudersberg",
+    "schutzgebiet": "ja"
   },
   "3510678587": {
     "status": "nicht_interessant"
