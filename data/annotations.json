@@ -106,7 +106,8 @@
     "ort": "Sachsenheim - Hohenhaslach",
     "comment": "1346 m2 für 4304 und 121 m2 für 4291\nBeides Naturpark",
     "schutzgebiet": "ja",
-    "huette": "nein"
+    "huette": "nein",
+    "status": "nicht_interessant"
   },
   "3509558615": {
     "status": "nicht_interessant"
