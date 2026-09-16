@@ -197,7 +197,8 @@
   },
   "3501931962": {
     "schutzgebiet": "ja",
-    "huette": "nein"
+    "huette": "nein",
+    "status": "nicht_interessant"
   },
   "3502627677": {
     "status": "nicht_interessant"
