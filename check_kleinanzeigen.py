@@ -339,11 +339,11 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
               <textarea class="ann-field" data-ann="comment" data-id="{aid}" placeholder="Kommentar ..." rows="2"></textarea>
             </div>"""
 
-    def item_row(item):
+    def item_row(item, is_new=False, has_drop=False):
         num = item.get("price_num")
         data_price = "" if num is None else str(num)
         return f"""
-        <li class="item" data-id="{escape(item['id'])}" data-price="{data_price}" data-search="{escape(item.get('search_name',''))}" data-title="{escape(item['title'].lower())}">
+        <li class="item" data-id="{escape(item['id'])}" data-price="{data_price}" data-search="{escape(item.get('search_name',''))}" data-title="{escape(item['title'].lower())}" data-is-new="{'1' if is_new else '0'}" data-price-drop="{'1' if has_drop else '0'}">
           {thumb(item)}
           <div class="item-body">
             <a href="{escape(item['url'])}" target="_blank" rel="noopener">{escape(item['title'])}</a>
@@ -376,8 +376,12 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
     ) or "<li class='empty'>Keine Preissenkungen.</li>"
 
 
+    new_ids = {i["id"] for i in new_items_sorted}
+    drop_ids = {d["id"] for d in price_drops_sorted}
     all_current = sorted(state.values(), key=by_price)
-    all_html = "".join(item_row(i) for i in all_current) or "<li class='empty'>Noch keine Daten.</li>"
+    all_html = "".join(
+        item_row(i, is_new=i["id"] in new_ids, has_drop=i["id"] in drop_ids) for i in all_current
+    ) or "<li class='empty'>Noch keine Daten.</li>"
 
     errors_html = ""
     if errors:
@@ -440,7 +444,7 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
 </head>
 <body>
   <h1>🌱 Kleinanzeigen Monitor – Grundstücke Wernau</h1>
-  <div class="meta">Letzter Check: {run_time} · {len(searches)} gespeicherte Suchen · {len(state)} bekannte Inserate insgesamt</div>
+  <div class="meta">Letzter Check: <span id="lastCheckTime" data-utc="{run_time}">{run_time}</span> · {len(searches)} gespeicherte Suchen · {len(state)} bekannte Inserate insgesamt</div>
 
   {errors_html}
 
@@ -453,35 +457,62 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
   </div>
 
   <div class="filters">
-    <input type="text" id="filterText" placeholder="Titel enthält ...">
+    <input type="text" id="filterText" placeholder="Titel/Ort/Flurstück/Kommentar enthält ...">
     <select id="filterSearch"><option value="">Alle Suchen</option></select>
     <input type="number" id="filterMinPrice" placeholder="Preis von €">
     <input type="number" id="filterMaxPrice" placeholder="Preis bis €">
     <label><input type="checkbox" id="filterHideVB"> VB/ohne Preis ausblenden</label>
+    <select id="filterStatus">
+      <option value="">Bewertung: alle</option>
+      <option value="none">– keine Bewertung –</option>
+      <option value="angeschaut">👀 Angeschaut</option>
+      <option value="interessant">✅ Interessant</option>
+      <option value="nicht_interessant">❌ Nicht interessant</option>
+    </select>
+    <select id="filterSchutzgebiet">
+      <option value="">Schutzgebiet: egal</option>
+      <option value="ja">Schutzgebiet: Ja</option>
+      <option value="nein">Schutzgebiet: Nein</option>
+    </select>
+    <select id="filterHuette">
+      <option value="">Hütte: egal</option>
+      <option value="ja">Hütte: Ja</option>
+      <option value="nein">Hütte: Nein</option>
+    </select>
     <button id="filterReset" type="button">Zurücksetzen</button>
   </div>
   <div class="filter-count" id="filterCount"></div>
 
   <section>
     <h2>🆕 Neu seit letztem Check</h2>
-    <ul>{new_html}</ul>
+    <ul id="neuList">{new_html}</ul>
   </section>
 
   <section>
     <h2>💸 Preissenkungen</h2>
-    <ul>{drops_html}</ul>
+    <ul id="preissenkungenList">{drops_html}</ul>
+  </section>
+
+  <section>
+    <h2>🔍 Noch nicht geprüft/bewertet</h2>
+    <ul id="unbewertetList"><li class="empty">Lädt ...</li></ul>
   </section>
 
   <section>
     <h2>📋 Alle aktuell bekannten Inserate</h2>
-    <ul>{all_html}</ul>
+    <ul id="alleList">{all_html}</ul>
+  </section>
+
+  <section>
+    <h2>🚫 Nicht Interessant – Aussortiert</h2>
+    <ul id="aussortiertList"><li class="empty">Keine aussortiert.</li></ul>
   </section>
 
 <script>
 (function() {{
-  const items = Array.from(document.querySelectorAll('li.item'));
   const searchSelect = document.getElementById('filterSearch');
-  const names = Array.from(new Set(items.map(li => li.dataset.search).filter(Boolean))).sort();
+  const initialItems = Array.from(document.querySelectorAll('li.item'));
+  const names = Array.from(new Set(initialItems.map(li => li.dataset.search).filter(Boolean))).sort();
   names.forEach(name => {{
     const opt = document.createElement('option');
     opt.value = name;
@@ -493,29 +524,55 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
   const minInput = document.getElementById('filterMinPrice');
   const maxInput = document.getElementById('filterMaxPrice');
   const hideVBBox = document.getElementById('filterHideVB');
+  const statusSelect = document.getElementById('filterStatus');
+  const schutzSelect = document.getElementById('filterSchutzgebiet');
+  const huetteSelect = document.getElementById('filterHuette');
   const countEl = document.getElementById('filterCount');
   const resetBtn = document.getElementById('filterReset');
 
+  function fieldValue(li, field) {{
+    const el = li.querySelector('[data-ann="' + field + '"]');
+    return el ? el.value : '';
+  }}
+
   function applyFilters() {{
+    // Frisch abfragen statt gecachter Liste, da Notizen-Sync Kopien in
+    // "Noch nicht geprüft" / "Aussortiert" nachträglich einfügt.
+    const items = Array.from(document.querySelectorAll('li.item'));
     const text = textInput.value.trim().toLowerCase();
     const search = searchSelect.value;
     const min = parseFloat(minInput.value);
     const max = parseFloat(maxInput.value);
     const hideVB = hideVBBox.checked;
+    const statusFilter = statusSelect.value;
+    const schutzFilter = schutzSelect.value;
+    const huetteFilter = huetteSelect.value;
     let visibleCount = 0;
 
     items.forEach(li => {{
+      if (li.dataset.hidden === '1') {{ li.style.display = 'none'; return; }}
+
       const priceRaw = li.dataset.price;
       const price = priceRaw === '' ? null : parseFloat(priceRaw);
       const title = li.dataset.title || '';
       const searchName = li.dataset.search || '';
+      const status = fieldValue(li, 'status');
+      const schutz = fieldValue(li, 'schutzgebiet');
+      const huette = fieldValue(li, 'huette');
+      const extraText = [
+        fieldValue(li, 'ort'), fieldValue(li, 'flurstueck'), fieldValue(li, 'comment')
+      ].join(' ').toLowerCase();
       let visible = true;
 
-      if (text && !title.includes(text)) visible = false;
+      if (text && !title.includes(text) && !extraText.includes(text)) visible = false;
       if (search && searchName !== search) visible = false;
       if (!isNaN(min) && (price === null || price < min)) visible = false;
       if (!isNaN(max) && (price === null || price > max)) visible = false;
       if (hideVB && (price === null || price <= 1)) visible = false;
+      if (statusFilter === 'none' && status !== '') visible = false;
+      else if (statusFilter && statusFilter !== 'none' && status !== statusFilter) visible = false;
+      if (schutzFilter && schutz !== schutzFilter) visible = false;
+      if (huetteFilter && huette !== huetteFilter) visible = false;
 
       li.style.display = visible ? '' : 'none';
       if (visible) visibleCount++;
@@ -524,7 +581,7 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
     countEl.textContent = visibleCount + ' von ' + items.length + ' Inseraten sichtbar';
   }}
 
-  [textInput, searchSelect, minInput, maxInput, hideVBBox].forEach(el => {{
+  [textInput, searchSelect, minInput, maxInput, hideVBBox, statusSelect, schutzSelect, huetteSelect].forEach(el => {{
     el.addEventListener('input', applyFilters);
     el.addEventListener('change', applyFilters);
   }});
@@ -535,8 +592,24 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
     minInput.value = '';
     maxInput.value = '';
     hideVBBox.checked = false;
+    statusSelect.value = '';
+    schutzSelect.value = '';
+    huetteSelect.value = '';
     applyFilters();
   }});
+
+  // Notizen-Sync-Skript ruft window.__applyFilters() nach jeder
+  // Statusänderung / jedem Reorganisieren erneut auf.
+  window.__applyFilters = applyFilters;
+
+  // Lokale Zeitzone fürs "Letzter Check"
+  const timeEl = document.getElementById('lastCheckTime');
+  if (timeEl && timeEl.dataset.utc) {{
+    const d = new Date(timeEl.dataset.utc);
+    if (!isNaN(d.getTime())) {{
+      timeEl.textContent = d.toLocaleString('de-DE', {{ dateStyle: 'medium', timeStyle: 'short' }});
+    }}
+  }}
 
   applyFilters();
 }})();
@@ -577,6 +650,7 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
   async function loadAnnotations() {{
     if (!pat) {{
       setStatus('nicht eingerichtet');
+      applyAnnotationsToDOM();
       return;
     }}
     setStatus('lade ...');
@@ -620,6 +694,69 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
       li.classList.remove('status-angeschaut', 'status-interessant', 'status-nicht_interessant');
       if (status) li.classList.add('status-' + status);
     }});
+    reorganize();
+  }}
+
+  function setFieldValues(li, id) {{
+    const data = annotations[id] || {{}};
+    li.querySelectorAll('[data-ann]').forEach(function(el) {{
+      const field = el.dataset.ann;
+      if (Object.prototype.hasOwnProperty.call(data, field)) {{
+        el.value = data[field];
+      }} else if (el.dataset.auto) {{
+        el.value = el.dataset.auto;
+      }}
+    }});
+  }}
+
+  function reorganize() {{
+    const unbewertetList = document.getElementById('unbewertetList');
+    const aussortiertList = document.getElementById('aussortiertList');
+    if (!unbewertetList || !aussortiertList) return;
+    unbewertetList.innerHTML = '';
+    aussortiertList.innerHTML = '';
+    document.querySelectorAll('li.item[data-hidden]').forEach(function(li) {{
+      li.removeAttribute('data-hidden');
+    }});
+
+    const alleItems = Array.from(document.querySelectorAll('#alleList li.item[data-id]'));
+    let unbewertetCount = 0;
+    let aussortiertCount = 0;
+
+    alleItems.forEach(function(li) {{
+      const id = li.dataset.id;
+      const status = (annotations[id] && annotations[id].status) || '';
+      const isNew = li.dataset.isNew === '1';
+      const hasDrop = li.dataset.priceDrop === '1';
+
+      if (status === 'nicht_interessant') {{
+        const clone = li.cloneNode(true);
+        setFieldValues(clone, id);
+        aussortiertList.appendChild(clone);
+        aussortiertCount++;
+        li.dataset.hidden = '1';
+      }} else if (status === '' && !isNew && !hasDrop) {{
+        const clone = li.cloneNode(true);
+        setFieldValues(clone, id);
+        unbewertetList.appendChild(clone);
+        unbewertetCount++;
+      }}
+    }});
+
+    ['#neuList', '#preissenkungenList'].forEach(function(sel) {{
+      document.querySelectorAll(sel + ' li.item[data-id]').forEach(function(li) {{
+        const id = li.dataset.id;
+        const status = (annotations[id] && annotations[id].status) || '';
+        if (status === 'nicht_interessant') {{
+          li.dataset.hidden = '1';
+        }}
+      }});
+    }});
+
+    if (unbewertetCount === 0) unbewertetList.innerHTML = '<li class="empty">Alles bewertet 🎉</li>';
+    if (aussortiertCount === 0) aussortiertList.innerHTML = '<li class="empty">Keine aussortiert.</li>';
+
+    if (window.__applyFilters) window.__applyFilters();
   }}
 
   function queueSave() {{
@@ -675,6 +812,9 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
         li.classList.remove('status-angeschaut', 'status-interessant', 'status-nicht_interessant');
         if (el.value) li.classList.add('status-' + el.value);
       }});
+      reorganize();
+    }} else if (window.__applyFilters) {{
+      window.__applyFilters();
     }}
     queueSave();
   }});
