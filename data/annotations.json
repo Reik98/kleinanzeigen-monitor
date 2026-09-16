@@ -80,7 +80,8 @@
   "3508582574": {
     "schutzgebiet": "ja",
     "comment": "Vogelschutz, Naturpark",
-    "status": "nicht_interessant"
+    "status": "nicht_interessant",
+    "flurstueck": "315/2"
   },
   "3509012218": {
     "status": "nicht_interessant"
