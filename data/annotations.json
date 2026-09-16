@@ -263,7 +263,8 @@
     "flurstueck": "315/3",
     "ort": "rudersberg",
     "schutzgebiet": "ja",
-    "comment": "Vogelschutz, Naturpark"
+    "comment": "Vogelschutz, Naturpark",
+    "huette": "nein"
   },
   "3510678587": {
     "status": "nicht_interessant"
