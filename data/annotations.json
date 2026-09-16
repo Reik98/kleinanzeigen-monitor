@@ -262,7 +262,8 @@
   "3510236081": {
     "flurstueck": "315/3",
     "ort": "rudersberg",
-    "schutzgebiet": "ja"
+    "schutzgebiet": "ja",
+    "comment": "Vogelschutz, Naturpark"
   },
   "3510678587": {
     "status": "nicht_interessant"
