@@ -44,7 +44,8 @@
   "3474206554": {
     "flurstueck": "2715",
     "ort": "Weinstadt -Schnait",
-    "comment": "LSSG"
+    "comment": "LSSG",
+    "schutzgebiet": "ja"
   },
   "3474667291": {
     "status": "nicht_interessant"
