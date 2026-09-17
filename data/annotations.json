@@ -436,6 +436,7 @@
     "status": "nicht_interessant"
   },
   "3515642437": {
-    "schutzgebiet": "ja"
+    "schutzgebiet": "ja",
+    "comment": "Naturpark"
   }
 }
