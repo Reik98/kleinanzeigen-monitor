@@ -403,7 +403,8 @@
     "status": "interessant"
   },
   "3513242933": {
-    "schutzgebiet": "ja"
+    "schutzgebiet": "ja",
+    "status": "nicht_interessant"
   },
   "3513244312": {
     "status": "nicht_interessant"
