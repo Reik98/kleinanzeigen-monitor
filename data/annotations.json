@@ -429,7 +429,8 @@
     "flurstueck": "4291 und 4304",
     "schutzgebiet": "ja",
     "huette": "nein",
-    "comment": "Naturpark"
+    "comment": "Naturpark",
+    "status": "nicht_interessant"
   },
   "3515640357": {
     "schutzgebiet": "ja",
