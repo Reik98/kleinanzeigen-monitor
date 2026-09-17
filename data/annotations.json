@@ -437,6 +437,7 @@
   },
   "3515642437": {
     "schutzgebiet": "ja",
-    "comment": "Naturpark"
+    "comment": "Naturpark",
+    "huette": "nein"
   }
 }
