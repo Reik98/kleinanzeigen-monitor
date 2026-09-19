@@ -587,6 +587,7 @@
   },
   "3516917145": {
     "schutzgebiet": "ja",
-    "huette": "nein"
+    "huette": "nein",
+    "status": "nicht_interessant"
   }
 }
