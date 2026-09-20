@@ -24,7 +24,7 @@ import random
 import re
 import sys
 import time
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import requests
@@ -124,6 +124,35 @@ SCHUTZGEBIET_KEYWORDS = (
     "schutzgebiet", "biotop", "fauna-flora-habitat", "ffh-gebiet",
 )
 
+SCHUTZGEBIET_OPTIONS = [
+    ("biotop", "Biotop"),
+    ("waldschutzgebiet", "Waldschutzgebiet"),
+    ("naturschutzgebiet", "Naturschutzgebiet"),
+    ("landschaftsschutzgebiet", "Landschaftsschutzgebiet"),
+    ("ffh", "Fauna-Flora-Habitat"),
+    ("vogelschutzgebiet", "Vogelschutzgebiet"),
+    ("biosphaerengebiet", "Biosphärengebiet"),
+    ("nationalpark", "Nationalpark"),
+    ("naturpark", "Naturpark"),
+    ("unbekannt", "Sonstiges/unbekannt"),
+]
+HUETTE_OPTIONS = [
+    ("keine", "Keine Hütte vorhanden"),
+    ("genehmigt", "Vorhanden, genehmigt"),
+    ("geduldet", "Vorhanden, nur geduldet"),
+    ("nicht_genehmigt", "Vorhanden, nicht genehmigt"),
+    ("unbekannt", "Vorhanden, Status unbekannt"),
+]
+
+MAPS_LINK_PATTERN = re.compile(
+    r"https?://(?:www\.)?(?:maps\.app\.goo\.gl|goo\.gl/maps|(?:[a-z]+\.)?google\.[a-z.]+/maps)\S*",
+    re.IGNORECASE,
+)
+
+# Nach wie vielen Tagen ohne erneutes Auftauchen in den Suchergebnissen ein
+# Inserat als "vermutlich nicht mehr verfügbar" markiert wird.
+STALE_AFTER_DAYS = 14
+
 
 def extract_description_snippet(card):
     """Findet den Beschreibungs-Ausschnitt der Karte (nicht Preis, nicht die
@@ -154,7 +183,7 @@ def guess_facts(title, description, size_field):
     """Best-effort-Vorschläge aus Titel/Beschreibung - immer nur Vorschlag,
     nie verlässliche Angabe (siehe README)."""
     combined = f"{title}\n{description}".lower()
-    facts = {"ort": "", "flurstueck": "", "groesse": "", "huette_hint": "", "schutzgebiet_hint": ""}
+    facts = {"ort": "", "flurstueck": "", "groesse": "", "huette_hint": "", "schutzgebiet_hint": "", "maps_url": ""}
 
     m = GEMARKUNG_PATTERN.search(description)
     if m:
@@ -170,6 +199,10 @@ def guess_facts(title, description, size_field):
         m = SIZE_PATTERN.search(description)
         if m:
             facts["groesse"] = m.group(0)
+
+    m = MAPS_LINK_PATTERN.search(description)
+    if m:
+        facts["maps_url"] = m.group(0).rstrip(".,)")
 
     if any(k in combined for k in HUETTE_KEYWORDS):
         facts["huette_hint"] = "ja"
@@ -247,6 +280,7 @@ def fetch_search(url, debug_path=None, max_retries=2):
                 "auto_groesse": facts["groesse"],
                 "auto_huette_hint": facts["huette_hint"],
                 "auto_schutzgebiet_hint": facts["schutzgebiet_hint"],
+                "auto_maps_url": facts["maps_url"],
             }
         )
 
@@ -295,6 +329,29 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
             num = None
         return (num is None, num if num is not None else 0)
 
+    try:
+        run_dt = datetime.fromisoformat(run_time)
+    except (ValueError, TypeError):
+        run_dt = None
+
+    def is_stale(item):
+        if run_dt is None:
+            return False
+        last_seen = item.get("last_seen")
+        if not last_seen:
+            return False
+        try:
+            seen_dt = datetime.fromisoformat(last_seen)
+        except (ValueError, TypeError):
+            return False
+        return (run_dt - seen_dt) > timedelta(days=STALE_AFTER_DAYS)
+
+    def maps_link(item):
+        url = item.get("auto_maps_url")
+        if not url:
+            return ""
+        return f' <a href="{escape(url)}" target="_blank" rel="noopener" class="maps-link">📍 Karte</a>'
+
     def thumb(item):
         img = item.get("image")
         if img:
@@ -308,6 +365,13 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
         auto_ort = escape(item.get("auto_ort", ""))
         auto_flurstueck = escape(item.get("auto_flurstueck", ""))
         auto_groesse = escape(item.get("auto_groesse", ""))
+        huette_options = "".join(
+            f'<option value="{escape(val)}">{escape(label)}</option>' for val, label in HUETTE_OPTIONS
+        )
+        schutz_checkboxes = "".join(
+            f"""<label><input type="checkbox" class="ann-multi" data-ann="schutzgebiet" data-value="{escape(val)}" data-id="{aid}"> {escape(label)}</label>"""
+            for val, label in SCHUTZGEBIET_OPTIONS
+        )
         return f"""
             <div class="ann-bar">
               <select class="ann-field" data-ann="status" data-id="{aid}">
@@ -317,19 +381,12 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
                 <option value="nicht_interessant">❌ Nicht interessant</option>
               </select>
               <span>
-                <select class="ann-field" data-ann="schutzgebiet" data-id="{aid}">
-                  <option value="">Schutzgebiet?</option>
-                  <option value="ja">Schutzgebiet: Ja</option>
-                  <option value="nein">Schutzgebiet: Nein</option>
-                </select>{schutz_hint}
-              </span>
-              <span>
                 <select class="ann-field" data-ann="huette" data-id="{aid}">
                   <option value="">Hütte?</option>
-                  <option value="ja">Hütte: Ja</option>
-                  <option value="nein">Hütte: Nein</option>
+                  {huette_options}
                 </select>{huette_hint}
               </span>
+              <span class="schutz-badge" data-id="{aid}"><span class="schutz-badge-text">🛡️ Schutzgebiet</span>{schutz_hint}</span>
               <button type="button" class="ann-toggle" data-id="{aid}">📝 Details</button>
               <button type="button" class="ann-remove" data-id="{aid}" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
@@ -338,19 +395,23 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
               <input type="text" class="ann-field" data-ann="ort" data-id="{aid}" data-auto="{auto_ort}" value="{auto_ort}" placeholder="Ort">
               <input type="text" class="ann-field" data-ann="groesse" data-id="{aid}" data-auto="{auto_groesse}" value="{auto_groesse}" placeholder="Größe (z.B. 500 m²)">
               <textarea class="ann-field" data-ann="comment" data-id="{aid}" placeholder="Kommentar ..." rows="2"></textarea>
+              <div class="schutz-grid" data-id="{aid}">
+                <div class="schutz-grid-label">Schutzgebiete (Mehrfachauswahl):</div>
+                {schutz_checkboxes}
+              </div>
             </div>"""
 
-    def item_row(item, is_new=False, has_drop=False):
+    def item_row(item, is_new=False, has_drop=False, stale=False):
         num = item.get("price_num")
         data_price = "" if num is None else str(num)
         return f"""
-        <li class="item" data-id="{escape(item['id'])}" data-price="{data_price}" data-search="{escape(item.get('search_name',''))}" data-title="{escape(item['title'].lower())}" data-is-new="{'1' if is_new else '0'}" data-price-drop="{'1' if has_drop else '0'}">
+        <li class="item" data-id="{escape(item['id'])}" data-price="{data_price}" data-search="{escape(item.get('search_name',''))}" data-title="{escape(item['title'].lower())}" data-is-new="{'1' if is_new else '0'}" data-price-drop="{'1' if has_drop else '0'}" data-stale="{'1' if stale else '0'}" data-last-seen="{escape(item.get('last_seen',''))}">
           {thumb(item)}
           <div class="item-body">
             <a href="{escape(item['url'])}" target="_blank" rel="noopener">{escape(item['title'])}</a>
             <div class="item-meta">
               <span class="price">{escape(item.get('price_text') or '–')}</span>
-              <span class="search-tag">{escape(item.get('search_name',''))}</span>
+              <span class="search-tag">{escape(item.get('search_name',''))}</span>{maps_link(item)}
             </div>
             {annotation_panel(item)}
           </div>
@@ -362,13 +423,13 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
     new_html = "".join(item_row(i) for i in new_items_sorted) or "<li class='empty'>Keine neuen Inserate.</li>"
     drops_html = "".join(
         f"""
-        <li class="item" data-id="{escape(d['id'])}" data-price="{'' if d.get('price_num') is None else d['price_num']}" data-search="{escape(d.get('search_name',''))}" data-title="{escape(d['title'].lower())}">
+        <li class="item" data-id="{escape(d['id'])}" data-price="{'' if d.get('price_num') is None else d['price_num']}" data-search="{escape(d.get('search_name',''))}" data-title="{escape(d['title'].lower())}" data-last-seen="{escape(d.get('last_seen',''))}">
           {thumb(d)}
           <div class="item-body">
             <a href="{escape(d['url'])}" target="_blank" rel="noopener">{escape(d['title'])}</a>
             <div class="item-meta">
               <span class="price">{escape(d['old_price'])} → <b>{escape(d['new_price'])}</b></span>
-              <span class="search-tag">{escape(d.get('search_name',''))}</span>
+              <span class="search-tag">{escape(d.get('search_name',''))}</span>{maps_link(d)}
             </div>
             {annotation_panel(d)}
           </div>
@@ -381,7 +442,8 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
     drop_ids = {d["id"] for d in price_drops_sorted}
     all_current = sorted(state.values(), key=by_price)
     all_html = "".join(
-        item_row(i, is_new=i["id"] in new_ids, has_drop=i["id"] in drop_ids) for i in all_current
+        item_row(i, is_new=i["id"] in new_ids, has_drop=i["id"] in drop_ids, stale=is_stale(i))
+        for i in all_current
     ) or "<li class='empty'>Noch keine Daten.</li>"
 
     errors_html = ""
@@ -392,6 +454,26 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
           <h2>⚠️ Fehler beim letzten Lauf</h2>
           <ul>{error_items}</ul>
         </section>"""
+
+    search_checkboxes = "".join(
+        f'<label><input type="checkbox" value="{escape(s["name"])}"> {escape(s["name"])}</label>'
+        for s in searches
+    )
+    status_checkboxes = "".join(
+        f'<label><input type="checkbox" value="{val}"> {label}</label>'
+        for val, label in [
+            ("angeschaut", "👀 Angeschaut"),
+            ("interessant", "✅ Interessant"),
+            ("nicht_interessant", "❌ Nicht interessant"),
+            ("none", "– keine Bewertung –"),
+        ]
+    )
+    schutz_filter_checkboxes = "".join(
+        f'<label><input type="checkbox" value="{val}"> {label}</label>' for val, label in SCHUTZGEBIET_OPTIONS
+    )
+    huette_filter_checkboxes = "".join(
+        f'<label><input type="checkbox" value="{val}"> {label}</label>' for val, label in HUETTE_OPTIONS
+    )
 
     html = f"""<!DOCTYPE html>
 <html lang="de">
@@ -414,6 +496,7 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
   .item-meta {{ display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }}
   .price {{ font-weight: 600; white-space: nowrap; }}
   .search-tag {{ font-size: .75rem; color: #888; background: #f0f0f0; border-radius: 4px; padding: .1rem .4rem; }}
+  .maps-link {{ font-size: .78rem; }}
   .errors {{ background: #fff3f3; border: 1px solid #ffc9c9; border-radius: 8px; padding: 1rem; }}
   a {{ color: #0a5; text-decoration: none; }}
   a:hover {{ text-decoration: underline; }}
@@ -441,6 +524,14 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
   .sync-status.ok {{ color: #2a7f3f; }}
   .sync-status.err {{ color: #c0392b; }}
   .hint {{ cursor: help; font-size: .8rem; }}
+  .schutz-badge {{ font-size: .78rem; padding: .2rem .4rem; border: 1px solid #ccc; border-radius: 5px; background: #fafafa; cursor: default; }}
+  .schutz-grid {{ display: flex; flex-direction: column; gap: .2rem; width: 100%; margin-top: .3rem; padding-top: .3rem; border-top: 1px dashed #ddd; }}
+  .schutz-grid-label {{ font-size: .75rem; color: #888; margin-bottom: .1rem; }}
+  .schutz-grid label {{ font-size: .82rem; display: flex; align-items: center; gap: .3rem; }}
+  .msel {{ position: relative; }}
+  .msel-btn {{ padding: .4rem .5rem; border: 1px solid #ccc; border-radius: 6px; background: white; font-size: .85rem; cursor: pointer; }}
+  .msel-panel {{ position: absolute; top: 110%; left: 0; z-index: 20; background: white; border: 1px solid #ccc; border-radius: 8px; padding: .5rem; min-width: 200px; max-height: 260px; overflow-y: auto; box-shadow: 0 4px 12px rgba(0,0,0,.1); display: flex; flex-direction: column; gap: .25rem; }}
+  .msel-panel label {{ font-size: .85rem; display: flex; align-items: center; gap: .4rem; white-space: nowrap; }}
   .ann-remove {{ margin-left: auto; }}
   .toggle-section {{ background: none; border: none; font: inherit; font-size: 1.1rem; cursor: pointer; padding: 0; color: #222; }}
   .toggle-section:hover {{ text-decoration: underline; }}
@@ -463,28 +554,37 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
 
   <div class="filters">
     <input type="text" id="filterText" placeholder="Titel/Ort/Flurstück/Kommentar enthält ...">
-    <select id="filterSearch"><option value="">Alle Suchen</option></select>
+    <div class="msel" data-msel="search" data-label="Suche">
+      <button type="button" class="msel-btn">Suche: alle</button>
+      <div class="msel-panel" hidden>{search_checkboxes}</div>
+    </div>
     <input type="number" id="filterMinPrice" placeholder="Preis von €">
     <input type="number" id="filterMaxPrice" placeholder="Preis bis €">
     <label><input type="checkbox" id="filterHideVB"> VB/ohne Preis ausblenden</label>
-    <select id="filterStatus">
-      <option value="">Bewertung: alle</option>
-      <option value="none">– keine Bewertung –</option>
-      <option value="angeschaut">👀 Angeschaut</option>
-      <option value="interessant">✅ Interessant</option>
-      <option value="nicht_interessant">❌ Nicht interessant</option>
-    </select>
-    <select id="filterSchutzgebiet">
-      <option value="">Schutzgebiet: egal</option>
-      <option value="ja">Schutzgebiet: Ja</option>
-      <option value="nein">Schutzgebiet: Nein</option>
-    </select>
-    <select id="filterHuette">
-      <option value="">Hütte: egal</option>
-      <option value="ja">Hütte: Ja</option>
-      <option value="nein">Hütte: Nein</option>
-    </select>
+    <div class="msel" data-msel="status" data-label="Bewertung">
+      <button type="button" class="msel-btn">Bewertung: alle</button>
+      <div class="msel-panel" hidden>{status_checkboxes}</div>
+    </div>
+    <div class="msel" data-msel="schutzgebiet" data-label="Schutzgebiet">
+      <button type="button" class="msel-btn">Schutzgebiet: alle</button>
+      <div class="msel-panel" hidden>{schutz_filter_checkboxes}</div>
+    </div>
+    <div class="msel" data-msel="huette" data-label="Hütte">
+      <button type="button" class="msel-btn">Hütte: alle</button>
+      <div class="msel-panel" hidden>{huette_filter_checkboxes}</div>
+    </div>
     <button id="filterReset" type="button">Zurücksetzen</button>
+  </div>
+  <div class="filters">
+    <label>Sortieren:
+      <select id="sortSelect">
+        <option value="price_asc">Preis: günstigste zuerst</option>
+        <option value="price_desc">Preis: teuerste zuerst</option>
+        <option value="seen_desc">Zuletzt gesehen: neueste zuerst</option>
+        <option value="seen_asc">Zuletzt gesehen: älteste zuerst</option>
+      </select>
+    </label>
+    <button type="button" id="exportBtn">📤 Export (Interessant)</button>
   </div>
   <div class="filter-count" id="filterCount"></div>
 
@@ -509,6 +609,11 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
   </section>
 
   <section>
+    <h2>⏳ Vermutlich nicht mehr verfügbar</h2>
+    <ul id="staleList"><li class="empty">Lädt ...</li></ul>
+  </section>
+
+  <section>
     <h2>🚫 Nicht Interessant – Aussortiert</h2>
     <ul id="aussortiertList"><li class="empty">Keine aussortiert.</li></ul>
   </section>
@@ -520,23 +625,41 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
 
 <script>
 (function() {{
-  const searchSelect = document.getElementById('filterSearch');
-  const initialItems = Array.from(document.querySelectorAll('li.item'));
-  const names = Array.from(new Set(initialItems.map(li => li.dataset.search).filter(Boolean))).sort();
-  names.forEach(name => {{
-    const opt = document.createElement('option');
-    opt.value = name;
-    opt.textContent = name;
-    searchSelect.appendChild(opt);
+  // Generischer Mehrfachauswahl-Dropdown-Baustein (Suche/Bewertung/
+  // Schutzgebiet/Hütte im Filterbereich oben).
+  const msels = {{}};
+  document.querySelectorAll('.msel').forEach(root => {{
+    const key = root.dataset.msel;
+    const label = root.dataset.label;
+    const btn = root.querySelector('.msel-btn');
+    const panel = root.querySelector('.msel-panel');
+
+    function updateLabel() {{
+      const n = panel.querySelectorAll('input:checked').length;
+      btn.textContent = n ? label + ' (' + n + ')' : label + ': alle';
+    }}
+    btn.addEventListener('click', ev => {{
+      ev.stopPropagation();
+      const willOpen = panel.hidden;
+      document.querySelectorAll('.msel-panel').forEach(p => {{ p.hidden = true; }});
+      panel.hidden = !willOpen;
+    }});
+    panel.addEventListener('change', () => {{ updateLabel(); applyFilters(); }});
+    updateLabel();
+
+    msels[key] = {{
+      getSelected: () => Array.from(panel.querySelectorAll('input:checked')).map(cb => cb.value),
+      reset: () => {{ panel.querySelectorAll('input:checked').forEach(cb => cb.checked = false); updateLabel(); }}
+    }};
+  }});
+  document.addEventListener('click', () => {{
+    document.querySelectorAll('.msel-panel').forEach(p => {{ p.hidden = true; }});
   }});
 
   const textInput = document.getElementById('filterText');
   const minInput = document.getElementById('filterMinPrice');
   const maxInput = document.getElementById('filterMaxPrice');
   const hideVBBox = document.getElementById('filterHideVB');
-  const statusSelect = document.getElementById('filterStatus');
-  const schutzSelect = document.getElementById('filterSchutzgebiet');
-  const huetteSelect = document.getElementById('filterHuette');
   const countEl = document.getElementById('filterCount');
   const resetBtn = document.getElementById('filterReset');
 
@@ -550,13 +673,13 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
     // "Noch nicht geprüft" / "Aussortiert" nachträglich einfügt.
     const items = Array.from(document.querySelectorAll('li.item'));
     const text = textInput.value.trim().toLowerCase();
-    const search = searchSelect.value;
+    const searchFilter = msels.search.getSelected();
     const min = parseFloat(minInput.value);
     const max = parseFloat(maxInput.value);
     const hideVB = hideVBBox.checked;
-    const statusFilter = statusSelect.value;
-    const schutzFilter = schutzSelect.value;
-    const huetteFilter = huetteSelect.value;
+    const statusFilter = msels.status.getSelected();
+    const schutzFilter = msels.schutzgebiet.getSelected();
+    const huetteFilter = msels.huette.getSelected();
     let visibleCount = 0;
 
     items.forEach(li => {{
@@ -567,22 +690,24 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
       const title = li.dataset.title || '';
       const searchName = li.dataset.search || '';
       const status = fieldValue(li, 'status');
-      const schutz = fieldValue(li, 'schutzgebiet');
       const huette = fieldValue(li, 'huette');
+      const itemSchutz = Array.from(li.querySelectorAll('.ann-multi[data-ann="schutzgebiet"]:checked')).map(cb => cb.dataset.value);
       const extraText = [
         fieldValue(li, 'ort'), fieldValue(li, 'flurstueck'), fieldValue(li, 'comment')
       ].join(' ').toLowerCase();
       let visible = true;
 
       if (text && !title.includes(text) && !extraText.includes(text)) visible = false;
-      if (search && searchName !== search) visible = false;
+      if (searchFilter.length && !searchFilter.includes(searchName)) visible = false;
       if (!isNaN(min) && (price === null || price < min)) visible = false;
       if (!isNaN(max) && (price === null || price > max)) visible = false;
       if (hideVB && (price === null || price <= 1)) visible = false;
-      if (statusFilter === 'none' && status !== '') visible = false;
-      else if (statusFilter && statusFilter !== 'none' && status !== statusFilter) visible = false;
-      if (schutzFilter && schutz !== schutzFilter) visible = false;
-      if (huetteFilter && huette !== huetteFilter) visible = false;
+      if (statusFilter.length) {{
+        const key = status || 'none';
+        if (!statusFilter.includes(key)) visible = false;
+      }}
+      if (schutzFilter.length && !schutzFilter.some(v => itemSchutz.includes(v))) visible = false;
+      if (huetteFilter.length && !huetteFilter.includes(huette)) visible = false;
 
       li.style.display = visible ? '' : 'none';
       if (visible) visibleCount++;
@@ -591,21 +716,97 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
     countEl.textContent = visibleCount + ' von ' + items.length + ' Inseraten sichtbar';
   }}
 
-  [textInput, searchSelect, minInput, maxInput, hideVBBox, statusSelect, schutzSelect, huetteSelect].forEach(el => {{
+  [textInput, minInput, maxInput, hideVBBox].forEach(el => {{
     el.addEventListener('input', applyFilters);
     el.addEventListener('change', applyFilters);
   }});
 
   resetBtn.addEventListener('click', () => {{
     textInput.value = '';
-    searchSelect.value = '';
     minInput.value = '';
     maxInput.value = '';
     hideVBBox.checked = false;
-    statusSelect.value = '';
-    schutzSelect.value = '';
-    huetteSelect.value = '';
+    Object.values(msels).forEach(m => m.reset());
     applyFilters();
+  }});
+
+  // --- Sortierung (Preis / Zuletzt gesehen, je auf-/absteigend) ---
+  const sortSelect = document.getElementById('sortSelect');
+  const SORT_LISTS = ['#neuList', '#preissenkungenList', '#unbewertetList', '#alleList', '#staleList', '#aussortiertList', '#removedList'];
+
+  function getPriceVal(li) {{
+    const v = li.dataset.price;
+    if (v === '' || v === undefined) return null;
+    const n = parseFloat(v);
+    return (isNaN(n) || n <= 1) ? null : n; // Platzhalter/VB wie beim Server ans Ende
+  }}
+
+  function sortComparator(mode) {{
+    return function(a, b) {{
+      if (mode === 'price_asc' || mode === 'price_desc') {{
+        const pa = getPriceVal(a), pb = getPriceVal(b);
+        if (pa === null && pb === null) return 0;
+        if (pa === null) return 1;
+        if (pb === null) return -1;
+        return mode === 'price_asc' ? pa - pb : pb - pa;
+      }}
+      const da = a.dataset.lastSeen || '';
+      const db = b.dataset.lastSeen || '';
+      if (da === db) return 0;
+      const cmp = da < db ? -1 : 1;
+      return mode === 'seen_desc' ? -cmp : cmp;
+    }};
+  }}
+
+  function applySort() {{
+    const mode = sortSelect.value;
+    const cmp = sortComparator(mode);
+    SORT_LISTS.forEach(sel => {{
+      const container = document.querySelector(sel);
+      if (!container) return;
+      Array.from(container.querySelectorAll(':scope > li.item'))
+        .sort(cmp)
+        .forEach(li => container.appendChild(li));
+    }});
+  }}
+  sortSelect.addEventListener('change', applySort);
+  window.__applySort = applySort;
+
+  // --- Export der als "Interessant" markierten Inserate als CSV ---
+  function csvCell(v) {{
+    return '"' + (v || '').toString().replace(/"/g, '""') + '"';
+  }}
+  document.getElementById('exportBtn').addEventListener('click', function() {{
+    const rows = [['Titel', 'Preis', 'URL', 'Ort', 'Flurstück', 'Größe', 'Schutzgebiete', 'Hütte', 'Kommentar']];
+    document.querySelectorAll('#alleList li.item[data-id]').forEach(li => {{
+      if (fieldValue(li, 'status') !== 'interessant') return;
+      const link = li.querySelector('.item-body > a');
+      const huetteSelect = li.querySelector('[data-ann="huette"]');
+      const huetteLabel = huetteSelect && huetteSelect.selectedIndex >= 0 ? huetteSelect.options[huetteSelect.selectedIndex].text : '';
+      const schutz = Array.from(li.querySelectorAll('.ann-multi[data-ann="schutzgebiet"]:checked'))
+        .map(cb => cb.parentElement.textContent.trim())
+        .join('; ');
+      rows.push([
+        link ? link.textContent.trim() : '',
+        li.dataset.price,
+        link ? link.href : '',
+        fieldValue(li, 'ort'),
+        fieldValue(li, 'flurstueck'),
+        fieldValue(li, 'groesse'),
+        schutz,
+        huetteSelect && huetteSelect.value ? huetteLabel : '',
+        fieldValue(li, 'comment'),
+      ]);
+    }});
+    const csv = rows.map(r => r.map(csvCell).join(';')).join('\\r\\n');
+    const blob = new Blob(['\uFEFF' + csv], {{ type: 'text/csv;charset=utf-8;' }});
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'interessante-grundstuecke.csv';
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(link.href);
   }});
 
   // Notizen-Sync-Skript ruft window.__applyFilters() nach jeder
@@ -622,6 +823,7 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
   }}
 
   applyFilters();
+  applySort();
 }})();
 
 (function() {{
@@ -687,16 +889,50 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
     }}
   }}
 
-  function applyAnnotationsToDOM() {{
-    document.querySelectorAll('[data-ann]').forEach(function(el) {{
-      const id = el.dataset.id;
+  function getSchutzArray(id) {{
+    const val = annotations[id] && annotations[id].schutzgebiet;
+    if (Array.isArray(val)) return val;
+    if (val === 'ja') return ['unbekannt']; // Migration alter Ja/Nein-Werte
+    return [];
+  }}
+
+  function getHuetteValue(id) {{
+    const val = annotations[id] && annotations[id].huette;
+    if (val === 'ja') return 'unbekannt'; // Migration alter Ja/Nein-Werte
+    if (val === 'nein') return 'keine';
+    return val || '';
+  }}
+
+  function applyAnnotationValues(scope, id) {{
+    const data = annotations[id] || {{}};
+    scope.querySelectorAll('[data-ann]:not(.ann-multi)').forEach(function(el) {{
       const field = el.dataset.ann;
-      // Nur überschreiben, wenn für dieses Feld schon einmal explizit etwas
-      // gespeichert wurde - sonst bleibt die automatische Vorbefüllung
-      // (data-auto, direkt im HTML) unangetastet stehen.
-      if (annotations[id] && Object.prototype.hasOwnProperty.call(annotations[id], field)) {{
-        el.value = annotations[id][field];
+      if (field === 'huette') {{
+        if (Object.prototype.hasOwnProperty.call(data, 'huette')) {{
+          el.value = getHuetteValue(id);
+        }} else if (el.dataset.auto) {{
+          el.value = el.dataset.auto;
+        }}
+        return;
       }}
+      if (Object.prototype.hasOwnProperty.call(data, field)) {{
+        el.value = data[field];
+      }} else if (el.dataset.auto) {{
+        el.value = el.dataset.auto;
+      }}
+    }});
+    const schutzArr = getSchutzArray(id);
+    scope.querySelectorAll('.ann-multi[data-ann="schutzgebiet"]').forEach(function(cb) {{
+      cb.checked = schutzArr.includes(cb.dataset.value);
+    }});
+    scope.querySelectorAll('.schutz-badge[data-id="' + CSS.escape(id) + '"] .schutz-badge-text').forEach(function(t) {{
+      t.textContent = '🛡️ Schutzgebiet' + (schutzArr.length ? ' (' + schutzArr.length + ')' : '');
+    }});
+  }}
+
+  function applyAnnotationsToDOM() {{
+    document.querySelectorAll('li.item[data-id]').forEach(function(li) {{
+      applyAnnotationValues(li, li.dataset.id);
     }});
     document.querySelectorAll('li.item[data-id]').forEach(function(li) {{
       const id = li.dataset.id;
@@ -708,15 +944,7 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
   }}
 
   function setFieldValues(li, id) {{
-    const data = annotations[id] || {{}};
-    li.querySelectorAll('[data-ann]').forEach(function(el) {{
-      const field = el.dataset.ann;
-      if (Object.prototype.hasOwnProperty.call(data, field)) {{
-        el.value = data[field];
-      }} else if (el.dataset.auto) {{
-        el.value = el.dataset.auto;
-      }}
-    }});
+    applyAnnotationValues(li, id);
   }}
 
   function reorganize() {{
@@ -724,10 +952,12 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
     const aussortiertList = document.getElementById('aussortiertList');
     const removedList = document.getElementById('removedList');
     const removedToggle = document.getElementById('removedToggle');
+    const staleList = document.getElementById('staleList');
     if (!unbewertetList || !aussortiertList) return;
     unbewertetList.innerHTML = '';
     aussortiertList.innerHTML = '';
     removedList.innerHTML = '';
+    if (staleList) staleList.innerHTML = '';
     document.querySelectorAll('li.item[data-hidden]').forEach(function(li) {{
       li.removeAttribute('data-hidden');
     }});
@@ -736,6 +966,7 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
     let unbewertetCount = 0;
     let aussortiertCount = 0;
     let removedCount = 0;
+    let staleCount = 0;
 
     alleItems.forEach(function(li) {{
       const id = li.dataset.id;
@@ -743,6 +974,7 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
       const status = ann.status || '';
       const isNew = li.dataset.isNew === '1';
       const hasDrop = li.dataset.priceDrop === '1';
+      const isStale = li.dataset.stale === '1';
 
       if (ann.removed) {{
         const clone = li.cloneNode(true);
@@ -756,17 +988,27 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
         removedList.appendChild(clone);
         removedCount++;
         li.dataset.hidden = '1';
-      }} else if (status === 'nicht_interessant') {{
+        return;
+      }}
+      if (status === 'nicht_interessant') {{
         const clone = li.cloneNode(true);
         setFieldValues(clone, id);
         aussortiertList.appendChild(clone);
         aussortiertCount++;
         li.dataset.hidden = '1';
-      }} else if (status === '' && !isNew && !hasDrop) {{
+        return;
+      }}
+      if (status === '' && !isNew && !hasDrop) {{
         const clone = li.cloneNode(true);
         setFieldValues(clone, id);
         unbewertetList.appendChild(clone);
         unbewertetCount++;
+      }}
+      if (isStale && staleList) {{
+        const clone2 = li.cloneNode(true);
+        setFieldValues(clone2, id);
+        staleList.appendChild(clone2);
+        staleCount++;
       }}
     }});
 
@@ -782,11 +1024,13 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
 
     if (unbewertetCount === 0) unbewertetList.innerHTML = '<li class="empty">Alles bewertet 🎉</li>';
     if (aussortiertCount === 0) aussortiertList.innerHTML = '<li class="empty">Keine aussortiert.</li>';
+    if (staleList && staleCount === 0) staleList.innerHTML = '<li class="empty">Keine.</li>';
     if (removedToggle) {{
       const expanded = !removedList.hidden;
       removedToggle.textContent = '🗑️ Entfernt (' + removedCount + ')' + (expanded ? ' – ausblenden' : ' – anzeigen');
     }}
 
+    if (window.__applySort) window.__applySort();
     if (window.__applyFilters) window.__applyFilters();
   }}
 
@@ -829,6 +1073,24 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
 
   document.addEventListener('change', function(ev) {{
     const el = ev.target;
+
+    if (el.matches('.ann-multi[data-ann="schutzgebiet"]')) {{
+      const id = el.dataset.id;
+      const li = el.closest('li.item');
+      const checked = Array.from(li.querySelectorAll('.ann-multi[data-ann="schutzgebiet"]'))
+        .filter(cb => cb.checked)
+        .map(cb => cb.dataset.value);
+      if (!annotations[id]) annotations[id] = {{}};
+      annotations[id].schutzgebiet = checked;
+
+      document.querySelectorAll('li.item[data-id="' + CSS.escape(id) + '"]').forEach(function(otherLi) {{
+        applyAnnotationValues(otherLi, id);
+      }});
+      if (window.__applyFilters) window.__applyFilters();
+      queueSave();
+      return;
+    }}
+
     if (!el.matches('[data-ann]')) return;
     const id = el.dataset.id;
     const field = el.dataset.ann;
