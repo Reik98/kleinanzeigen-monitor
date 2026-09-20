@@ -331,6 +331,7 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
                 </select>{huette_hint}
               </span>
               <button type="button" class="ann-toggle" data-id="{aid}">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="{aid}" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="{aid}" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="{aid}" data-auto="{auto_flurstueck}" value="{auto_flurstueck}" placeholder="Flurstücknummer">
@@ -440,6 +441,10 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
   .sync-status.ok {{ color: #2a7f3f; }}
   .sync-status.err {{ color: #c0392b; }}
   .hint {{ cursor: help; font-size: .8rem; }}
+  .ann-remove {{ margin-left: auto; }}
+  .toggle-section {{ background: none; border: none; font: inherit; font-size: 1.1rem; cursor: pointer; padding: 0; color: #222; }}
+  .toggle-section:hover {{ text-decoration: underline; }}
+  .restore-btn {{ font-size: .78rem; padding: .2rem .5rem; border: 1px solid #ccc; border-radius: 5px; background: #fafafa; cursor: pointer; margin-top: .3rem; }}
 </style>
 </head>
 <body>
@@ -506,6 +511,11 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
   <section>
     <h2>🚫 Nicht Interessant – Aussortiert</h2>
     <ul id="aussortiertList"><li class="empty">Keine aussortiert.</li></ul>
+  </section>
+
+  <section>
+    <h2><button type="button" id="removedToggle" class="toggle-section">🗑️ Entfernt (0) – anzeigen</button></h2>
+    <ul id="removedList" hidden></ul>
   </section>
 
 <script>
@@ -712,9 +722,12 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
   function reorganize() {{
     const unbewertetList = document.getElementById('unbewertetList');
     const aussortiertList = document.getElementById('aussortiertList');
+    const removedList = document.getElementById('removedList');
+    const removedToggle = document.getElementById('removedToggle');
     if (!unbewertetList || !aussortiertList) return;
     unbewertetList.innerHTML = '';
     aussortiertList.innerHTML = '';
+    removedList.innerHTML = '';
     document.querySelectorAll('li.item[data-hidden]').forEach(function(li) {{
       li.removeAttribute('data-hidden');
     }});
@@ -722,14 +735,28 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
     const alleItems = Array.from(document.querySelectorAll('#alleList li.item[data-id]'));
     let unbewertetCount = 0;
     let aussortiertCount = 0;
+    let removedCount = 0;
 
     alleItems.forEach(function(li) {{
       const id = li.dataset.id;
-      const status = (annotations[id] && annotations[id].status) || '';
+      const ann = annotations[id] || {{}};
+      const status = ann.status || '';
       const isNew = li.dataset.isNew === '1';
       const hasDrop = li.dataset.priceDrop === '1';
 
-      if (status === 'nicht_interessant') {{
+      if (ann.removed) {{
+        const clone = li.cloneNode(true);
+        setFieldValues(clone, id);
+        const restoreBtn = document.createElement('button');
+        restoreBtn.type = 'button';
+        restoreBtn.className = 'restore-btn';
+        restoreBtn.dataset.id = id;
+        restoreBtn.textContent = '↩️ Wiederherstellen';
+        clone.querySelector('.item-body').appendChild(restoreBtn);
+        removedList.appendChild(clone);
+        removedCount++;
+        li.dataset.hidden = '1';
+      }} else if (status === 'nicht_interessant') {{
         const clone = li.cloneNode(true);
         setFieldValues(clone, id);
         aussortiertList.appendChild(clone);
@@ -746,8 +773,8 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
     ['#neuList', '#preissenkungenList'].forEach(function(sel) {{
       document.querySelectorAll(sel + ' li.item[data-id]').forEach(function(li) {{
         const id = li.dataset.id;
-        const status = (annotations[id] && annotations[id].status) || '';
-        if (status === 'nicht_interessant') {{
+        const ann = annotations[id] || {{}};
+        if (ann.removed || ann.status === 'nicht_interessant') {{
           li.dataset.hidden = '1';
         }}
       }});
@@ -755,6 +782,10 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
 
     if (unbewertetCount === 0) unbewertetList.innerHTML = '<li class="empty">Alles bewertet 🎉</li>';
     if (aussortiertCount === 0) aussortiertList.innerHTML = '<li class="empty">Keine aussortiert.</li>';
+    if (removedToggle) {{
+      const expanded = !removedList.hidden;
+      removedToggle.textContent = '🗑️ Entfernt (' + removedCount + ')' + (expanded ? ' – ausblenden' : ' – anzeigen');
+    }}
 
     if (window.__applyFilters) window.__applyFilters();
   }}
@@ -820,12 +851,43 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
   }});
 
   document.addEventListener('click', function(ev) {{
-    const btn = ev.target.closest('.ann-toggle');
-    if (!btn) return;
-    const id = btn.dataset.id;
-    document.querySelectorAll('.ann-details[data-id="' + CSS.escape(id) + '"]').forEach(function(panel) {{
-      panel.hidden = !panel.hidden;
-    }});
+    const toggleBtn = ev.target.closest('.ann-toggle');
+    if (toggleBtn) {{
+      const id = toggleBtn.dataset.id;
+      document.querySelectorAll('.ann-details[data-id="' + CSS.escape(id) + '"]').forEach(function(panel) {{
+        panel.hidden = !panel.hidden;
+      }});
+      return;
+    }}
+
+    const removeBtn = ev.target.closest('.ann-remove');
+    if (removeBtn) {{
+      const id = removeBtn.dataset.id;
+      if (!confirm('Diese Anzeige dauerhaft aus der Übersicht entfernen? Sie taucht dann nirgendwo mehr auf, bleibt aber im Hintergrund bekannt und kann jederzeit unten unter "🗑️ Entfernt" wiederhergestellt werden.')) {{
+        return;
+      }}
+      if (!annotations[id]) annotations[id] = {{}};
+      annotations[id].removed = true;
+      reorganize();
+      queueSave();
+      return;
+    }}
+
+    const restoreBtn = ev.target.closest('.restore-btn');
+    if (restoreBtn) {{
+      const id = restoreBtn.dataset.id;
+      if (annotations[id]) annotations[id].removed = false;
+      reorganize();
+      queueSave();
+      return;
+    }}
+
+    const removedToggle = ev.target.closest('#removedToggle');
+    if (removedToggle) {{
+      const list = document.getElementById('removedList');
+      list.hidden = !list.hidden;
+      reorganize();
+    }}
   }});
 
   patInput.value = pat ? '••••••••' : '';
