@@ -502,6 +502,7 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
   a {{ color: #0a5; text-decoration: none; }}
   a:hover {{ text-decoration: underline; }}
   .filters {{ background: white; border: 1px solid #e0e0e0; border-radius: 8px; padding: .8rem; display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; margin-bottom: 1rem; position: sticky; top: .5rem; z-index: 10; }}
+  .filters-dropdowns {{ z-index: 30; }}
   .filters input[type="text"], .filters input[type="number"], .filters select {{ padding: .4rem .5rem; border: 1px solid #ccc; border-radius: 6px; font-size: .9rem; }}
   .filters input[type="text"] {{ flex: 1; min-width: 140px; }}
   .filters input[type="number"] {{ width: 90px; }}
@@ -550,7 +551,7 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
     <span class="sync-status" id="syncStatus">nicht eingerichtet</span>
   </div>
 
-  <div class="filters">
+  <div class="filters filters-dropdowns">
     <input type="text" id="filterText" placeholder="Titel/Ort/Flurstück/Kommentar enthält ...">
     <div class="msel" data-msel="search" data-label="Suche">
       <button type="button" class="msel-btn">Suche: alle</button>
