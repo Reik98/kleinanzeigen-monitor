@@ -323,7 +323,8 @@
   "3499574412": {
     "status": "interessant",
     "schutzgebiet": [
-      "biotop"
+      "biotop",
+      "naturschutzgebiet"
     ],
     "ort": "Ilsfeld",
     "huette": "nein"
