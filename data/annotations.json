@@ -610,5 +610,8 @@
     "schutzgebiet": "ja",
     "huette": "nein",
     "status": "nicht_interessant"
+  },
+  "3518687227": {
+    "removed": true
   }
 }
