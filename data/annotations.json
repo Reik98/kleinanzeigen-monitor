@@ -244,7 +244,10 @@
     "status": "nicht_interessant"
   },
   "3483704066": {
-    "schutzgebiet": "ja",
+    "schutzgebiet": [
+      "biotop",
+      "unbekannt"
+    ],
     "huette": "ja",
     "status": "interessant"
   },
