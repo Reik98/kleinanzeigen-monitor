@@ -46,11 +46,15 @@
   .sync-status.ok { color: #2a7f3f; }
   .sync-status.err { color: #c0392b; }
   .hint { cursor: help; font-size: .8rem; }
+  .ann-remove { margin-left: auto; }
+  .toggle-section { background: none; border: none; font: inherit; font-size: 1.1rem; cursor: pointer; padding: 0; color: #222; }
+  .toggle-section:hover { text-decoration: underline; }
+  .restore-btn { font-size: .78rem; padding: .2rem .5rem; border: 1px solid #ccc; border-radius: 5px; background: #fafafa; cursor: pointer; margin-top: .3rem; }
 </style>
 </head>
 <body>
   <h1>🌱 Kleinanzeigen Monitor – Grundstücke Wernau</h1>
-  <div class="meta">Letzter Check: <span id="lastCheckTime" data-utc="2026-09-20T10:33:15+00:00">2026-09-20T10:33:15+00:00</span> · 14 gespeicherte Suchen · 172 bekannte Inserate insgesamt</div>
+  <div class="meta">Letzter Check: <span id="lastCheckTime" data-utc="2026-09-20T10:51:55+00:00">2026-09-20T10:51:55+00:00</span> · 14 gespeicherte Suchen · 172 bekannte Inserate insgesamt</div>
 
   
 
@@ -91,127 +95,7 @@
 
   <section>
     <h2>🆕 Neu seit letztem Check</h2>
-    <ul id="neuList">
-        <li class="item" data-id="3517569533" data-price="7999" data-search="Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)" data-title="vorverkauf: gartenobjekte ulm - flache grundstücke zzgl. optionen" data-is-new="0" data-price-drop="0">
-          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/ec/ecb2d38e-9d77-4b25-876f-d6df4a87fa2c?rule=$_2.AUTO" alt="" loading="lazy">
-          <div class="item-body">
-            <a href="https://www.kleinanzeigen.de/s-anzeige/vorverkauf-gartenobjekte-ulm-flache-grundstuecke-zzgl-optionen/3517569533-207-9340" target="_blank" rel="noopener">Vorverkauf: Gartenobjekte Ulm - Flache Grundstücke zzgl. Optionen</a>
-            <div class="item-meta">
-              <span class="price">7.999 €</span>
-              <span class="search-tag">Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)</span>
-            </div>
-            
-            <div class="ann-bar">
-              <select class="ann-field" data-ann="status" data-id="3517569533">
-                <option value="">Bewertung ...</option>
-                <option value="angeschaut">👀 Angeschaut</option>
-                <option value="interessant">✅ Interessant</option>
-                <option value="nicht_interessant">❌ Nicht interessant</option>
-              </select>
-              <span>
-                <select class="ann-field" data-ann="schutzgebiet" data-id="3517569533">
-                  <option value="">Schutzgebiet?</option>
-                  <option value="ja">Schutzgebiet: Ja</option>
-                  <option value="nein">Schutzgebiet: Nein</option>
-                </select>
-              </span>
-              <span>
-                <select class="ann-field" data-ann="huette" data-id="3517569533">
-                  <option value="">Hütte?</option>
-                  <option value="ja">Hütte: Ja</option>
-                  <option value="nein">Hütte: Nein</option>
-                </select>
-              </span>
-              <button type="button" class="ann-toggle" data-id="3517569533">📝 Details</button>
-            </div>
-            <div class="ann-details" data-id="3517569533" hidden>
-              <input type="text" class="ann-field" data-ann="flurstueck" data-id="3517569533" data-auto="" value="" placeholder="Flurstücknummer">
-              <input type="text" class="ann-field" data-ann="ort" data-id="3517569533" data-auto="" value="" placeholder="Ort">
-              <input type="text" class="ann-field" data-ann="groesse" data-id="3517569533" data-auto="220 m²" value="220 m²" placeholder="Größe (z.B. 500 m²)">
-              <textarea class="ann-field" data-ann="comment" data-id="3517569533" placeholder="Kommentar ..." rows="2"></textarea>
-            </div>
-          </div>
-        </li>
-        <li class="item" data-id="3517766464" data-price="11000" data-search="Freizeitgrundstück" data-title="71642 poppenweiler freizeitgrundstück landwirtschaftsfläche 891qm" data-is-new="0" data-price-drop="0">
-          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/cd/cda67579-0f64-4924-9e56-86d9199e3c40?rule=$_2.AUTO" alt="" loading="lazy">
-          <div class="item-body">
-            <a href="https://www.kleinanzeigen.de/s-anzeige/71642-poppenweiler-freizeitgrundstueck-landwirtschaftsflaeche-891qm/3517766464-207-9064" target="_blank" rel="noopener">71642 Poppenweiler Freizeitgrundstück Landwirtschaftsfläche 891qm</a>
-            <div class="item-meta">
-              <span class="price">11.000 € VB</span>
-              <span class="search-tag">Freizeitgrundstück</span>
-            </div>
-            
-            <div class="ann-bar">
-              <select class="ann-field" data-ann="status" data-id="3517766464">
-                <option value="">Bewertung ...</option>
-                <option value="angeschaut">👀 Angeschaut</option>
-                <option value="interessant">✅ Interessant</option>
-                <option value="nicht_interessant">❌ Nicht interessant</option>
-              </select>
-              <span>
-                <select class="ann-field" data-ann="schutzgebiet" data-id="3517766464">
-                  <option value="">Schutzgebiet?</option>
-                  <option value="ja">Schutzgebiet: Ja</option>
-                  <option value="nein">Schutzgebiet: Nein</option>
-                </select>
-              </span>
-              <span>
-                <select class="ann-field" data-ann="huette" data-id="3517766464">
-                  <option value="">Hütte?</option>
-                  <option value="ja">Hütte: Ja</option>
-                  <option value="nein">Hütte: Nein</option>
-                </select>
-              </span>
-              <button type="button" class="ann-toggle" data-id="3517766464">📝 Details</button>
-            </div>
-            <div class="ann-details" data-id="3517766464" hidden>
-              <input type="text" class="ann-field" data-ann="flurstueck" data-id="3517766464" data-auto="" value="" placeholder="Flurstücknummer">
-              <input type="text" class="ann-field" data-ann="ort" data-id="3517766464" data-auto="" value="" placeholder="Ort">
-              <input type="text" class="ann-field" data-ann="groesse" data-id="3517766464" data-auto="891 m²" value="891 m²" placeholder="Größe (z.B. 500 m²)">
-              <textarea class="ann-field" data-ann="comment" data-id="3517766464" placeholder="Kommentar ..." rows="2"></textarea>
-            </div>
-          </div>
-        </li>
-        <li class="item" data-id="3517881768" data-price="13500" data-search="Freizeitgrundstück" data-title="freizeitgrundstück in hohenstaufen" data-is-new="0" data-price-drop="0">
-          <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/11/11101e09-3a03-43ec-91a8-127508235d53?rule=$_2.AUTO" alt="" loading="lazy">
-          <div class="item-body">
-            <a href="https://www.kleinanzeigen.de/s-anzeige/freizeitgrundstueck-in-hohenstaufen/3517881768-207-9026" target="_blank" rel="noopener">Freizeitgrundstück in Hohenstaufen</a>
-            <div class="item-meta">
-              <span class="price">13.500 €</span>
-              <span class="search-tag">Freizeitgrundstück</span>
-            </div>
-            
-            <div class="ann-bar">
-              <select class="ann-field" data-ann="status" data-id="3517881768">
-                <option value="">Bewertung ...</option>
-                <option value="angeschaut">👀 Angeschaut</option>
-                <option value="interessant">✅ Interessant</option>
-                <option value="nicht_interessant">❌ Nicht interessant</option>
-              </select>
-              <span>
-                <select class="ann-field" data-ann="schutzgebiet" data-id="3517881768">
-                  <option value="">Schutzgebiet?</option>
-                  <option value="ja">Schutzgebiet: Ja</option>
-                  <option value="nein">Schutzgebiet: Nein</option>
-                </select>
-              </span>
-              <span>
-                <select class="ann-field" data-ann="huette" data-id="3517881768">
-                  <option value="">Hütte?</option>
-                  <option value="ja">Hütte: Ja</option>
-                  <option value="nein">Hütte: Nein</option>
-                </select>
-              </span>
-              <button type="button" class="ann-toggle" data-id="3517881768">📝 Details</button>
-            </div>
-            <div class="ann-details" data-id="3517881768" hidden>
-              <input type="text" class="ann-field" data-ann="flurstueck" data-id="3517881768" data-auto="" value="" placeholder="Flurstücknummer">
-              <input type="text" class="ann-field" data-ann="ort" data-id="3517881768" data-auto="" value="" placeholder="Ort">
-              <input type="text" class="ann-field" data-ann="groesse" data-id="3517881768" data-auto="1.922 m²" value="1.922 m²" placeholder="Größe (z.B. 500 m²)">
-              <textarea class="ann-field" data-ann="comment" data-id="3517881768" placeholder="Kommentar ..." rows="2"></textarea>
-            </div>
-          </div>
-        </li></ul>
+    <ul id="neuList"><li class='empty'>Keine neuen Inserate.</li></ul>
   </section>
 
   <section>
@@ -258,6 +142,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3303316464">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3303316464" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3303316464" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3303316464" data-auto="" value="" placeholder="Flurstücknummer">
@@ -298,6 +183,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3503688019">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3503688019" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3503688019" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3503688019" data-auto="" value="" placeholder="Flurstücknummer">
@@ -338,6 +224,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3493849742">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3493849742" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3493849742" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3493849742" data-auto="" value="" placeholder="Flurstücknummer">
@@ -378,6 +265,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="2873773489">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="2873773489" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="2873773489" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="2873773489" data-auto="" value="" placeholder="Flurstücknummer">
@@ -418,6 +306,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3499574412">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3499574412" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3499574412" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3499574412" data-auto="309" value="309" placeholder="Flurstücknummer">
@@ -458,6 +347,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3452796435">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3452796435" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3452796435" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3452796435" data-auto="" value="" placeholder="Flurstücknummer">
@@ -498,6 +388,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="2911949058">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="2911949058" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="2911949058" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="2911949058" data-auto="" value="" placeholder="Flurstücknummer">
@@ -538,6 +429,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3474667291">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3474667291" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3474667291" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3474667291" data-auto="" value="" placeholder="Flurstücknummer">
@@ -578,6 +470,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3469259539">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3469259539" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3469259539" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3469259539" data-auto="" value="" placeholder="Flurstücknummer">
@@ -618,6 +511,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="1599892167">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="1599892167" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="1599892167" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="1599892167" data-auto="" value="" placeholder="Flurstücknummer">
@@ -658,6 +552,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3509737620">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3509737620" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3509737620" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3509737620" data-auto="" value="" placeholder="Flurstücknummer">
@@ -698,6 +593,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3507335719">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3507335719" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3507335719" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3507335719" data-auto="" value="" placeholder="Flurstücknummer">
@@ -738,6 +634,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3500809463">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3500809463" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3500809463" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3500809463" data-auto="" value="" placeholder="Flurstücknummer">
@@ -778,6 +675,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3513457658">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3513457658" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3513457658" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3513457658" data-auto="" value="" placeholder="Flurstücknummer">
@@ -818,6 +716,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3491770388">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3491770388" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3491770388" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3491770388" data-auto="" value="" placeholder="Flurstücknummer">
@@ -858,6 +757,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3502627677">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3502627677" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3502627677" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3502627677" data-auto="" value="" placeholder="Flurstücknummer">
@@ -898,6 +798,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3369151601">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3369151601" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3369151601" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3369151601" data-auto="" value="" placeholder="Flurstücknummer">
@@ -938,6 +839,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3504584096">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3504584096" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3504584096" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3504584096" data-auto="" value="" placeholder="Flurstücknummer">
@@ -978,6 +880,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3511825251">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3511825251" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3511825251" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3511825251" data-auto="" value="" placeholder="Flurstücknummer">
@@ -1018,6 +921,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3514509145">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3514509145" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3514509145" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3514509145" data-auto="" value="" placeholder="Flurstücknummer">
@@ -1058,6 +962,7 @@
                 </select> <span class="hint" title="Im Anzeigentext erwähnt">💡</span>
               </span>
               <button type="button" class="ann-toggle" data-id="3270477644">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3270477644" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3270477644" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3270477644" data-auto="" value="" placeholder="Flurstücknummer">
@@ -1098,6 +1003,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="2485813222">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="2485813222" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="2485813222" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="2485813222" data-auto="" value="" placeholder="Flurstücknummer">
@@ -1138,6 +1044,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3393802483">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3393802483" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3393802483" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3393802483" data-auto="" value="" placeholder="Flurstücknummer">
@@ -1178,6 +1085,7 @@
                 </select> <span class="hint" title="Im Anzeigentext erwähnt">💡</span>
               </span>
               <button type="button" class="ann-toggle" data-id="3491588139">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3491588139" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3491588139" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3491588139" data-auto="" value="" placeholder="Flurstücknummer">
@@ -1218,6 +1126,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3510678587">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3510678587" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3510678587" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3510678587" data-auto="" value="" placeholder="Flurstücknummer">
@@ -1258,6 +1167,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3491978453">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3491978453" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3491978453" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3491978453" data-auto="" value="" placeholder="Flurstücknummer">
@@ -1298,6 +1208,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3390441708">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3390441708" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3390441708" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3390441708" data-auto="" value="" placeholder="Flurstücknummer">
@@ -1338,6 +1249,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3482712896">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3482712896" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3482712896" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3482712896" data-auto="" value="" placeholder="Flurstücknummer">
@@ -1378,6 +1290,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3509012218">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3509012218" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3509012218" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3509012218" data-auto="" value="" placeholder="Flurstücknummer">
@@ -1418,6 +1331,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3510976948">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3510976948" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3510976948" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3510976948" data-auto="" value="" placeholder="Flurstücknummer">
@@ -1458,6 +1372,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="2383134769">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="2383134769" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="2383134769" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="2383134769" data-auto="" value="" placeholder="Flurstücknummer">
@@ -1498,6 +1413,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3436436432">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3436436432" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3436436432" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3436436432" data-auto="" value="" placeholder="Flurstücknummer">
@@ -1538,6 +1454,7 @@
                 </select> <span class="hint" title="Im Anzeigentext erwähnt">💡</span>
               </span>
               <button type="button" class="ann-toggle" data-id="3412342073">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3412342073" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3412342073" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3412342073" data-auto="" value="" placeholder="Flurstücknummer">
@@ -1578,6 +1495,7 @@
                 </select> <span class="hint" title="Im Anzeigentext erwähnt">💡</span>
               </span>
               <button type="button" class="ann-toggle" data-id="3425447905">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3425447905" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3425447905" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3425447905" data-auto="" value="" placeholder="Flurstücknummer">
@@ -1618,6 +1536,7 @@
                 </select> <span class="hint" title="Im Anzeigentext erwähnt">💡</span>
               </span>
               <button type="button" class="ann-toggle" data-id="3497380360">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3497380360" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3497380360" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3497380360" data-auto="" value="" placeholder="Flurstücknummer">
@@ -1658,6 +1577,7 @@
                 </select> <span class="hint" title="Im Anzeigentext erwähnt">💡</span>
               </span>
               <button type="button" class="ann-toggle" data-id="3509558615">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3509558615" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3509558615" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3509558615" data-auto="" value="" placeholder="Flurstücknummer">
@@ -1698,6 +1618,7 @@
                 </select> <span class="hint" title="Im Anzeigentext erwähnt">💡</span>
               </span>
               <button type="button" class="ann-toggle" data-id="3485360818">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3485360818" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3485360818" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3485360818" data-auto="" value="" placeholder="Flurstücknummer">
@@ -1738,6 +1659,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3512825986">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3512825986" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3512825986" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3512825986" data-auto="" value="" placeholder="Flurstücknummer">
@@ -1778,6 +1700,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3507104355">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3507104355" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3507104355" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3507104355" data-auto="" value="" placeholder="Flurstücknummer">
@@ -1818,6 +1741,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3432690503">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3432690503" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3432690503" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3432690503" data-auto="" value="" placeholder="Flurstücknummer">
@@ -1858,6 +1782,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3508894834">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3508894834" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3508894834" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3508894834" data-auto="" value="" placeholder="Flurstücknummer">
@@ -1898,6 +1823,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3488539241">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3488539241" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3488539241" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3488539241" data-auto="" value="" placeholder="Flurstücknummer">
@@ -1938,6 +1864,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3508980205">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3508980205" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3508980205" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3508980205" data-auto="" value="" placeholder="Flurstücknummer">
@@ -1978,6 +1905,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3287729141">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3287729141" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3287729141" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3287729141" data-auto="" value="" placeholder="Flurstücknummer">
@@ -2018,6 +1946,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3506160642">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3506160642" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3506160642" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3506160642" data-auto="" value="" placeholder="Flurstücknummer">
@@ -2058,6 +1987,7 @@
                 </select> <span class="hint" title="Im Anzeigentext erwähnt">💡</span>
               </span>
               <button type="button" class="ann-toggle" data-id="3508526470">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3508526470" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3508526470" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3508526470" data-auto="" value="" placeholder="Flurstücknummer">
@@ -2098,6 +2028,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3496611262">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3496611262" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3496611262" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3496611262" data-auto="" value="" placeholder="Flurstücknummer">
@@ -2138,6 +2069,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3500339952">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3500339952" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3500339952" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3500339952" data-auto="" value="" placeholder="Flurstücknummer">
@@ -2178,6 +2110,7 @@
                 </select> <span class="hint" title="Im Anzeigentext erwähnt">💡</span>
               </span>
               <button type="button" class="ann-toggle" data-id="3508650518">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3508650518" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3508650518" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3508650518" data-auto="" value="" placeholder="Flurstücknummer">
@@ -2218,6 +2151,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3512535864">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3512535864" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3512535864" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3512535864" data-auto="" value="" placeholder="Flurstücknummer">
@@ -2258,6 +2192,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3513725786">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3513725786" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3513725786" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3513725786" data-auto="" value="" placeholder="Flurstücknummer">
@@ -2298,6 +2233,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3509518282">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3509518282" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3509518282" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3509518282" data-auto="" value="" placeholder="Flurstücknummer">
@@ -2338,6 +2274,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3501623764">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3501623764" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3501623764" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3501623764" data-auto="" value="" placeholder="Flurstücknummer">
@@ -2378,6 +2315,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3515440212">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3515440212" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3515440212" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3515440212" data-auto="" value="" placeholder="Flurstücknummer">
@@ -2418,6 +2356,7 @@
                 </select> <span class="hint" title="Im Anzeigentext erwähnt">💡</span>
               </span>
               <button type="button" class="ann-toggle" data-id="2480136990">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="2480136990" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="2480136990" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="2480136990" data-auto="" value="" placeholder="Flurstücknummer">
@@ -2458,6 +2397,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3343087410">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3343087410" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3343087410" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3343087410" data-auto="" value="" placeholder="Flurstücknummer">
@@ -2498,6 +2438,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3507536831">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3507536831" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3507536831" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3507536831" data-auto="" value="" placeholder="Flurstücknummer">
@@ -2540,6 +2481,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="1501711101">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="1501711101" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="1501711101" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="1501711101" data-auto="" value="" placeholder="Flurstücknummer">
@@ -2580,6 +2522,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3493212639">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3493212639" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3493212639" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3493212639" data-auto="" value="" placeholder="Flurstücknummer">
@@ -2620,6 +2563,7 @@
                 </select> <span class="hint" title="Im Anzeigentext erwähnt">💡</span>
               </span>
               <button type="button" class="ann-toggle" data-id="3511601561">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3511601561" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3511601561" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3511601561" data-auto="" value="" placeholder="Flurstücknummer">
@@ -2660,6 +2604,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3516640935">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3516640935" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3516640935" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3516640935" data-auto="" value="" placeholder="Flurstücknummer">
@@ -2700,6 +2645,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3513244312">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3513244312" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3513244312" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3513244312" data-auto="" value="" placeholder="Flurstücknummer">
@@ -2740,6 +2686,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3469876191">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3469876191" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3469876191" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3469876191" data-auto="" value="" placeholder="Flurstücknummer">
@@ -2780,6 +2727,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3516917145">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3516917145" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3516917145" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3516917145" data-auto="294/0" value="294/0" placeholder="Flurstücknummer">
@@ -2820,6 +2768,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3478555282">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3478555282" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3478555282" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3478555282" data-auto="" value="" placeholder="Flurstücknummer">
@@ -2860,6 +2809,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3474206554">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3474206554" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3474206554" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3474206554" data-auto="" value="" placeholder="Flurstücknummer">
@@ -2900,6 +2850,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3339015772">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3339015772" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3339015772" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3339015772" data-auto="" value="" placeholder="Flurstücknummer">
@@ -2940,6 +2891,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3515860135">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3515860135" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3515860135" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3515860135" data-auto="1775/1" value="1775/1" placeholder="Flurstücknummer">
@@ -2980,6 +2932,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3459420696">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3459420696" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3459420696" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3459420696" data-auto="" value="" placeholder="Flurstücknummer">
@@ -3020,6 +2973,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3515641249">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3515641249" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3515641249" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3515641249" data-auto="" value="" placeholder="Flurstücknummer">
@@ -3060,6 +3014,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3476234062">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3476234062" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3476234062" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3476234062" data-auto="" value="" placeholder="Flurstücknummer">
@@ -3100,6 +3055,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3460181509">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3460181509" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3460181509" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3460181509" data-auto="" value="" placeholder="Flurstücknummer">
@@ -3140,6 +3096,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3515640357">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3515640357" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3515640357" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3515640357" data-auto="" value="" placeholder="Flurstücknummer">
@@ -3180,6 +3137,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3509619738">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3509619738" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3509619738" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3509619738" data-auto="" value="" placeholder="Flurstücknummer">
@@ -3220,6 +3178,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3508582574">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3508582574" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3508582574" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3508582574" data-auto="" value="" placeholder="Flurstücknummer">
@@ -3260,6 +3219,7 @@
                 </select> <span class="hint" title="Im Anzeigentext erwähnt">💡</span>
               </span>
               <button type="button" class="ann-toggle" data-id="3483704066">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3483704066" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3483704066" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3483704066" data-auto="" value="" placeholder="Flurstücknummer">
@@ -3300,6 +3260,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3510236081">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3510236081" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3510236081" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3510236081" data-auto="" value="" placeholder="Flurstücknummer">
@@ -3340,6 +3301,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3515102909">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3515102909" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3515102909" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3515102909" data-auto="357" value="357" placeholder="Flurstücknummer">
@@ -3380,6 +3342,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3515636068">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3515636068" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3515636068" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3515636068" data-auto="" value="" placeholder="Flurstücknummer">
@@ -3420,6 +3383,7 @@
                 </select> <span class="hint" title="Im Anzeigentext erwähnt">💡</span>
               </span>
               <button type="button" class="ann-toggle" data-id="3497255786">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3497255786" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3497255786" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3497255786" data-auto="" value="" placeholder="Flurstücknummer">
@@ -3460,6 +3424,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3501931962">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3501931962" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3501931962" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3501931962" data-auto="" value="" placeholder="Flurstücknummer">
@@ -3500,6 +3465,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3488865559">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3488865559" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3488865559" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3488865559" data-auto="" value="" placeholder="Flurstücknummer">
@@ -3540,6 +3506,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3513993706">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3513993706" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3513993706" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3513993706" data-auto="" value="" placeholder="Flurstücknummer">
@@ -3580,6 +3547,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3509397056">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3509397056" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3509397056" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3509397056" data-auto="" value="" placeholder="Flurstücknummer">
@@ -3620,6 +3588,7 @@
                 </select> <span class="hint" title="Im Anzeigentext erwähnt">💡</span>
               </span>
               <button type="button" class="ann-toggle" data-id="3515642437">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3515642437" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3515642437" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3515642437" data-auto="" value="" placeholder="Flurstücknummer">
@@ -3660,6 +3629,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3467077730">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3467077730" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3467077730" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3467077730" data-auto="" value="" placeholder="Flurstücknummer">
@@ -3700,6 +3670,7 @@
                 </select> <span class="hint" title="Im Anzeigentext erwähnt">💡</span>
               </span>
               <button type="button" class="ann-toggle" data-id="3508316509">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3508316509" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3508316509" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3508316509" data-auto="" value="" placeholder="Flurstücknummer">
@@ -3740,6 +3711,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3482268594">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3482268594" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3482268594" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3482268594" data-auto="1155" value="1155" placeholder="Flurstücknummer">
@@ -3780,6 +3752,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3491345650">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3491345650" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3491345650" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3491345650" data-auto="" value="" placeholder="Flurstücknummer">
@@ -3820,6 +3793,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3348494506">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3348494506" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3348494506" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3348494506" data-auto="2002" value="2002" placeholder="Flurstücknummer">
@@ -3860,6 +3834,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3473854307">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3473854307" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3473854307" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3473854307" data-auto="" value="" placeholder="Flurstücknummer">
@@ -3900,6 +3875,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3488362796">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3488362796" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3488362796" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3488362796" data-auto="" value="" placeholder="Flurstücknummer">
@@ -3940,6 +3916,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3478367841">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3478367841" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3478367841" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3478367841" data-auto="" value="" placeholder="Flurstücknummer">
@@ -3980,6 +3957,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3357062454">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3357062454" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3357062454" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3357062454" data-auto="" value="" placeholder="Flurstücknummer">
@@ -4020,6 +3998,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3512736206">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3512736206" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3512736206" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3512736206" data-auto="" value="" placeholder="Flurstücknummer">
@@ -4060,6 +4039,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3442328326">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3442328326" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3442328326" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3442328326" data-auto="" value="" placeholder="Flurstücknummer">
@@ -4100,6 +4080,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3483573463">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3483573463" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3483573463" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3483573463" data-auto="" value="" placeholder="Flurstücknummer">
@@ -4140,6 +4121,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3479740084">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3479740084" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3479740084" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3479740084" data-auto="" value="" placeholder="Flurstücknummer">
@@ -4180,6 +4162,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3487213007">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3487213007" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3487213007" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3487213007" data-auto="" value="" placeholder="Flurstücknummer">
@@ -4220,6 +4203,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3508330641">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3508330641" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3508330641" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3508330641" data-auto="" value="" placeholder="Flurstücknummer">
@@ -4229,7 +4213,7 @@
             </div>
           </div>
         </li>
-        <li class="item" data-id="3517569533" data-price="7999" data-search="Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)" data-title="vorverkauf: gartenobjekte ulm - flache grundstücke zzgl. optionen" data-is-new="1" data-price-drop="0">
+        <li class="item" data-id="3517569533" data-price="7999" data-search="Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)" data-title="vorverkauf: gartenobjekte ulm - flache grundstücke zzgl. optionen" data-is-new="0" data-price-drop="0">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/ec/ecb2d38e-9d77-4b25-876f-d6df4a87fa2c?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/vorverkauf-gartenobjekte-ulm-flache-grundstuecke-zzgl-optionen/3517569533-207-9340" target="_blank" rel="noopener">Vorverkauf: Gartenobjekte Ulm - Flache Grundstücke zzgl. Optionen</a>
@@ -4260,6 +4244,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3517569533">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3517569533" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3517569533" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3517569533" data-auto="" value="" placeholder="Flurstücknummer">
@@ -4300,6 +4285,7 @@
                 </select> <span class="hint" title="Im Anzeigentext erwähnt">💡</span>
               </span>
               <button type="button" class="ann-toggle" data-id="3501594904">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3501594904" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3501594904" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3501594904" data-auto="" value="" placeholder="Flurstücknummer">
@@ -4340,6 +4326,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3513242933">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3513242933" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3513242933" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3513242933" data-auto="" value="" placeholder="Flurstücknummer">
@@ -4380,6 +4367,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3459420690">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3459420690" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3459420690" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3459420690" data-auto="" value="" placeholder="Flurstücknummer">
@@ -4420,6 +4408,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3509418572">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3509418572" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3509418572" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3509418572" data-auto="" value="" placeholder="Flurstücknummer">
@@ -4460,6 +4449,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3515639779">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3515639779" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3515639779" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3515639779" data-auto="" value="" placeholder="Flurstücknummer">
@@ -4500,6 +4490,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3488413556">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3488413556" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3488413556" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3488413556" data-auto="" value="" placeholder="Flurstücknummer">
@@ -4540,6 +4531,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3474197601">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3474197601" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3474197601" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3474197601" data-auto="" value="" placeholder="Flurstücknummer">
@@ -4580,6 +4572,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3474742647">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3474742647" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3474742647" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3474742647" data-auto="" value="" placeholder="Flurstücknummer">
@@ -4620,6 +4613,7 @@
                 </select> <span class="hint" title="Im Anzeigentext erwähnt">💡</span>
               </span>
               <button type="button" class="ann-toggle" data-id="3490184205">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3490184205" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3490184205" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3490184205" data-auto="" value="" placeholder="Flurstücknummer">
@@ -4660,6 +4654,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3150521995">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3150521995" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3150521995" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3150521995" data-auto="" value="" placeholder="Flurstücknummer">
@@ -4700,6 +4695,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3513887355">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3513887355" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3513887355" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3513887355" data-auto="" value="" placeholder="Flurstücknummer">
@@ -4740,6 +4736,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3482654490">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3482654490" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3482654490" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3482654490" data-auto="" value="" placeholder="Flurstücknummer">
@@ -4780,6 +4777,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3248853907">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3248853907" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3248853907" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3248853907" data-auto="" value="" placeholder="Flurstücknummer">
@@ -4820,6 +4818,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3501244157">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3501244157" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3501244157" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3501244157" data-auto="" value="" placeholder="Flurstücknummer">
@@ -4860,6 +4859,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3481192171">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3481192171" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3481192171" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3481192171" data-auto="" value="" placeholder="Flurstücknummer">
@@ -4900,6 +4900,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3509548355">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3509548355" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3509548355" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3509548355" data-auto="" value="" placeholder="Flurstücknummer">
@@ -4940,6 +4941,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3505135007">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3505135007" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3505135007" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3505135007" data-auto="" value="" placeholder="Flurstücknummer">
@@ -4980,6 +4982,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3506399748">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3506399748" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3506399748" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3506399748" data-auto="" value="" placeholder="Flurstücknummer">
@@ -5020,6 +5023,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3440525712">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3440525712" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3440525712" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3440525712" data-auto="" value="" placeholder="Flurstücknummer">
@@ -5060,6 +5064,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3515486212">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3515486212" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3515486212" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3515486212" data-auto="" value="" placeholder="Flurstücknummer">
@@ -5100,6 +5105,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3517526964">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3517526964" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3517526964" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3517526964" data-auto="" value="" placeholder="Flurstücknummer">
@@ -5140,6 +5146,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3510965585">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3510965585" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3510965585" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3510965585" data-auto="" value="" placeholder="Flurstücknummer">
@@ -5180,6 +5187,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3516259576">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3516259576" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3516259576" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3516259576" data-auto="" value="" placeholder="Flurstücknummer">
@@ -5220,6 +5228,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3475127004">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3475127004" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3475127004" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3475127004" data-auto="" value="" placeholder="Flurstücknummer">
@@ -5260,6 +5269,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3460181532">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3460181532" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3460181532" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3460181532" data-auto="" value="" placeholder="Flurstücknummer">
@@ -5300,6 +5310,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3515640991">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3515640991" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3515640991" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3515640991" data-auto="" value="" placeholder="Flurstücknummer">
@@ -5309,7 +5320,7 @@
             </div>
           </div>
         </li>
-        <li class="item" data-id="3517766464" data-price="11000" data-search="Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)" data-title="71642 poppenweiler freizeitgrundstück landwirtschaftsfläche 891qm" data-is-new="1" data-price-drop="0">
+        <li class="item" data-id="3517766464" data-price="11000" data-search="Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)" data-title="71642 poppenweiler freizeitgrundstück landwirtschaftsfläche 891qm" data-is-new="0" data-price-drop="0">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/cd/cda67579-0f64-4924-9e56-86d9199e3c40?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/71642-poppenweiler-freizeitgrundstueck-landwirtschaftsflaeche-891qm/3517766464-207-9064" target="_blank" rel="noopener">71642 Poppenweiler Freizeitgrundstück Landwirtschaftsfläche 891qm</a>
@@ -5340,6 +5351,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3517766464">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3517766464" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3517766464" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3517766464" data-auto="" value="" placeholder="Flurstücknummer">
@@ -5380,6 +5392,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3442024982">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3442024982" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3442024982" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3442024982" data-auto="" value="" placeholder="Flurstücknummer">
@@ -5420,6 +5433,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3496711927">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3496711927" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3496711927" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3496711927" data-auto="" value="" placeholder="Flurstücknummer">
@@ -5460,6 +5474,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3065549584">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3065549584" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3065549584" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3065549584" data-auto="" value="" placeholder="Flurstücknummer">
@@ -5500,6 +5515,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3453956945">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3453956945" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3453956945" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3453956945" data-auto="" value="" placeholder="Flurstücknummer">
@@ -5540,6 +5556,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3498196329">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3498196329" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3498196329" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3498196329" data-auto="" value="" placeholder="Flurstücknummer">
@@ -5580,6 +5597,7 @@
                 </select> <span class="hint" title="Im Anzeigentext erwähnt">💡</span>
               </span>
               <button type="button" class="ann-toggle" data-id="3512986029">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3512986029" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3512986029" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3512986029" data-auto="" value="" placeholder="Flurstücknummer">
@@ -5620,6 +5638,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3347145421">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3347145421" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3347145421" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3347145421" data-auto="" value="" placeholder="Flurstücknummer">
@@ -5660,6 +5679,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3513428518">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3513428518" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3513428518" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3513428518" data-auto="" value="" placeholder="Flurstücknummer">
@@ -5700,6 +5720,7 @@
                 </select> <span class="hint" title="Im Anzeigentext erwähnt">💡</span>
               </span>
               <button type="button" class="ann-toggle" data-id="3475534415">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3475534415" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3475534415" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3475534415" data-auto="" value="" placeholder="Flurstücknummer">
@@ -5740,6 +5761,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3515639854">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3515639854" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3515639854" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3515639854" data-auto="" value="" placeholder="Flurstücknummer">
@@ -5780,6 +5802,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3439280240">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3439280240" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3439280240" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3439280240" data-auto="" value="" placeholder="Flurstücknummer">
@@ -5789,7 +5812,7 @@
             </div>
           </div>
         </li>
-        <li class="item" data-id="3517881768" data-price="13500" data-search="Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)" data-title="freizeitgrundstück in hohenstaufen" data-is-new="1" data-price-drop="0">
+        <li class="item" data-id="3517881768" data-price="13500" data-search="Grundstücke &amp; Gärten (allgemein, Wernau + Umgebung)" data-title="freizeitgrundstück in hohenstaufen" data-is-new="0" data-price-drop="0">
           <img class="thumb" src="https://img.kleinanzeigen.de/api/v1/prod-ads/images/11/11101e09-3a03-43ec-91a8-127508235d53?rule=$_2.AUTO" alt="" loading="lazy">
           <div class="item-body">
             <a href="https://www.kleinanzeigen.de/s-anzeige/freizeitgrundstueck-in-hohenstaufen/3517881768-207-9026" target="_blank" rel="noopener">Freizeitgrundstück in Hohenstaufen</a>
@@ -5820,6 +5843,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3517881768">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3517881768" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3517881768" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3517881768" data-auto="" value="" placeholder="Flurstücknummer">
@@ -5860,6 +5884,7 @@
                 </select> <span class="hint" title="Im Anzeigentext erwähnt">💡</span>
               </span>
               <button type="button" class="ann-toggle" data-id="3485454338">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3485454338" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3485454338" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3485454338" data-auto="" value="" placeholder="Flurstücknummer">
@@ -5900,6 +5925,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3477348271">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3477348271" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3477348271" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3477348271" data-auto="" value="" placeholder="Flurstücknummer">
@@ -5940,6 +5966,7 @@
                 </select> <span class="hint" title="Im Anzeigentext erwähnt">💡</span>
               </span>
               <button type="button" class="ann-toggle" data-id="3485768464">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3485768464" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3485768464" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3485768464" data-auto="" value="" placeholder="Flurstücknummer">
@@ -5980,6 +6007,7 @@
                 </select> <span class="hint" title="Im Anzeigentext erwähnt">💡</span>
               </span>
               <button type="button" class="ann-toggle" data-id="3473321126">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3473321126" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3473321126" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3473321126" data-auto="" value="" placeholder="Flurstücknummer">
@@ -6020,6 +6048,7 @@
                 </select> <span class="hint" title="Im Anzeigentext erwähnt">💡</span>
               </span>
               <button type="button" class="ann-toggle" data-id="3467061209">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3467061209" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3467061209" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3467061209" data-auto="" value="" placeholder="Flurstücknummer">
@@ -6060,6 +6089,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3508557164">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3508557164" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3508557164" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3508557164" data-auto="" value="" placeholder="Flurstücknummer">
@@ -6100,6 +6130,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3461184430">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3461184430" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3461184430" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3461184430" data-auto="" value="" placeholder="Flurstücknummer">
@@ -6140,6 +6171,7 @@
                 </select> <span class="hint" title="Im Anzeigentext erwähnt">💡</span>
               </span>
               <button type="button" class="ann-toggle" data-id="3499811481">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3499811481" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3499811481" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3499811481" data-auto="" value="" placeholder="Flurstücknummer">
@@ -6180,6 +6212,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3256226640">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3256226640" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3256226640" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3256226640" data-auto="" value="" placeholder="Flurstücknummer">
@@ -6220,6 +6253,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3484196018">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3484196018" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3484196018" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3484196018" data-auto="" value="" placeholder="Flurstücknummer">
@@ -6260,6 +6294,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3476945264">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3476945264" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3476945264" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3476945264" data-auto="" value="" placeholder="Flurstücknummer">
@@ -6300,6 +6335,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3512246221">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3512246221" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3512246221" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3512246221" data-auto="" value="" placeholder="Flurstücknummer">
@@ -6340,6 +6376,7 @@
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3503099579">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3503099579" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3503099579" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3503099579" data-auto="" value="" placeholder="Flurstücknummer">
@@ -6382,6 +6419,7 @@ In...</span>
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3505867830">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3505867830" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3505867830" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3505867830" data-auto="" value="" placeholder="Flurstücknummer">
@@ -6428,6 +6466,7 @@ Matthias...</span>
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="2860007343">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="2860007343" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="2860007343" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="2860007343" data-auto="" value="" placeholder="Flurstücknummer">
@@ -6471,6 +6510,7 @@ abzuholen oder Versand für 5,00€...</span>
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3165649278">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3165649278" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3165649278" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3165649278" data-auto="" value="" placeholder="Flurstücknummer">
@@ -6511,6 +6551,7 @@ abzuholen oder Versand für 5,00€...</span>
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3044729760">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3044729760" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3044729760" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3044729760" data-auto="" value="" placeholder="Flurstücknummer">
@@ -6551,6 +6592,7 @@ abzuholen oder Versand für 5,00€...</span>
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3511886184">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3511886184" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3511886184" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3511886184" data-auto="" value="" placeholder="Flurstücknummer">
@@ -6591,6 +6633,7 @@ abzuholen oder Versand für 5,00€...</span>
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3419643200">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3419643200" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3419643200" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3419643200" data-auto="" value="" placeholder="Flurstücknummer">
@@ -6631,6 +6674,7 @@ abzuholen oder Versand für 5,00€...</span>
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3438284330">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3438284330" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3438284330" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3438284330" data-auto="" value="" placeholder="Flurstücknummer">
@@ -6671,6 +6715,7 @@ abzuholen oder Versand für 5,00€...</span>
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3457912978">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3457912978" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3457912978" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3457912978" data-auto="" value="" placeholder="Flurstücknummer">
@@ -6711,6 +6756,7 @@ abzuholen oder Versand für 5,00€...</span>
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3380529016">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3380529016" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3380529016" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3380529016" data-auto="" value="" placeholder="Flurstücknummer">
@@ -6751,6 +6797,7 @@ abzuholen oder Versand für 5,00€...</span>
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3129639342">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3129639342" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3129639342" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3129639342" data-auto="" value="" placeholder="Flurstücknummer">
@@ -6791,6 +6838,7 @@ abzuholen oder Versand für 5,00€...</span>
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3512694532">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3512694532" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3512694532" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3512694532" data-auto="" value="" placeholder="Flurstücknummer">
@@ -6831,6 +6879,7 @@ abzuholen oder Versand für 5,00€...</span>
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="2980841828">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="2980841828" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="2980841828" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="2980841828" data-auto="" value="" placeholder="Flurstücknummer">
@@ -6871,6 +6920,7 @@ abzuholen oder Versand für 5,00€...</span>
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3510024941">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3510024941" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3510024941" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3510024941" data-auto="" value="" placeholder="Flurstücknummer">
@@ -6911,6 +6961,7 @@ abzuholen oder Versand für 5,00€...</span>
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3505101140">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3505101140" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3505101140" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3505101140" data-auto="" value="" placeholder="Flurstücknummer">
@@ -6951,6 +7002,7 @@ abzuholen oder Versand für 5,00€...</span>
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3513876653">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3513876653" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3513876653" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3513876653" data-auto="" value="" placeholder="Flurstücknummer">
@@ -6991,6 +7043,7 @@ abzuholen oder Versand für 5,00€...</span>
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3514508789">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3514508789" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3514508789" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3514508789" data-auto="" value="" placeholder="Flurstücknummer">
@@ -7031,6 +7084,7 @@ abzuholen oder Versand für 5,00€...</span>
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3428633693">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3428633693" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3428633693" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3428633693" data-auto="" value="" placeholder="Flurstücknummer">
@@ -7071,6 +7125,7 @@ abzuholen oder Versand für 5,00€...</span>
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3190385111">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3190385111" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3190385111" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3190385111" data-auto="" value="" placeholder="Flurstücknummer">
@@ -7111,6 +7166,7 @@ abzuholen oder Versand für 5,00€...</span>
                 </select>
               </span>
               <button type="button" class="ann-toggle" data-id="3515533493">📝 Details</button>
+              <button type="button" class="ann-remove" data-id="3515533493" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
             <div class="ann-details" data-id="3515533493" hidden>
               <input type="text" class="ann-field" data-ann="flurstueck" data-id="3515533493" data-auto="" value="" placeholder="Flurstücknummer">
@@ -7125,6 +7181,11 @@ abzuholen oder Versand für 5,00€...</span>
   <section>
     <h2>🚫 Nicht Interessant – Aussortiert</h2>
     <ul id="aussortiertList"><li class="empty">Keine aussortiert.</li></ul>
+  </section>
+
+  <section>
+    <h2><button type="button" id="removedToggle" class="toggle-section">🗑️ Entfernt (0) – anzeigen</button></h2>
+    <ul id="removedList" hidden></ul>
   </section>
 
 <script>
@@ -7331,9 +7392,12 @@ abzuholen oder Versand für 5,00€...</span>
   function reorganize() {
     const unbewertetList = document.getElementById('unbewertetList');
     const aussortiertList = document.getElementById('aussortiertList');
+    const removedList = document.getElementById('removedList');
+    const removedToggle = document.getElementById('removedToggle');
     if (!unbewertetList || !aussortiertList) return;
     unbewertetList.innerHTML = '';
     aussortiertList.innerHTML = '';
+    removedList.innerHTML = '';
     document.querySelectorAll('li.item[data-hidden]').forEach(function(li) {
       li.removeAttribute('data-hidden');
     });
@@ -7341,14 +7405,28 @@ abzuholen oder Versand für 5,00€...</span>
     const alleItems = Array.from(document.querySelectorAll('#alleList li.item[data-id]'));
     let unbewertetCount = 0;
     let aussortiertCount = 0;
+    let removedCount = 0;
 
     alleItems.forEach(function(li) {
       const id = li.dataset.id;
-      const status = (annotations[id] && annotations[id].status) || '';
+      const ann = annotations[id] || {};
+      const status = ann.status || '';
       const isNew = li.dataset.isNew === '1';
       const hasDrop = li.dataset.priceDrop === '1';
 
-      if (status === 'nicht_interessant') {
+      if (ann.removed) {
+        const clone = li.cloneNode(true);
+        setFieldValues(clone, id);
+        const restoreBtn = document.createElement('button');
+        restoreBtn.type = 'button';
+        restoreBtn.className = 'restore-btn';
+        restoreBtn.dataset.id = id;
+        restoreBtn.textContent = '↩️ Wiederherstellen';
+        clone.querySelector('.item-body').appendChild(restoreBtn);
+        removedList.appendChild(clone);
+        removedCount++;
+        li.dataset.hidden = '1';
+      } else if (status === 'nicht_interessant') {
         const clone = li.cloneNode(true);
         setFieldValues(clone, id);
         aussortiertList.appendChild(clone);
@@ -7365,8 +7443,8 @@ abzuholen oder Versand für 5,00€...</span>
     ['#neuList', '#preissenkungenList'].forEach(function(sel) {
       document.querySelectorAll(sel + ' li.item[data-id]').forEach(function(li) {
         const id = li.dataset.id;
-        const status = (annotations[id] && annotations[id].status) || '';
-        if (status === 'nicht_interessant') {
+        const ann = annotations[id] || {};
+        if (ann.removed || ann.status === 'nicht_interessant') {
           li.dataset.hidden = '1';
         }
       });
@@ -7374,6 +7452,10 @@ abzuholen oder Versand für 5,00€...</span>
 
     if (unbewertetCount === 0) unbewertetList.innerHTML = '<li class="empty">Alles bewertet 🎉</li>';
     if (aussortiertCount === 0) aussortiertList.innerHTML = '<li class="empty">Keine aussortiert.</li>';
+    if (removedToggle) {
+      const expanded = !removedList.hidden;
+      removedToggle.textContent = '🗑️ Entfernt (' + removedCount + ')' + (expanded ? ' – ausblenden' : ' – anzeigen');
+    }
 
     if (window.__applyFilters) window.__applyFilters();
   }
@@ -7439,12 +7521,43 @@ abzuholen oder Versand für 5,00€...</span>
   });
 
   document.addEventListener('click', function(ev) {
-    const btn = ev.target.closest('.ann-toggle');
-    if (!btn) return;
-    const id = btn.dataset.id;
-    document.querySelectorAll('.ann-details[data-id="' + CSS.escape(id) + '"]').forEach(function(panel) {
-      panel.hidden = !panel.hidden;
-    });
+    const toggleBtn = ev.target.closest('.ann-toggle');
+    if (toggleBtn) {
+      const id = toggleBtn.dataset.id;
+      document.querySelectorAll('.ann-details[data-id="' + CSS.escape(id) + '"]').forEach(function(panel) {
+        panel.hidden = !panel.hidden;
+      });
+      return;
+    }
+
+    const removeBtn = ev.target.closest('.ann-remove');
+    if (removeBtn) {
+      const id = removeBtn.dataset.id;
+      if (!confirm('Diese Anzeige dauerhaft aus der Übersicht entfernen? Sie taucht dann nirgendwo mehr auf, bleibt aber im Hintergrund bekannt und kann jederzeit unten unter "🗑️ Entfernt" wiederhergestellt werden.')) {
+        return;
+      }
+      if (!annotations[id]) annotations[id] = {};
+      annotations[id].removed = true;
+      reorganize();
+      queueSave();
+      return;
+    }
+
+    const restoreBtn = ev.target.closest('.restore-btn');
+    if (restoreBtn) {
+      const id = restoreBtn.dataset.id;
+      if (annotations[id]) annotations[id].removed = false;
+      reorganize();
+      queueSave();
+      return;
+    }
+
+    const removedToggle = ev.target.closest('#removedToggle');
+    if (removedToggle) {
+      const list = document.getElementById('removedList');
+      list.hidden = !list.hidden;
+      reorganize();
+    }
   });
 
   patInput.value = pat ? '••••••••' : '';
