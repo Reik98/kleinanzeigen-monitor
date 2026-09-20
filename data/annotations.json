@@ -604,6 +604,7 @@
     "status": "nicht_interessant"
   },
   "3517881768": {
-    "schutzgebiet": "ja"
+    "schutzgebiet": "ja",
+    "huette": "nein"
   }
 }
