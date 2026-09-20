@@ -600,6 +600,7 @@
   "3517766464": {
     "comment": "LSSG",
     "schutzgebiet": "ja",
-    "huette": "nein"
+    "huette": "nein",
+    "status": "nicht_interessant"
   }
 }
