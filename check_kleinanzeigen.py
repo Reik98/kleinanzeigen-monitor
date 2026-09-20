@@ -386,7 +386,12 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
                   {huette_options}
                 </select>{huette_hint}
               </span>
-              <span class="schutz-badge" data-id="{aid}"><span class="schutz-badge-text">🛡️ Schutzgebiet</span>{schutz_hint}</span>
+              <span>
+                <div class="msel schutz-msel" data-label="🛡️ Schutzgebiet" data-id="{aid}">
+                  <button type="button" class="msel-btn">🛡️ Schutzgebiet</button>
+                  <div class="msel-panel" hidden>{schutz_checkboxes}</div>
+                </div>{schutz_hint}
+              </span>
               <button type="button" class="ann-toggle" data-id="{aid}">📝 Details</button>
               <button type="button" class="ann-remove" data-id="{aid}" title="Dauerhaft aus der Übersicht entfernen">🗑️</button>
             </div>
@@ -395,10 +400,6 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
               <input type="text" class="ann-field" data-ann="ort" data-id="{aid}" data-auto="{auto_ort}" value="{auto_ort}" placeholder="Ort">
               <input type="text" class="ann-field" data-ann="groesse" data-id="{aid}" data-auto="{auto_groesse}" value="{auto_groesse}" placeholder="Größe (z.B. 500 m²)">
               <textarea class="ann-field" data-ann="comment" data-id="{aid}" placeholder="Kommentar ..." rows="2"></textarea>
-              <div class="schutz-grid" data-id="{aid}">
-                <div class="schutz-grid-label">Schutzgebiete (Mehrfachauswahl):</div>
-                {schutz_checkboxes}
-              </div>
             </div>"""
 
     def item_row(item, is_new=False, has_drop=False, stale=False):
@@ -524,13 +525,10 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
   .sync-status.ok {{ color: #2a7f3f; }}
   .sync-status.err {{ color: #c0392b; }}
   .hint {{ cursor: help; font-size: .8rem; }}
-  .schutz-badge {{ font-size: .78rem; padding: .2rem .4rem; border: 1px solid #ccc; border-radius: 5px; background: #fafafa; cursor: default; }}
-  .schutz-grid {{ display: flex; flex-direction: column; gap: .2rem; width: 100%; margin-top: .3rem; padding-top: .3rem; border-top: 1px dashed #ddd; }}
-  .schutz-grid-label {{ font-size: .75rem; color: #888; margin-bottom: .1rem; }}
-  .schutz-grid label {{ font-size: .82rem; display: flex; align-items: center; gap: .3rem; }}
-  .msel {{ position: relative; }}
+  .msel {{ position: relative; display: inline-block; }}
   .msel-btn {{ padding: .4rem .5rem; border: 1px solid #ccc; border-radius: 6px; background: white; font-size: .85rem; cursor: pointer; }}
-  .msel-panel {{ position: absolute; top: 110%; left: 0; z-index: 20; background: white; border: 1px solid #ccc; border-radius: 8px; padding: .5rem; min-width: 200px; max-height: 260px; overflow-y: auto; box-shadow: 0 4px 12px rgba(0,0,0,.1); display: flex; flex-direction: column; gap: .25rem; }}
+  .msel-panel {{ position: absolute; top: 110%; left: 0; z-index: 20; background: white; border: 1px solid #ccc; border-radius: 8px; padding: .5rem; min-width: 200px; max-height: 260px; overflow-y: auto; box-shadow: 0 4px 12px rgba(0,0,0,.1); flex-direction: column; gap: .25rem; display: none; }}
+  .msel-panel:not([hidden]) {{ display: flex; }}
   .msel-panel label {{ font-size: .85rem; display: flex; align-items: center; gap: .4rem; white-space: nowrap; }}
   .ann-remove {{ margin-left: auto; }}
   .toggle-section {{ background: none; border: none; font: inherit; font-size: 1.1rem; cursor: pointer; padding: 0; color: #222; }}
@@ -625,35 +623,60 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
 
 <script>
 (function() {{
-  // Generischer Mehrfachauswahl-Dropdown-Baustein (Suche/Bewertung/
-  // Schutzgebiet/Hütte im Filterbereich oben).
-  const msels = {{}};
-  document.querySelectorAll('.msel').forEach(root => {{
-    const key = root.dataset.msel;
-    const label = root.dataset.label;
+  // Generischer Mehrfachauswahl-Dropdown-Baustein: sowohl für die 4
+  // Filter oben (data-msel gesetzt) als auch für die Schutzgebiet-Auswahl
+  // pro Inserat (ohne data-msel). Rein ereignis-delegiert (document-weite
+  // Listener), damit es auch für Kopien funktioniert, die das Notiz-Sync
+  // später in "Noch nicht geprüft"/"Aussortiert"/etc. hinein klont.
+  function updateMselLabel(root) {{
     const btn = root.querySelector('.msel-btn');
     const panel = root.querySelector('.msel-panel');
+    if (!btn || !panel) return;
+    const n = panel.querySelectorAll('input:checked').length;
+    const label = root.dataset.label || '';
+    btn.textContent = root.dataset.msel
+      ? (n ? label + ' (' + n + ')' : label + ': alle')
+      : (n ? label + ' (' + n + ')' : label);
+  }}
+  window.__updateMselLabel = updateMselLabel;
 
-    function updateLabel() {{
-      const n = panel.querySelectorAll('input:checked').length;
-      btn.textContent = n ? label + ' (' + n + ')' : label + ': alle';
-    }}
-    btn.addEventListener('click', ev => {{
+  const msels = {{}};
+  document.querySelectorAll('[data-msel]').forEach(root => {{
+    const key = root.dataset.msel;
+    const panel = root.querySelector('.msel-panel');
+    updateMselLabel(root);
+    msels[key] = {{
+      getSelected: () => Array.from(panel.querySelectorAll('input:checked')).map(cb => cb.value),
+      reset: () => {{
+        panel.querySelectorAll('input:checked').forEach(cb => {{ cb.checked = false; }});
+        updateMselLabel(root);
+      }}
+    }};
+  }});
+  // Labels der Pro-Inserat-Dropdowns (Schutzgebiet) initial setzen.
+  document.querySelectorAll('.msel:not([data-msel])').forEach(root => updateMselLabel(root));
+
+  document.addEventListener('click', function(ev) {{
+    const btn = ev.target.closest('.msel-btn');
+    if (btn) {{
       ev.stopPropagation();
+      const panel = btn.nextElementSibling;
       const willOpen = panel.hidden;
       document.querySelectorAll('.msel-panel').forEach(p => {{ p.hidden = true; }});
       panel.hidden = !willOpen;
-    }});
-    panel.addEventListener('change', () => {{ updateLabel(); applyFilters(); }});
-    updateLabel();
-
-    msels[key] = {{
-      getSelected: () => Array.from(panel.querySelectorAll('input:checked')).map(cb => cb.value),
-      reset: () => {{ panel.querySelectorAll('input:checked').forEach(cb => cb.checked = false); updateLabel(); }}
-    }};
+      return;
+    }}
+    if (!ev.target.closest('.msel-panel')) {{
+      document.querySelectorAll('.msel-panel').forEach(p => {{ p.hidden = true; }});
+    }}
   }});
-  document.addEventListener('click', () => {{
-    document.querySelectorAll('.msel-panel').forEach(p => {{ p.hidden = true; }});
+
+  document.addEventListener('change', function(ev) {{
+    const panel = ev.target.closest('.msel-panel');
+    if (!panel) return;
+    const root = panel.closest('.msel');
+    if (root) updateMselLabel(root);
+    applyFilters();
   }});
 
   const textInput = document.getElementById('filterText');
@@ -925,8 +948,8 @@ def build_dashboard(searches, state, new_items, price_drops, run_time, errors):
     scope.querySelectorAll('.ann-multi[data-ann="schutzgebiet"]').forEach(function(cb) {{
       cb.checked = schutzArr.includes(cb.dataset.value);
     }});
-    scope.querySelectorAll('.schutz-badge[data-id="' + CSS.escape(id) + '"] .schutz-badge-text').forEach(function(t) {{
-      t.textContent = '🛡️ Schutzgebiet' + (schutzArr.length ? ' (' + schutzArr.length + ')' : '');
+    scope.querySelectorAll('.schutz-msel[data-id="' + CSS.escape(id) + '"]').forEach(function(root) {{
+      if (window.__updateMselLabel) window.__updateMselLabel(root);
     }});
   }}
 
