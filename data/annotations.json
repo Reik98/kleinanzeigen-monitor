@@ -645,7 +645,8 @@
     "huette": "keine",
     "schutzgebiet": [
       "vogelschutzgebiet"
-    ]
+    ],
+    "status": "angeschaut"
   },
   "3522060803": {
     "status": "nicht_interessant"
