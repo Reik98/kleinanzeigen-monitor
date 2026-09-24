@@ -644,7 +644,8 @@
   "3521410782": {
     "schutzgebiet": [
       "landschaftsschutzgebiet"
-    ]
+    ],
+    "status": "nicht_interessant"
   },
   "3521668574": {
     "huette": "keine",
