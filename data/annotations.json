@@ -642,7 +642,10 @@
     "status": "nicht_interessant"
   },
   "3521668574": {
-    "huette": "keine"
+    "huette": "keine",
+    "schutzgebiet": [
+      "vogelschutzgebiet"
+    ]
   },
   "3522060803": {
     "status": "nicht_interessant"
