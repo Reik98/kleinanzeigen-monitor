@@ -695,6 +695,7 @@
     "schutzgebiet": [
       "landschaftsschutzgebiet",
       "vogelschutzgebiet"
-    ]
+    ],
+    "status": "interessant"
   }
 }
