@@ -770,6 +770,7 @@
       "vogelschutzgebiet",
       "naturpark"
     ],
-    "huette": "keine"
+    "huette": "keine",
+    "status": "nicht_interessant"
   }
 }
