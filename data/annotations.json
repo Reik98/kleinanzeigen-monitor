@@ -802,6 +802,7 @@
     "schutzgebiet": [
       "landschaftsschutzgebiet"
     ],
-    "huette": "keine"
+    "huette": "keine",
+    "status": "nicht_interessant"
   }
 }
