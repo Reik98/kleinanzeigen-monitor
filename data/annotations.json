@@ -820,6 +820,11 @@
   "3529286472": {
     "status": "nicht_interessant"
   },
+  "3529802047": {
+    "schutzgebiet": [
+      "landschaftsschutzgebiet"
+    ]
+  },
   "3529829361": {
     "status": "interessant"
   }
