@@ -342,7 +342,8 @@
     "huette": "nein"
   },
   "3499811481": {
-    "status": "angeschaut"
+    "status": "angeschaut",
+    "removed": true
   },
   "3500175652": {
     "removed": true
